@@ -1,0 +1,272 @@
+<template>
+    <div class="page">
+        <div class="navbar navbar-large navbar-transparent">
+            <div class="navbar-bg"></div>
+            <div class="navbar-inner sliding">
+                <div class="left">
+                    <a class="link back">
+                        <i class="icon icon-back"></i>
+                        <span class="if-not-md">Framework7</span>
+                    </a>
+                </div>
+                <div class="title">Pembelian</div>
+                <div class="title-large">
+                    <div class="title-large-text">Pembelian</div>
+                </div>
+            </div>
+        </div>
+        <div class="page-content">
+            <div class="block-title block-title-medium">Form Pembelian</div>
+            <div class="card">
+                <div class="card-header">
+                </div>
+                <div class="card-content card-content-padding">
+                    <form class="list">
+                        <ul>
+                            <li>
+                                <div class="item-content item-input">
+                                    <div class="item-inner">
+                                        <div class="item-title item-label">Nama Pelanggan</div>
+                                        <div class="item-input-wrap">
+                                            <input name="pelanggan_nama" type="text" id="pelanggan_nama"/>
+                                            <span class="input-clear-button"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-10">
+                                        <div class="item-inner">
+                                            <div class="item-input-wrap" style="margin-top: 10px;">
+                                                <button type="button" class="button button-fill color-blue" @click="${()=>cariPelanggan()}">
+                                                    Cari
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="item-content item-input">
+                                    <div class="item-inner">
+                                        <div class="item-title item-label">Kode Barang</div>
+                                        <div class="item-input-wrap">
+                                            <input name="barang_id" type="text"/>
+                                            <span class="input-clear-button"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-10">
+                                        <div class="item-inner">
+                                            <div class="item-input-wrap" style="margin-top: 10px;">
+                                                <button type="button" class="button button-fill color-red" @click="${()=>scandata()}">
+                                                    <i class="icon f7-icons">qrcode</i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </form>
+                </div>
+                <div class="card-footer">
+                    <p class="grid grid-cols-2 grid-gap">
+                        <button class="button button-large button-tonal" @click="#">Tambahkan</button>
+                    </p>
+                </div>
+            </div>
+            <!-- <div class="block-title block-title-medium">Form Pembelian</div>
+            <form class="list">
+                <ul>
+                    <li>
+                        <div class="item-content item-input">
+                            <div class="item-inner">
+                                <div class="item-title item-label">Nama Pelanggan</div>
+                                <div class="item-input-wrap">
+                                    <input name="pelanggan_nama" type="text" id="pelanggan_nama"/>
+                                    <span class="input-clear-button"></span>
+                                </div>
+                            </div>
+                            <div class="col-10">
+                                <div class="item-inner">
+                                    <div class="item-input-wrap" style="margin-top: 10px;">
+                                        <button type="button" class="button button-fill color-blue" @click="${()=>cariPelanggan()}">
+                                            Cari
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="item-content item-input">
+                            <div class="item-inner">
+                                <div class="item-title item-label">Kode Barang</div>
+                                <div class="item-input-wrap">
+                                    <input name="barang_id" type="text"/>
+                                    <span class="input-clear-button"></span>
+                                </div>
+                            </div>
+                            <div class="col-10">
+                                <div class="item-inner">
+                                    <div class="item-input-wrap" style="margin-top: 10px;">
+                                        <button type="button" class="button button-fill color-red" @click="${()=>scandata()}">
+                                            <i class="icon f7-icons">qrcode</i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </form>
+            <div class="block block-strong block-outline-ios">
+                <p class="grid grid-cols-2 grid-gap">
+                    <button class="button button-large button-tonal" @click="#">Tambahkan</button>
+                </p>
+            </div> -->
+            <div class="block-title block-title-medium">Detail Pembelian</div>
+            <div class="card data-table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th class="label-cell" style="width: 20%">Nama Barang</th>
+                            <th class="numeric-cell" style="width: 10%">Harga</th>
+                            <th class="numeric-cell" style="width: 10%">Qty</th>
+                            <th class="numeric-cell" style="width: 10%">Subtotal</th>
+                            <th class="numeric-cell" style="width: 10%">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="daftar-barang">
+                        
+                    </tbody>
+                </table>
+            </div>
+            <div class="card">
+                <div class="card-header">
+
+                </div>
+                <div class="card-content card-content-padding">
+                    <form class="list">
+                        <ul>
+                            <li>
+                                <div class="item-content item-input">
+                                    <div class="item-inner">
+                                        <div class="item-title item-label">Total Pembelian</div>
+                                        <div class="item-input-wrap">
+                                            <input name="beli_total" type="text"/>
+                                            <span class="input-clear-button"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="item-content item-input">
+                                    <div class="item-inner">
+                                        <div class="item-title item-label">Jumlah Uang</div>
+                                        <div class="item-input-wrap">
+                                            <input name="beli_jml_uang" type="text"/>
+                                            <span class="input-clear-button"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="item-content item-input">
+                                    <div class="item-inner">
+                                        <div class="item-title item-label">Jumlah Kembalian</div>
+                                        <div class="item-input-wrap">
+                                            <input name="beli_kembalian" type="text"/>
+                                            <span class="input-clear-button"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </form>
+                </div>
+                <div class="card-footer">
+                    <p class="grid grid-cols-2 grid-gap">
+                        <button class="button button-large button-tonal" @click="#">Bayar</button>
+                    </p>
+                </div>
+            </div>
+            <!-- <form class="list">
+                <ul>
+                    <li>
+                        <div class="item-content item-input">
+                            <div class="item-inner">
+                                <div class="item-title item-label">Total Pembelian</div>
+                                <div class="item-input-wrap">
+                                    <input name="beli_total" type="text"/>
+                                    <span class="input-clear-button"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="item-content item-input">
+                            <div class="item-inner">
+                                <div class="item-title item-label">Jumlah Uang</div>
+                                <div class="item-input-wrap">
+                                    <input name="beli_jml_uang" type="text"/>
+                                    <span class="input-clear-button"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="item-content item-input">
+                            <div class="item-inner">
+                                <div class="item-title item-label">Jumlah Kembalian</div>
+                                <div class="item-input-wrap">
+                                    <input name="beli_kembalian" type="text"/>
+                                    <span class="input-clear-button"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </form>
+            <div class="block block-strong block-outline-ios">
+                <p class="grid grid-cols-2 grid-gap">
+                    <button class="button button-large button-tonal" @click="#">Bayar</button>
+                </p>
+            </div> -->
+        </div> 
+    </div>
+</template>
+<script>
+    export default function (props, ctx) {
+        // let autocompleteDropdownAjax;
+
+        // autocompleteDropdownAjax = $f7.autocomplete.create({
+        //     inputEl: '#pelanggan_nama',
+        //     openIn: 'dropdown',
+        //     preloader: true,
+        //     valueProperty: 'id',
+        //     textProperty: 'name',
+        //     limit: 20,
+        //     dropdownPlaceholderText: 'Coba "Budi"',
+        //     source: function (query, render) {
+        //         var autocomplete = this;
+        //         var results = [];
+        //         if (query.length === 0) {
+        //             render(results);
+        //             return;
+        //         }
+        //         autocomplete.preloaderShow();
+
+        //         fetch(`./js/autocomplete-languages.json?query=${query}`)
+        //         .then((res) => res.json())
+        //         .then((data) => {
+        //             for (let i = 0; i < data.length; i += 1) {
+        //                 if (data[i].name.toLowerCase().indexOf(query.toLowerCase()) >= 0)
+        //                 results.push(data[i]);
+        //             }
+        //         autocomplete.preloaderHide();
+        //         render(results);
+        //         });
+        //     }
+        // });
+
+        return $render;
+    };
+</script>

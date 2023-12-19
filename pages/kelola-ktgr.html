@@ -1,0 +1,57 @@
+<template>
+    <div class="page">
+        <div class="navbar navbar-large navbar-transparent">
+            <div class="navbar-bg"></div>
+            <div class="navbar-inner sliding">
+                <div class="left">
+                    <a class="link back">
+                        <i class="icon icon-back"></i>
+                        <span class="if-not-md">Framework7</span>
+                    </a>
+                </div>
+                <div class="title">Kelola Kategori</div>
+                <div class="title-large">
+                    <div class="title-large-text">Kelola Kategori</div>
+                </div>
+            </div>
+        </div>
+        <div class="page-content">
+            <div class="block-title block-title-medium">Form Kelola Kategori</div>
+            <form class="list">
+                <ul>
+                    <li>
+                        <div class="item-content item-input">
+                            <div class="item-inner">
+                                <div class="item-title item-label">Nama Kategori</div>
+                                <div class="item-input-wrap">
+                                    <input name="kategori_nama" type="text" id="kategori_nama"/>
+                                    <span class="input-clear-button"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </form>
+            <div class="block block-strong block-outline-ios">
+                <p class="grid grid-cols-2 grid-gap">
+                    <button class="button button-large button-tonal color-blue" @click="${()=>updateKategori()}">Update</button>
+                </p>
+            </div>
+        </div>
+    </div>
+</template>
+<script>
+    export default function (props, ctx) {
+        let $on = ctx.$on;
+
+        $on('pageAfterIn', () => {
+            // editKategori(id, nama);
+            let idKategori = localStorage.getItem("editKategori");
+            let namaKategori = localStorage.getItem("namaKategori");
+
+            document.getElementById('kategori_nama').value = namaKategori;
+        })
+
+        return $render;
+    }
+</script>

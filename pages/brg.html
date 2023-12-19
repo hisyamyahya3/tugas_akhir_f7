@@ -1,0 +1,60 @@
+<template>
+    <div class="page">
+        <div class="navbar navbar-large navbar-transparent">
+            <div class="navbar-bg"></div>
+            <div class="navbar-inner sliding">
+                <div class="left">
+                    <a class="link back">
+                        <i class="icon icon-back"></i>
+                        <span class="if-not-md">Framework7</span>
+                    </a>
+                </div>
+                <div class="title">Barang</div>
+                <div class="title-large">
+                    <div class="title-large-text">Barang</div>
+                </div>
+            </div>
+        </div>
+        <div class="page-content">
+            <div class="block-title block-title-medium">Tabel Barang</div>
+            <div class="card data-table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th class="label-cell" style="width: 20%">Nama Barang</th>
+                            <th class="label-cell" style="width: 10%">Satuan</th>
+                            <th class="numeric-cell" style="width: 10%">Harga Pokok</th>
+                            <th class="numeric-cell" style="width: 10%">Harga Jual</th>
+                            <th class="numeric-cell" style="width: 10%">Harga Jual Grosir</th>
+                            <th class="numeric-cell" style="width: 10%">Stok</th>
+                            <th class="numeric-cell" style="width: 10%">Min</th>
+                            <th class="numeric-cell" style="width: 10%">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="daftar-barang">
+                        
+                    </tbody>
+                </table>
+            </div>
+            <div class="block block-strong block-outline-ios">
+                <p class="grid grid-cols-2 grid-gap"></p>
+            </div>
+        </div>  
+        <div class="fab fab-extended fab-center-bottom">
+            <a href="/addbrg/">
+                <i class="icon f7-icons if-not-md">plus</i>
+                <i class="icon material-icons md-only">add</i>
+                <div class="fab-text">Tambah</div>
+            </a>
+        </div>
+    </div>
+</template>
+<script>
+    export default function (props, ctx) {
+        let $on = ctx.$on;
+        $on('pageAfterIn', () => {
+            tampilBarang();
+        })
+        return $render;
+    };
+</script>

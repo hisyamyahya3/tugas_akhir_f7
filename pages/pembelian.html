@@ -1,0 +1,194 @@
+<template>
+    <div class="page">
+        <div class="navbar navbar-large navbar-transparent">
+            <div class="navbar-bg"></div>
+            <div class="navbar-inner sliding">
+                <div class="left">
+                    <a class="link back">
+                        <i class="icon icon-back"></i>
+                        <span class="if-not-md">Framework7</span>
+                    </a>
+                </div>
+                <div class="title">Pembelian</div>
+                <div class="title-large">
+                    <div class="title-large-text">Pembelian</div>
+                </div>
+            </div>
+        </div>
+        <div class="page-content content-pembelian">
+            <div class="block-title block-title-medium">Pilih Pelanggan</div>
+            <form data-search-container=".search-list" data-search-in=".item-title" class="searchbar searchbar-init">
+                <div class="searchbar-inner">
+                    <div class="searchbar-input-wrap">
+                        <input type="text" id="searchpelanggan" placeholder="Cari pelanggan...." />
+                        <i class="searchbar-icon"></i>
+                        <span class="input-clear-button"></span>
+                    </div>
+                    <span class="searchbar-disable-button">Cancel</span>
+                </div>
+            </form>
+            <div class="pelanggan"></div>
+            <!-- <div class="card">
+                <div class="card-content card-content-padding">
+                    <div class="row" style="font-size: 16px;">
+                        <div class="col-50" style="font-size: larger;">Kito</div>
+                        <div class="col-25" style="text-align: left;">Jakarta Utara</div>
+                        <div class="col-25" style="text-align: right;">+62827392008</div>
+                    </div>
+                </div>
+            </div> -->
+            <div class="block-title block-title-medium">Pilih Barang</div>
+            <form data-search-container=".search-list" data-search-in=".item-title" class="searchbar searchbar-init">
+                <div class="searchbar-inner">
+                    <div class="searchbar-input-wrap">
+                        <input type="text" id="searchbarang" placeholder="Cari barang......" />
+                        <i class="searchbar-icon"></i>
+                        <span class="input-clear-button"></span>
+                    </div>
+                    <span class="searchbar-disable-button">Cancel</span>
+                </div>
+            </form>
+            <div class="barang"></div>
+            <!-- <div class="card">
+                <div class="card-content card-content-padding">
+                    <div class="row" style="font-size: 17px;">
+                        <div class="col-50" style="font-size: larger;">Hoodie Merah</div>
+                        <div class="col-25" style="text-align: left;">Kode Barang : 124</div>
+                        <div class="col-25" style="text-align: right;">Rp. 125.000</div>
+                    </div>
+                    <div class="row">
+                        <div class="stepper">
+                            <div class="stepper-button-minus"></div>
+                            <div class="stepper-value">1</div>
+                            <div class="stepper-button-plus"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-content card-content-padding">
+                    <div class="row" style="font-size: 17px;">
+                        <div class="col-50" style="font-size: larger;">Sweater</div>
+                        <div class="col-25" style="text-align: left;">Kode Barang : 102</div>
+                        <div class="col-25" style="text-align: right;">Rp. 100.000</div>
+                    </div>
+                    <div class="row">
+                        <div class="stepper">
+                            <div class="stepper-button-minus"></div>
+                            <div class="stepper-value">1</div>
+                            <div class="stepper-button-plus"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-content card-content-padding">
+                    <div class="row" style="font-size: 17px;">
+                        <div class="col-50" style="font-size: larger;">Topi Monster</div>
+                        <div class="col-25" style="text-align: left;">Kode Barang : 99</div>
+                        <div class="col-25" style="text-align: right;">Rp. 135.000</div>
+                    </div>
+                    <div class="row">
+                        <div class="stepper">
+                            <div class="stepper-button-minus"></div>
+                            <div class="stepper-value">1</div>
+                            <div class="stepper-button-plus"></div>
+                        </div>
+                    </div>
+                </div>
+            </div> -->
+            <div class="block-title block-title-medium">Detail Pembelian</div>
+            <div class="card data-table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th class="label-cell" style="width: 20%">Barang</th>
+                            <th class="label-cell" style="width: 20%">Harga</th>
+                            <th class="label-cell" style="width: 20%">Qty</th>
+                            <th class="label-cell" style="width: 20%">Subtotal</th>
+                            <th class="label-cell" style="width: 20%">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th class="label-cell" style="width: 20%">Topi Monster</th>
+                            <th class="label-cell" style="width: 20%">135000</th>
+                            <th class="label-cell" style="width: 20%">3</th>
+                            <th class="label-cell" style="width: 20%">405000</th>
+                            <th class="label-cell" style="width: 20%"><p class="grid grid-cols-2 grid-gap"><button class="button button-small button-tonal color-red">Hapus</button></p></th>
+                        </tr>
+                        <tr>
+                            <th class="label-cell" style="width: 20%">Topi Monster</th>
+                            <th class="label-cell" style="width: 20%">135000</th>
+                            <th class="label-cell" style="width: 20%">3</th>
+                            <th class="label-cell" style="width: 20%">405000</th>
+                            <th class="label-cell" style="width: 20%"><p class="grid grid-cols-2 grid-gap"><button class="button button-small button-tonal color-red">Hapus</button></p></th>
+                        </tr>
+                        <tr>
+                            <th class="label-cell" style="width: 20%">Topi Monster</th>
+                            <th class="label-cell" style="width: 20%">135000</th>
+                            <th class="label-cell" style="width: 20%">3</th>
+                            <th class="label-cell" style="width: 20%">405000</th>
+                            <th class="label-cell" style="width: 20%"><p class="grid grid-cols-2 grid-gap"><button class="button button-small button-tonal color-red">Hapus</button></p></th>
+                        </tr>
+                        <tr>
+                            <th class="label-cell" style="width: 20%">Topi Monster</th>
+                            <th class="label-cell" style="width: 20%">135000</th>
+                            <th class="label-cell" style="width: 20%">3</th>
+                            <th class="label-cell" style="width: 20%">405000</th>
+                            <th class="label-cell" style="width: 20%"><p class="grid grid-cols-2 grid-gap"><button class="button button-small button-tonal color-red">Hapus</button></p></th>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="block-title block-title-medium">Atas Nama Kito</div>
+            <form class="list">
+                <ul>
+                    <li>
+                        <div class="item-content item-input">
+                            <div class="item-inner">
+                                <div class="item-title item-label">Total Pembelian</div>
+                                <div class="item-input-wrap">
+                                    <input name="beli_total" type="text"/>
+                                    <span class="input-clear-button"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="item-content item-input">
+                            <div class="item-inner">
+                                <div class="item-title item-label">Jumlah Uang</div>
+                                <div class="item-input-wrap">
+                                    <input name="beli_jml_uang" type="text"/>
+                                    <span class="input-clear-button"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="item-content item-input">
+                            <div class="item-inner">
+                                <div class="item-title item-label">Jumlah Kembalian</div>
+                                <div class="item-input-wrap">
+                                    <input name="beli_kembalian" type="text"/>
+                                    <span class="input-clear-button"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </form>
+            <div class="block block-strong block-outline-ios">
+                <p class="grid grid-cols-2 grid-gap">
+                    <button class="button button-large button-tonal" @click="#">Simpan Pembelian</button>
+                </p>
+            </div>
+        </div>
+    </div>
+</template>
+<script>
+    export default function (props, ctx) {
+        return $render;
+    };
+</script>

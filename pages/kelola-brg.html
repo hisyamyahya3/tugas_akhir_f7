@@ -1,0 +1,132 @@
+<template>
+    <div class="page">
+        <div class="navbar navbar-large navbar-transparent">
+            <div class="navbar-bg"></div>
+            <div class="navbar-inner sliding">
+                <div class="left">
+                    <a class="link back">
+                        <i class="icon icon-back"></i>
+                        <span class="if-not-md">Framework7</span>
+                    </a>
+                </div>
+                <div class="title">Kelola Barang</div>
+                <div class="title-large">
+                    <div class="title-large-text">Kelola Barang</div>
+                </div>
+            </div>
+        </div>
+        <div class="page-content">
+            <div class="block-title block-title-medium">Form Kelola Barang</div>
+            <form class="list">
+                <ul>
+                    <li>
+                        <div class="item-content item-input">
+                            <div class="item-inner">
+                                <div class="item-title item-label">Nama Barang</div>
+                                <div class="item-input-wrap">
+                                    <input name="barang_nama" type="text" id="barang_nama"/>
+                                    <span class="input-clear-button"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="item-content item-input">
+                            <div class="item-inner">
+                                <div class="item-title item-label">Barang Satuan</div>
+                                <div class="item-input-wrap">
+                                    <input name="barang_satuan" type="text" id="barang_satuan"/>
+                                    <span class="input-clear-button"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="item-content item-input">
+                            <div class="item-inner">
+                                <div class="item-title item-label">Harga Pokok</div>
+                                <div class="item-input-wrap">
+                                    <input name="barang_harpok" type="text" id="barang_harpok"/>
+                                    <span class="input-clear-button"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="item-content item-input">
+                            <div class="item-inner">
+                                <div class="item-title item-label">Harga Jual</div>
+                                <div class="item-input-wrap">
+                                    <input name="barang_harjul" type="text" id="barang_harjul"/>
+                                    <span class="input-clear-button"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="item-content item-input">
+                            <div class="item-inner">
+                                <div class="item-title item-label">Harga Jual Grosir</div>
+                                <div class="item-input-wrap">
+                                    <input name="barang_harjul_grosir" type="text" id="barang_harjul_grosir"/>
+                                    <span class="input-clear-button"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="item-content item-input">
+                            <div class="item-inner">
+                                <div class="item-title item-label">Barang Stok</div>
+                                <div class="item-input-wrap">
+                                    <input name="barang_stok" type="text" id="barang_stok"/>
+                                    <span class="input-clear-button"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="item-content item-input">
+                            <div class="item-inner">
+                                <div class="item-title item-label">Barang Minimal Stok</div>
+                                <div class="item-input-wrap">
+                                    <input name="barang_min_stok" type="text" id="barang_min_stok"/>
+                                    <span class="input-clear-button"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </form>
+            <div class="block block-strong block-outline-ios">
+                <p class="grid grid-cols-2 grid-gap">
+                    <button class="button button-large button-tonal color-blue" @click="#">Update</button>
+                </p>
+            </div>
+        </div>
+    </div>
+</template>
+<script>
+    export default function (props, ctx) {
+        let $on = ctx.$on;
+        $on('pageAfterIn', () => {
+            let kodeBarang = localStorage.getItem("editBarang");
+            let namaBarang = localStorage.getItem("namaBarang");
+            let satuanBarang = localStorage.getItem("satuanBarang");
+            let harjulBarang = localStorage.getItem("harjulBarang");
+            let harpokBarang = localStorage.getItem("harpokBarang");
+            let grosirBarang = localStorage.getItem("grosirBarang");
+            let stokBarang = localStorage.getItem("stokBarang");
+            let minBarang = localStorage.getItem("minBarang");
+
+            document.getElementById('barang_nama').value = namaBarang;
+            document.getElementById('barang_satuan').value = satuanBarang;
+            document.getElementById('barang_harpok').value = harpokBarang;
+            document.getElementById('barang_harjul').value = harjulBarang;
+            document.getElementById('barang_harjul_grosir').value = grosirBarang;
+            document.getElementById('barang_stok').value = stokBarang;
+            document.getElementById('barang_min_stok').value = minBarang;
+        })
+        return $render;
+    }
+</script>
