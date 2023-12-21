@@ -63,5 +63,5 @@ $(document).on('click', '.card-pelanggan', function() {
     localStorage.setItem("namaPelangganPembelian", namaPelangganPembelian)
 
     $('#detailPelangganPembelian').css({display: 'block'})
-    $('#detailPelangganPembelian #detailNamaPelangganPembelian').html(`atas nama ${namaPelangganPembelian}`)
+    $('#detailPelangganPembelian #detailNamaPelangganPembelian').html(`Atas Nama ${namaPelangganPembelian}`)
 })
