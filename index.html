@@ -25,6 +25,7 @@
     <script src="js/app.js"></script>
     <script src="js/jquery-3.6.3.min.js"></script>
     <script src="cordova.js"></script>
+    <script src="js/pembelian.js"></script>
     <script>
         function tampilKategori() {
             $.ajax({
@@ -48,7 +49,6 @@
             })
         }
 
-        
         function tambahKategori() {
             let kategori_nama = $("input[name=kategori_nama]").val();
             if(kategori_nama == ""){
@@ -198,8 +198,13 @@
                         nama_barang: searchInput
                     },
                     success: function(res) {
-                        // console.log(res)
-                        $('.content-pembelian .barang').html(fetchDataBarang(res))
+                        let data = JSON.parse(res)
+
+                        if (data.data) {
+                            $('.content-pembelian .barang').html(fetchDataBarang(data))
+                        } else {
+                            $('.content-pembelian .barang').html('')
+                        }
                     },
                     error: function(){
                         app.dialog.alert("Tidak Terhubung dengan Server!","Error");
@@ -212,9 +217,9 @@
 
         function fetchDataBarang(data) {
             let temp = '';
-            let parseData = JSON.parse(data);
+            // let parseData = JSON.parse(data);
 
-            parseData.data.forEach((d) => {
+            data.data.forEach((d) => {
                 temp += `
                 <div class="card">
                     <div class="card-content card-content-padding">
@@ -223,13 +228,6 @@
                             <div class="col-50" style="font-size: larger;">${d.barang_nama}</div>
                             <div class="col-25" style="text-align: right;">Stok Barang : ${d.barang_stok}</div>
                             <div class="col-25" style="text-align: right;">Rp. ${d.barang_harjul}</div>
-                        </div>
-                        <div class="row">
-                            <div class="stepper">
-                                <div class="stepper-button-minus"></div>
-                                <div class="stepper-value">1</div>
-                                <div class="stepper-button-plus"></div>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -292,55 +290,6 @@
             localStorage.setItem("alamatPelanggan", alamat);
             localStorage.setItem("notelpPelanggan", notelp);
             app.views.main.router.navigate("/editplgn/");
-        }
-
-        $(document).on('click', '#reset', function () {
-            console.log('tes')
-            $('.content-pembelian .pelanggan').html('')
-        })
-
-        $(document).on('keyup', '#searchpelanggan', function () {
-            let searchInput = $(this).val()
-
-            if (searchInput.length > 0) {
-                $.ajax({
-                    url: "http://localhost/api_toko/Pelanggan/search",
-                    method: "POST",
-                    data: {
-                        nama_pelanggan: searchInput
-                    },
-                    success: function(res) {
-                        // console.log(res)
-                        $('.content-pembelian .pelanggan').html(fetchDataPelanggan(res))
-                    },
-                    error: function(){
-                        app.dialog.alert("Tidak Terhubung dengan Server!","Error");
-                    }
-                })
-            } else {
-                $('.content-pembelian .pelanggan').html('')
-            }
-        })
-
-        function fetchDataPelanggan(data) {
-            let temp = '';
-            let parseData = JSON.parse(data);
-
-            parseData.data.forEach((d) => {
-                temp += `
-                    <div class="card">
-                        <div class="card-content card-content-padding">
-                            <div class="row" style="font-size: 16px;">
-                                <div class="col-50" style="font-size: larger;">${d.pelanggan_nama}</div>
-                                <div class="col-25" style="text-align: left;">${d.pelanggan_alamat}</div>
-                                <div class="col-25" style="text-align: right;">${d.pelanggan_notelp}</div>
-                            </div>
-                        </div>
-                    </div>
-                `
-            });
-
-            return temp;
         }
 
         function tampilSupplier() {
