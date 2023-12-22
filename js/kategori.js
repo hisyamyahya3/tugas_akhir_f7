@@ -11,7 +11,7 @@ function tampilKategori() {
                 temp += `
                     <tr>
                         <td class="label-cell">${d.kategori_nama}</td>
-                        <td class="actions-cell"><p class="grid grid-cols-2 grid-gap"><button class="button button-small button-tonal" onclick="editKategori(${d.kategori_id}, '${d.kategori_nama}')">Edit</button><button class="button button-small button-tonal color-red" onclick="#">Hapus</button></p></td>
+                        <td class="actions-cell"><p class="grid grid-cols-2 grid-gap"><button class="button button-small button-tonal" onclick="editKategori(${d.kategori_id}, '${d.kategori_nama}')">Edit</button><button class="button button-small button-tonal color-red" onclick="hapusKategori(${d.kategori_id})">Hapus</button></p></td>
                     </tr>
                 `
             })
@@ -73,6 +73,23 @@ function updateKategori(id, nama) {
         success: function(){
             app.dialog.alert("Data Berhasil Di Update","Success");
             app.views.main.router.back();
+        },
+        error: function(){
+            app.dialog.alert("Tidak Terhubung dengan Server!","Error");
+        }
+    })
+}
+
+function hapusKategori(id) {
+    $.ajax({
+        url: "http://localhost/api_toko/Kategori/delete",
+        method: "POST",
+        data: {id_kategori: id},
+        success: function(res) {
+            // console.log(res)
+            app.dialog.alert("Data Berhasil Di Input","Success");
+            app.views.main.router.refreshPage();
+            // app.views.main.router.reload();
         },
         error: function(){
             app.dialog.alert("Tidak Terhubung dengan Server!","Error");

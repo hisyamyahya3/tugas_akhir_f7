@@ -79,53 +79,53 @@ $(document).on('click', '.reset-searchBarang', function () {
     $('.content-pembelian .barang').html('')
 })
 
-$(document).on('keyup', '#searchbarang', function () {
-    // alert($(this).val())
-    let searchInput = $(this).val()
+// $(document).on('keyup', '#searchbarang', function () {
+//     // alert($(this).val())
+//     let searchInput = $(this).val()
 
-    if (searchInput.length > 0) {
-        $.ajax({
-            url: "http://localhost/api_toko/Barang/search",
-            method: "POST",
-            data: {
-                nama_barang: searchInput
-            },
-            success: function(res) {
-                let data = JSON.parse(res)
+//     if (searchInput.length > 0) {
+//         $.ajax({
+//             url: "http://localhost/api_toko/Barang/search",
+//             method: "POST",
+//             data: {
+//                 nama_barang: searchInput
+//             },
+//             success: function(res) {
+//                 let data = JSON.parse(res)
 
-                if (data.data) {
-                    $('.content-pembelian .barang').html(fetchDataBarang(data))
-                } else {
-                    $('.content-pembelian .barang').html('')
-                }
-            },
-            error: function(){
-                app.dialog.alert("Tidak Terhubung dengan Server!","Error");
-            }
-        })
-    } else {
-        $('.content-pembelian .barang').html('')
-    }
-})
+//                 if (data.data) {
+//                     $('.content-pembelian .barang').html(fetchDataBarang(data))
+//                 } else {
+//                     $('.content-pembelian .barang').html('')
+//                 }
+//             },
+//             error: function(){
+//                 app.dialog.alert("Tidak Terhubung dengan Server!","Error");
+//             }
+//         })
+//     } else {
+//         $('.content-pembelian .barang').html('')
+//     }
+// })
 
-function fetchDataBarang(data) {
-    let temp = '';
-    // let parseData = JSON.parse(data);
+// function fetchDataBarang(data) {
+//     let temp = '';
+//     // let parseData = JSON.parse(data);
 
-    data.data.forEach((d) => {
-        temp += `
-        <div class="card">
-            <div class="card-content card-content-padding">
-                <div class="row" style="font-size: 17px;">
-                    <div class="col-25" style="text-align: left;">Kode Barang : ${d.barang_id}</div>
-                    <div class="col-50" style="font-size: larger;">${d.barang_nama}</div>
-                    <div class="col-25" style="text-align: right;">Stok Barang : ${d.barang_stok}</div>
-                    <div class="col-25" style="text-align: right;">Rp. ${d.barang_harjul}</div>
-                </div>
-            </div>
-        </div>
-        `
-    });
+//     data.data.forEach((d) => {
+//         temp += `
+//         <div class="card">
+//             <div class="card-content card-content-padding">
+//                 <div class="row" style="font-size: 17px;">
+//                     <div class="col-25" style="text-align: left;">Kode Barang : ${d.barang_id}</div>
+//                     <div class="col-50" style="font-size: larger;">${d.barang_nama}</div>
+//                     <div class="col-25" style="text-align: right;">Stok Barang : ${d.barang_stok}</div>
+//                     <div class="col-25" style="text-align: right;">Rp. ${d.barang_harjul}</div>
+//                 </div>
+//             </div>
+//         </div>
+//         `
+//     });
 
-    return temp;
-}
+//     return temp;
+// }

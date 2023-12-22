@@ -47,34 +47,34 @@ function fetchDataSupplier(data) {
     return temp;
 }
 
-$(document).on('keyup', '#searchbarang', function () {
-    // alert($(this).val())
-    let searchInput = $(this).val()
+// $(document).on('keyup', '#searchbarang', function () {
+//     // alert($(this).val())
+//     let searchInput = $(this).val()
 
-    if (searchInput.length > 0) {
-        $.ajax({
-            url: "http://localhost/api_toko/Barang/search",
-            method: "POST",
-            data: {
-                nama_barang: searchInput
-            },
-            success: function(res) {
-                let data = JSON.parse(res)
+//     if (searchInput.length > 0) {
+//         $.ajax({
+//             url: "http://localhost/api_toko/Barang/search",
+//             method: "POST",
+//             data: {
+//                 nama_barang: searchInput
+//             },
+//             success: function(res) {
+//                 let data = JSON.parse(res)
 
-                if (data.data) {
-                    $('.content-penjualan .barang').html(fetchDataBarang(data))
-                } else {
-                    $('.content-penjualan .barang').html('')
-                }
-            },
-            error: function(){
-                app.dialog.alert("Tidak Terhubung dengan Server!","Error");
-            }
-        })
-    } else {
-        $('.content-penjualan .barang').html('')
-    }
-})
+//                 if (data.data) {
+//                     $('.content-penjualan .barang').html(fetchDataBarang(data))
+//                 } else {
+//                     $('.content-penjualan .barang').html('')
+//                 }
+//             },
+//             error: function(){
+//                 app.dialog.alert("Tidak Terhubung dengan Server!","Error");
+//             }
+//         })
+//     } else {
+//         $('.content-penjualan .barang').html('')
+//     }
+// })
 
 $(document).on('click', '.reset-searchBarang', function () {
     $('.content-penjualan .barang').html('')
@@ -93,3 +93,12 @@ $(document).on('click', '.card-supplier', function() {
     $('#detailSupplierPenjualan').css({display: 'block'})
     $('#detailSupplierPenjualan #detailNamaSupplierPenjualan').html(`Dengan Supplier ${namaSupplierPenjualan}`)
 })
+
+$(document).on('click', '.back-penjualan', function () {
+    app.dialog.confirm('Apakah anda ingin keluar sebelum melanjutkan transaksi?', 'Info', function (confirmed) {
+        if (confirmed) {
+            var view = app.views.current;
+            view.router.back(view.history[0],{force:true});
+        }
+    });
+});

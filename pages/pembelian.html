@@ -4,7 +4,11 @@
             <div class="navbar-bg"></div>
             <div class="navbar-inner sliding">
                 <div class="left">
-                    <a class="link back">
+                    <!-- <a class="link back back-pembelian">
+                        <i class="icon icon-back"></i>
+                        <span class="if-not-md">Framework7</span>
+                    </a> -->
+                    <a href="#" class="back-pembelian">
                         <i class="icon icon-back"></i>
                         <span class="if-not-md">Framework7</span>
                     </a>
@@ -49,49 +53,44 @@
                 </div>
             </form>
             <div class="barang"></div>
-            <div class="block-title block-title-medium">Detail Pembelian</div>
-            <div class="card data-table">
-                <table>
-                    <thead>
-                        <tr>
-                            <th class="label-cell" style="width: 20%">Barang</th>
-                            <th class="label-cell" style="width: 20%">Harga</th>
-                            <th class="label-cell" style="width: 20%">Qty</th>
-                            <th class="label-cell" style="width: 20%">Subtotal</th>
-                            <th class="label-cell" style="width: 20%">Action</th>
-                        </tr>
-                    </thead>
-                    <!-- <tbody>
-                        <tr>
-                            <th class="label-cell" style="width: 20%">Topi Monster</th>
-                            <th class="label-cell" style="width: 20%">135000</th>
-                            <th class="label-cell" style="width: 20%">3</th>
-                            <th class="label-cell" style="width: 20%">405000</th>
-                            <th class="label-cell" style="width: 20%"><p class="grid grid-cols-2 grid-gap"><button class="button button-small button-tonal color-red">Hapus</button></p></th>
-                        </tr>
-                        <tr>
-                            <th class="label-cell" style="width: 20%">Topi Monster</th>
-                            <th class="label-cell" style="width: 20%">135000</th>
-                            <th class="label-cell" style="width: 20%">3</th>
-                            <th class="label-cell" style="width: 20%">405000</th>
-                            <th class="label-cell" style="width: 20%"><p class="grid grid-cols-2 grid-gap"><button class="button button-small button-tonal color-red">Hapus</button></p></th>
-                        </tr>
-                        <tr>
-                            <th class="label-cell" style="width: 20%">Topi Monster</th>
-                            <th class="label-cell" style="width: 20%">135000</th>
-                            <th class="label-cell" style="width: 20%">3</th>
-                            <th class="label-cell" style="width: 20%">405000</th>
-                            <th class="label-cell" style="width: 20%"><p class="grid grid-cols-2 grid-gap"><button class="button button-small button-tonal color-red">Hapus</button></p></th>
-                        </tr>
-                        <tr>
-                            <th class="label-cell" style="width: 20%">Topi Monster</th>
-                            <th class="label-cell" style="width: 20%">135000</th>
-                            <th class="label-cell" style="width: 20%">3</th>
-                            <th class="label-cell" style="width: 20%">405000</th>
-                            <th class="label-cell" style="width: 20%"><p class="grid grid-cols-2 grid-gap"><button class="button button-small button-tonal color-red">Hapus</button></p></th>
-                        </tr>
-                    </tbody> -->
-                </table>
+            <div id="detailBarangPembelian" style="display: none">
+                <div class="block-title block-title-medium">Detail Pembelian</div>
+                <div class="card-detail-barang">
+                    <!-- <div class="card">
+                        <div class="card-content card-content-padding">
+                            <div class="row" style="font-size: 18px;">
+                                <div class="col-25">Barang 1</div>
+                                <div class="col-25">Rp.3.000</div>
+                                <div class="col-25" style="text-align: right;">
+                                    <label for="">Qty: </label>
+                                    <div class="stepper stepper-init">
+                                        <div class="stepper-input-wrap">
+                                          <input type="text" name="" id=""/>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-25" style="text-align: right;">Subtotal: <span>Rp.3000</span></div>
+                            </div>
+                        </div>
+                    </div> -->
+                    <!-- <div class="card">
+                        <div class="card-content card-content-padding">
+                            <div class="row" style="font-size: 18px;">
+                                <div class="col-25">Barang 2</div>
+                                <div class="col-25">Rp.1.500</div>
+                                <div class="col-25" style="text-align: right;">
+                                    <label for="">Qty: </label>
+                                    <div class="stepper stepper-init">
+                                        <div class="stepper-input-wrap">
+                                          <input type="text" name="" id=""/>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-25" style="text-align: right;">Subtotal: </div>
+                            </div>
+                        </div>
+                    </div> -->
+                </div>
             </div>
             <div id="detailPelangganPembelian" style="display: none">
                 <div class="block-title block-title-medium" id="detailNamaPelangganPembelian"></div>
