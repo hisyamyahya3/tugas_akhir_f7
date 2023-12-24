@@ -54,7 +54,7 @@ function editKategori(id, nama) {
     // window.location.href = '/editktgr/';
 }
 
-function updateKategori(id, nama) {
+function updateKategori() {
     let idKategori = localStorage.getItem("idKategori");
     let kategori_nama = $("input[name=kategori_nama]").val();
 

@@ -103,6 +103,10 @@ function fetchDataBarang(data) {
     return temp;
 }
 
+$(document).on('click', '.reset-searchBarang', function () {
+    $('.content-pembelian .barang').html('')
+})
+
 $(document).on('click', '.card-search-barang', function () {
     let kodeBarang = $(this).find('.kode-barang').data('kode-barang');
     let namaBarang = $(this).find('.nama-barang').data('nama-barang');

@@ -75,57 +75,41 @@ function editBarang(id, nama, satuan, harpok, harjul, grosir, stok, min) {
     app.views.main.router.navigate("/editbrg/");
 }
 
-$(document).on('click', '.reset-searchBarang', function () {
-    $('.content-pembelian .barang').html('')
-})
+function updateBarang() {
+    let kodeBarang = localStorage.getItem("kodeBarang");
+    let barang_nama = $("input[name=barang_nama]").val();
+    let barang_satuan = $("input[name=barang_satuan]").val();
+    let barang_harpok = $("input[name=barang_harpok]").val();
+    let barang_harjul = $("input[name=barang_harjul]").val();
+    let barang_harjul_grosir = $("input[name=barang_harjul_grosir]").val();
+    let barang_stok = $("input[name=barang_stok]").val();
+    let barang_min_stok = $("input[name=barang_min_stok]").val();
 
-// $(document).on('keyup', '#searchbarang', function () {
-//     // alert($(this).val())
-//     let searchInput = $(this).val()
+    if(barang_nama == "" || barang_satuan == "" || barang_harpok == "" || barang_harjul == "" || barang_harjul_grosir == "" || barang_stok == "" || barang_min_stok == "" ){
+        app.dialog.alert("Isian Masih Kosong, Silahkan Cek Kembali","Error");
+        return;
+    }
 
-//     if (searchInput.length > 0) {
-//         $.ajax({
-//             url: "http://localhost/api_toko/Barang/search",
-//             method: "POST",
-//             data: {
-//                 nama_barang: searchInput
-//             },
-//             success: function(res) {
-//                 let data = JSON.parse(res)
+    $.ajax({
+        url: "http://localhost/api_toko/Barang/update",
+        method: "POST",
+        data: {
+            kodeBarang: kodeBarang,
+            barang_nama: nama,
+            barang_satuan: satuan,
+            barang_harpok: harpok,
+            barang_harjul: harjul,
+            barang_harjul_grosir: grosir,
+            barang_stok: stok,
+            barang_min_stok: min
+        },
+        success: function(){
+            app.dialog.alert("Data Berhasil Di Update","Success");
+            app.views.main.router.back();
+        },
+        error: function(){
+            app.dialog.alert("Tidak Terhubung dengan Server!","Error");
+        }
+    })
+}
 
-//                 if (data.data) {
-//                     $('.content-pembelian .barang').html(fetchDataBarang(data))
-//                 } else {
-//                     $('.content-pembelian .barang').html('')
-//                 }
-//             },
-//             error: function(){
-//                 app.dialog.alert("Tidak Terhubung dengan Server!","Error");
-//             }
-//         })
-//     } else {
-//         $('.content-pembelian .barang').html('')
-//     }
-// })
-
-// function fetchDataBarang(data) {
-//     let temp = '';
-//     // let parseData = JSON.parse(data);
-
-//     data.data.forEach((d) => {
-//         temp += `
-//         <div class="card">
-//             <div class="card-content card-content-padding">
-//                 <div class="row" style="font-size: 17px;">
-//                     <div class="col-25" style="text-align: left;">Kode Barang : ${d.barang_id}</div>
-//                     <div class="col-50" style="font-size: larger;">${d.barang_nama}</div>
-//                     <div class="col-25" style="text-align: right;">Stok Barang : ${d.barang_stok}</div>
-//                     <div class="col-25" style="text-align: right;">Rp. ${d.barang_harjul}</div>
-//                 </div>
-//             </div>
-//         </div>
-//         `
-//     });
-
-//     return temp;
-// }
