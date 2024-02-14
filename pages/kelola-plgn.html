@@ -17,14 +17,45 @@
         </div>
         <div class="page-content">
             <div class="block-title block-title-medium">Form Kelola Pelanggan</div>
-            <form class="list">
+            <div class="list list-strong-ios list-dividers-ios inset-ios">
+                <ul>
+                    <li class="item-content item-input item-input-outline">
+                        <div class="item-inner">
+                            <div class="item-title item-label">Nama Pelanggan</div>
+                            <div class="item-input-wrap">
+                                <input name="pelanggan_nama" type="text" id="pelanggan_nama"/>
+                                <span class="input-clear-button"></span>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="item-content item-input item-input-outline">
+                        <div class="item-inner">
+                            <div class="item-title item-label">Alamat</div>
+                            <div class="item-input-wrap">
+                                <input name="pelanggan_alamat" type="text" id="pelanggan_alamat"/>
+                                <span class="input-clear-button"></span>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="item-content item-input item-input-outline">
+                        <div class="item-inner">
+                            <div class="item-title item-label">Nomor Telpon</div>
+                            <div class="item-input-wrap">
+                                <input name="pelanggan_notelp" type="text" id="pelanggan_notelp"/>
+                                <span class="input-clear-button"></span>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <!-- <form class="list">
                 <ul>
                     <li>
                         <div class="item-content item-input">
                             <div class="item-inner">
                                 <div class="item-title item-label">Nama Pelanggan</div>
                                 <div class="item-input-wrap">
-                                    <input name="pelanggan_nama" type="text"  id="pelanggan_nama"/>
+                                    <input name="pelanggan_nama" type="text" id="pelanggan_nama"/>
                                     <span class="input-clear-button"></span>
                                 </div>
                             </div>
@@ -53,10 +84,10 @@
                         </div>
                     </li>
                 </ul>
-            </form>
+            </form> -->
             <div class="block block-strong block-outline-ios">
-                <p class="grid grid-cols-2 grid-gap">
-                    <button class="button button-large button-tonal color-blue" @click="#">Update</button>
+                <p class="grid grid-cols grid-gap">
+                    <button class="button button-large button-tonal color-blue" @click="${()=>updatePelanggan()}">Update</button>
                 </p>
             </div>
         </div>

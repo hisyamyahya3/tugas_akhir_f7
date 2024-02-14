@@ -1,0 +1,59 @@
+<template>
+    <div class="page">
+        <div class="navbar navbar-large navbar-transparent">
+            <div class="navbar-bg"></div>
+            <div class="navbar-inner sliding">
+                <div class="left">
+                    <a class="link back">
+                        <i class="icon icon-back"></i>
+                        <span class="if-not-md">Framework7</span>
+                    </a>
+                </div>
+                <div class="title">Keranjang</div>
+                <div class="title-large">
+                    <div class="title-large-text">Keranjang</div>
+                </div>
+            </div>
+        </div>
+        <div class="toolbar tabbar tabbar-icons toolbar-bottom">
+            <div class="toolbar-inner">
+                <a href="#penjualan" class="tab-link tab-link-active">
+                    <i class="icon f7-icons if-not-md">shopping_cart</i>
+                    <i class="icon material-icons md-only">shopping_cart</i>
+                    <span class="tabbar-label">Penjualan</span>
+                </a>
+                <a href="#pembelian" class="tab-link">
+                    <i class="icon f7-icons if-not-md">shopping_cart</i>
+                    <i class="icon material-icons md-only">shopping_cart</i>
+                    <span class="tabbar-label">Pembelian</span>
+                </a>
+            </div>
+        </div>
+        <div class="tabs-animated-wrap">
+            <div class="tabs">
+                <div id="penjualan" class="page-content tab tab-active">
+                    <div class="block-title">Keranjang Penjualan</div>
+                    <div class="grid grid-cols" id="keranjangPenjualan">
+                
+                    </div>
+                </div>
+                <div id="pembelian" class="page-content tab">
+                    <div class="block-title">Keranjang Pembelian</div>
+                    <div class="grid grid-cols" id="keranjangPembelian">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>
+<script>
+    export default function (props, ctx) {
+        let $on = ctx.$on;
+        $on('pageAfterIn', () => {
+            tampilKeranjangPenjualan()
+            tampilKeranjangPembelian()
+        })
+        return $render;
+    };
+</script>

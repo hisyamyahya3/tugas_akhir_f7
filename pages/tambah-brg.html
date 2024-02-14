@@ -17,7 +17,83 @@
         </div>
         <div class="page-content">
             <div class="block-title block-title-medium">Form Tambah Barang</div>
-            <form class="list">
+            <div class="list list-strong-ios list-dividers-ios inset-ios">
+                <ul>
+                    <li class="item-content item-input item-input-outline">
+                        <div class="item-inner">
+                            <div class="item-title item-floating-label">Nama Barang</div>
+                            <div class="item-input-wrap">
+                                <input name="barang_nama" type="text"/>
+                                <span class="input-clear-button"></span>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="item-content item-input item-input-outline">
+                        <div class="item-inner">
+                            <div class="item-title item-floating-label">Satuan</div>
+                            <div class="item-input-wrap">
+                                <input name="barang_satuan" type="text"/>
+                                <span class="input-clear-button"></span>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="item-content item-input item-input-outline">
+                        <div class="item-inner">
+                            <div class="item-title item-floating-label">Harga Pokok</div>
+                            <div class="item-input-wrap">
+                                <input name="barang_harpok" type="text"/>
+                                <span class="input-clear-button"></span>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="item-content item-input item-input-outline">
+                        <div class="item-inner">
+                            <div class="item-title item-floating-label">Harga Jual</div>
+                            <div class="item-input-wrap">
+                                <input name="barang_harjul" type="text"/>
+                                <span class="input-clear-button"></span>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="item-content item-input item-input-outline">
+                        <div class="item-inner">
+                            <div class="item-title item-floating-label">Harga Jual Grosir</div>
+                            <div class="item-input-wrap">
+                                <input name="barang_harjul_grosir" type="text"/>
+                                <span class="input-clear-button"></span>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="item-content item-input item-input-outline">
+                        <div class="item-inner">
+                            <div class="item-title item-floating-label">Stok Barang</div>
+                            <div class="item-input-wrap">
+                                <input name="barang_stok" type="text"/>
+                                <span class="input-clear-button"></span>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="item-content item-input item-input-outline">
+                        <div class="item-inner">
+                            <div class="item-title item-floating-label">Min Stok (per item)</div>
+                            <div class="item-input-wrap">
+                                <input name="barang_min_stok" type="text"/>
+                                <span class="input-clear-button"></span>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="item-content item-input item-input-outline">
+                        <div class="item-inner">
+                            <div class="item-title item-floating-label">Kategori</div>
+                            <div class="item-input-wrap">
+                                <input name="kategori_nama" type="text" readonly id="pilih_kategori"/>
+                                <span class="input-clear-button"></span>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <!-- <form class="list">
                 <ul>
                     <li>
                         <div class="item-content item-input">
@@ -106,7 +182,7 @@
                         </div>
                     </li>
                 </ul>
-            </form>
+            </form> -->
             <div class="block block-strong block-outline-ios">
                 <p class="grid grid-cols-2 grid-gap">
                     <button class="button button-large button-tonal color-blue" @click="${()=>tambahBarang()}">Simpan</button>
@@ -117,7 +193,32 @@
     </div>
 </template>
 <script>
-    export default function (props, ctx) {
+    export default function (props, { $f7, $on }) {
+        let pilihKategori;
+        $on('pageInit', () => {    
+            $.ajax({
+                type: "GET",
+                url: "http://localhost/api_toko/Kategori",
+                success: function(result) {
+                    let res = JSON.parse(result);
+                    var categoryID = res.data.map(item => item.kategori_id);
+                    var categoryName = res.data.map(item => item.kategori_nama);
+
+                    console.log(res);
+                    pilihKategori = $f7.picker.create({
+                        inputEl: '#pilih_kategori',
+                        cols: [
+                            {
+                                textAlign: 'center',
+                                // values: ['iPhone 4', 'iPhone 4S', 'iPhone 5', 'iPhone 5S', 'iPhone 6', 'iPhone 6 Plus', 'iPad 2', 'iPad Retina', 'iPad Air', 'iPad mini', 'iPad mini 2', 'iPad mini 3']
+                                values: categoryID, //valuenya pake nama bukan id
+                                displayValues: categoryName,
+                            }
+                        ]
+                    });
+                }
+            })
+        })
         return $render;
     }
 </script>

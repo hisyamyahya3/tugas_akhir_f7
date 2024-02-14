@@ -1,0 +1,88 @@
+<template>
+    <div class="page">
+        <div class="navbar navbar-large navbar-transparent">
+            <div class="navbar-bg"></div>
+            <div class="navbar-inner sliding">
+                <div class="left">
+                    <!-- <a class="link back back-pembelian">
+                        <i class="icon icon-back"></i>
+                        <span class="if-not-md">Framework7</span>
+                    </a> -->
+                    <a href="#" class="back-pembelian">
+                        <i class="icon icon-back"></i>
+                        <span class="if-not-md">Framework7</span>
+                    </a>
+                </div>
+                <div class="title">Pembayaran</div>
+                <div class="title-large">
+                    <div class="title-large-text">Pembayaran</div>
+                </div>
+            </div>
+        </div>
+        <div class="page-content content-penjualan">
+            <div id="detailPelangganPenjualan">
+                <div class="block-title block-title-medium" id="detailNamaPelangganPenjualan"></div>
+                <div class="list list-strong-ios list-dividers-ios inset-ios">
+                    <ul>
+                        <li class="item-content item-input item-input-outline">
+                            <div class="item-inner">
+                                <div class="item-title item-label">Total Penjualan</div>
+                                <div class="item-input-wrap">
+                                    <input name="beli_total" class="total_penjualan" type="text" readonly/>
+                                    <span class="input-clear-button"></span>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="item-content item-input item-input-outline">
+                            <div class="item-inner">
+                                <div class="item-title item-floating-label">Jumlah Uang</div>
+                                <div class="item-input-wrap">
+                                    <input name="beli_jml_uang" class="jumlah_uang_penjualan" type="text"/>
+                                    <span class="input-clear-button"></span>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="item-content item-input item-input-outline">
+                            <div class="item-inner">
+                                <div class="item-title item-label">Jumlah Kembalian</div>
+                                <div class="item-input-wrap">
+                                    <input name="beli_kembalian" class="jumlah_kembalian_penjualan" type="text" readonly/>
+                                    <span class="input-clear-button"></span>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="block block-strong block-outline-ios">
+                    <p class="grid grid-cols grid-gap">
+                        <button class="button button-large button-tonal btn-bayar-penjualan" @click="#">Bayar</button>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>
+<script>
+    export default function (props, ctx) {
+        let $on = ctx.$on
+
+        $on('pageAfterIn', () => {
+            let tempDataPenjualan = localStorage.getItem("dataPenjualan")
+            let namaPelangganPenjualan = localStorage.getItem("namaPelangganPenjualan")
+
+            let dataPenjualan = JSON.parse(tempDataPenjualan)
+            let harga = 0;
+
+            dataPenjualan.forEach((i) => {
+                harga += i.hargaBarang * i.qty
+            })
+
+            localStorage.setItem("hargaPenjualan", harga)
+            let finalHarga = rupiahFormatter(harga)
+            $('.total_penjualan').val(finalHarga)
+            $('#detailNamaPelangganPenjualan').html(`Atas Nama ${namaPelangganPenjualan}`)
+        })
+
+        return $render;
+    };
+</script>

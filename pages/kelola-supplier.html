@@ -17,7 +17,38 @@
         </div>
         <div class="page-content">
             <div class="block-title block-title-medium">Form Kelola Supplier</div>
-            <form class="list">
+            <div class="list list-strong-ios list-dividers-ios inset-ios">
+                <ul>
+                    <li class="item-content item-input item-input-outline">
+                        <div class="item-inner">
+                            <div class="item-title item-label">Nama Supplier</div>
+                            <div class="item-input-wrap">
+                                <input name="suplier_nama" type="text" id="supplier_nama"/>
+                                <span class="input-clear-button"></span>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="item-content item-input item-input-outline">
+                        <div class="item-inner">
+                            <div class="item-title item-label">Alamat</div>
+                            <div class="item-input-wrap">
+                                <input name="suplier_alamat" type="text" id="supplier_alamat"/>
+                                <span class="input-clear-button"></span>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="item-content item-input item-input-outline">
+                        <div class="item-inner">
+                            <div class="item-title item-label">Nomor Telpon</div>
+                            <div class="item-input-wrap">
+                                <input name="suplier_notelp" type="text" id="supplier_notelp"/>
+                                <span class="input-clear-button"></span>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <!-- <form class="list">
                 <ul>
                     <li>
                         <div class="item-content item-input">
@@ -53,10 +84,10 @@
                         </div>
                     </li>
                 </ul>
-            </form>
+            </form> -->
             <div class="block block-strong block-outline-ios">
-                <p class="grid grid-cols-2 grid-gap">
-                    <button class="button button-large button-tonal color-blue" @click="#">Simpan</button>
+                <p class="grid grid-cols grid-gap">
+                    <button class="button button-large button-tonal color-blue" @click="${()=>updateSupplier()}">Simpan</button>
                 </p>
             </div>
         </div>

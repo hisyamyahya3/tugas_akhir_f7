@@ -11,7 +11,7 @@ function tampilKategori() {
                 temp += `
                     <tr>
                         <td class="label-cell">${d.kategori_nama}</td>
-                        <td class="actions-cell"><p class="grid grid-cols-2 grid-gap"><button class="button button-small button-tonal" onclick="editKategori(${d.kategori_id}, '${d.kategori_nama}')">Edit</button><button class="button button-small button-tonal color-red" onclick="hapusKategori(${d.kategori_id})">Hapus</button></p></td>
+                        <td class="actions-cell"><p class="grid grid-cols-2 grid-gap"><button class="button button-small button-tonal color-blue" onclick="editKategori(${d.kategori_id}, '${d.kategori_nama}')">Edit</button><button class="button button-small button-tonal color-red" onclick="hapusKategori(${d.kategori_id})">Hapus</button></p></td>
                     </tr>
                 `
             })
@@ -87,7 +87,7 @@ function hapusKategori(id) {
         data: {id_kategori: id},
         success: function(res) {
             // console.log(res)
-            app.dialog.alert("Data Berhasil Di Input","Success");
+            app.dialog.alert("Data Berhasil Di Hapus","Success");
             app.views.main.router.refreshPage();
             // app.views.main.router.reload();
         },

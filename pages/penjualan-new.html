@@ -1,0 +1,44 @@
+<template>
+    <div class="page">
+        <div class="navbar navbar-large navbar-transparent">
+            <div class="navbar-bg"></div>
+            <div class="navbar-inner navbar-inner-centered-title">
+                <div class="left">
+                    <a class="link" @click="${()=>kembaliPenjualan()}">
+                        <i class="icon icon-back"></i>
+                        <span class="if-not-md">Halaman Utama</span>
+                    </a>
+                </div>
+                <div class="title">Penjualan</div>
+                <div class="title-large">
+                    <div class="title-large-text">Penjualan</div>
+                </div>
+            </div>
+        </div>
+        <div class="page-content">
+            <div class="block-title">Pilih Pelanggan</div>
+            <form data-search-container=".search-list" data-search-in=".cari-pelanggan" class="searchbar searchbar-init">
+                <div class="searchbar-inner">
+                    <div class="searchbar-input-wrap">
+                        <input type="text" id="searchPelangganPenjualan" placeholder="Cari pelanggan......" />
+                        <i class="searchbar-icon"></i>
+                    </div>
+                </div>
+            </form>
+            <div class="grid grid-cols-2" id="tampilPelangganPenjualan">
+                
+            </div>
+        </div>
+    </div>
+</template>
+<script>
+    export default function (props, ctx) {
+        let $on = ctx.$on;
+
+        $on('pageAfterIn', () => {
+            tampilPelangganPenjualan();
+        })
+
+        return $render;
+    };
+</script>

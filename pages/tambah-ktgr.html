@@ -17,23 +17,21 @@
         </div>
         <div class="page-content">
             <div class="block-title block-title-medium">Form Tambah Kategori</div>
-            <form class="list">
+            <div class="list list-strong-ios list-dividers-ios inset-ios">
                 <ul>
-                    <li>
-                        <div class="item-content item-input">
-                            <div class="item-inner">
-                                <div class="item-title item-label">Nama Kategori</div>
-                                <div class="item-input-wrap">
-                                    <input name="kategori_nama" type="text"/>
-                                    <span class="input-clear-button"></span>
-                                </div>
+                    <li class="item-content item-input item-input-outline">
+                        <div class="item-inner">
+                            <div class="item-title item-floating-label">Nama Kategori</div>
+                            <div class="item-input-wrap">
+                                <input name="kategori_nama" type="text"/>
+                                <span class="input-clear-button"></span>
                             </div>
                         </div>
                     </li>
                 </ul>
-            </form>
+            </div>
             <div class="block block-strong block-outline-ios">
-                <p class="grid grid-cols-2 grid-gap">
+                <p class="grid grid-cols grid-gap">
                     <button class="button button-large button-tonal color-blue" @click="${()=>tambahKategori()}">Simpan</button>
                 </p>
             </div>

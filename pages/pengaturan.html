@@ -1,0 +1,79 @@
+<template>
+    <div class="page">
+        <div class="navbar navbar-large navbar-transparent">
+            <div class="navbar-bg"></div>
+            <div class="navbar-inner navbar-inner-centered-title">
+                <div class="left">
+                    <a class="link back">
+                        <i class="icon icon-back"></i>
+                        <span class="if-not-md">Framework7</span>
+                    </a>
+                </div>
+                <div class="title">Pengaturan</div>
+                <div class="title-large">
+                    <div class="title-large-text">Pengaturan</div>
+                </div>
+            </div>
+        </div>
+        <div class="page-content">
+            <div class="block-title">Menu Pengaturan</div>
+            <div class="grid grid-cols-2">
+                <div class="card">
+                    <div class="card-content card-content-padding">
+                        <a class="item-content item-link" href="/kategori/">
+                            <div class="item-media"><i class="f7-icons">person_crop_circle</i></div>
+                            <div class="item-inner">
+                                <div class="item-title">Pengaturan Akun</div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-content card-content-padding">
+                        <a class="item-content item-link" href="/kategori/">
+                            <div class="item-media"><i class="f7-icons">bag_badge_plus</i></div>
+                            <div class="item-inner">
+                                <div class="item-title">Pendaftaran Toko</div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-content card-content-padding">
+                        <a class="item-content item-link" href="/tema/">
+                            <div class="item-media"><i class="f7-icons">wand_stars_inverse</i></div>
+                            <div class="item-inner">
+                                <div class="item-title">Tema</div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-content card-content-padding">
+                        <a class="item-content item-link" href="#" @click="${()=>screenorientation()}">
+                            <div class="item-media"><i class="f7-icons">lock_rotation_open</i></div>
+                            <div class="item-inner">
+                                <div class="item-title">Buka Rotasi</div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-content card-content-padding">
+                        <a class="item-content item-link" href="#" @click="${()=>lockscreenorientation()}">
+                            <div class="item-media"><i class="f7-icons">lock_rotation</i></div>
+                            <div class="item-inner">
+                                <div class="item-title">Kunci Rotasi</div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>
+<script>
+    export default function (props, ctx) {
+        return $render;
+    };
+</script>

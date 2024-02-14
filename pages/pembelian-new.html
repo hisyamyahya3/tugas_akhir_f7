@@ -1,0 +1,42 @@
+<template>
+    <div class="page">
+        <div class="navbar navbar-large navbar-transparent">
+            <div class="navbar-bg"></div>
+            <div class="navbar-inner navbar-inner-centered-title">
+                <div class="left">
+                    <a class="link" @click="${()=>kembaliPembelian()}">
+                        <i class="icon icon-back"></i>
+                        <span class="if-not-md">Framework7</span>
+                    </a>
+                </div>
+                <div class="title">Pembelian</div>
+                <div class="title-large">
+                    <div class="title-large-text">Pembelian</div>
+                </div>
+            </div>
+        </div>
+        <div class="page-content pembelian">
+            <div class="block-title">Pilih Supplier</div>
+            <form data-search-container=".search-list" data-search-in=".item-title" class="searchbar searchbar-init">
+                <div class="searchbar-inner">
+                    <div class="searchbar-input-wrap">
+                        <input type="text" id="searchSupplierPembelian" placeholder="Cari supplier......" />
+                        <i class="searchbar-icon"></i>
+                    </div>
+                </div>
+            </form>
+            <div class="grid grid-cols-2" id="tampilSupplierPembelian">
+                
+            </div>
+        </div>
+    </div>
+</template>
+<script>
+    export default function (props, ctx) {
+        let $on = ctx.$on;
+        $on('pageAfterIn', () => {
+            tampilSupplierPembelian();
+        })
+        return $render;
+    };
+</script>
