@@ -15,7 +15,7 @@ function tampilPelanggan() {
                         <td class="label-cell" style="width: 20%">${d.pelanggan_alamat}</td>
                         <td class="numeric-cell" style="width: 20%">${d.pelanggan_notelp}</td>
                         <td class="label-cell"><p class="grid grid-cols-2 grid-gap"><button class="button button-small button-tonal color-blue" onclick="editPelanggan(${d.pelanggan_id}, '${d.pelanggan_nama}', '${d.pelanggan_alamat}', '${d.pelanggan_notelp}',)">Edit</button><button class="button button-small button-tonal color-red" onclick="hapusPelanggan(${d.pelanggan_id})">Hapus</button></p></td>
-                  </tr>
+                    </tr>
                 `
             })
             $('#daftar-pelanggan').html(temp)    
@@ -99,4 +99,51 @@ function hapusPelanggan(id) {
             app.dialog.alert("Tidak Terhubung dengan Server!","Error");
         }
     })
+}
+
+$(document).on('keyup', '#searchTabelPelanggan', function () {
+    let searchInput = $(this).val()
+    // console.log(searchInput)
+
+    if (searchInput.length > 0) {
+        $.ajax({
+            url: "http://localhost/api_toko/Pelanggan/search",
+            method: "POST",
+            data: {
+                nama_pelanggan: searchInput
+            },
+            success: function(res) {
+                let data = JSON.parse(res)
+
+                if (data.data) {
+                    $('#daftar-pelanggan').html(fetchDataPelanggan(data))
+                } else {
+                    $('#daftar-pelanggan').html(tampilPelanggan())
+                }
+            },
+            error: function(){
+                app.dialog.alert("Tidak Terhubung dengan Server!","Error");
+            }
+        })  
+    } else {
+        $('#daftar-pelanggan').html(tampilPelanggan())
+    }
+})
+
+function fetchDataPelanggan(data) {
+    let temp = '';
+
+    data.data.forEach((d) => {
+        temp += `
+            <tr>
+                <td class="label-cell" style="width: 40%">${d.pelanggan_nama}</td>
+                <td class="label-cell" style="width: 20%">${d.pelanggan_alamat}</td>
+                <td class="numeric-cell" style="width: 20%">${d.pelanggan_notelp}</td>
+                <td class="label-cell"><p class="grid grid-cols-2 grid-gap"><button class="button button-small button-tonal color-blue" onclick="editPelanggan(${d.pelanggan_id}, '${d.pelanggan_nama}', '${d.pelanggan_alamat}', '${d.pelanggan_notelp}',)">Edit</button><button class="button button-small button-tonal color-red" onclick="hapusPelanggan(${d.pelanggan_id})">Hapus</button></p></td>
+            </tr>
+        `
+    });
+    
+    return temp;
+ 
 }

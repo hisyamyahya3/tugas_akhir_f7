@@ -96,3 +96,48 @@ function hapusKategori(id) {
         }
     })
 }
+
+$(document).on('keyup', '#searchTabelKategori', function () {
+    let searchInput = $(this).val()
+    // console.log(searchInput)
+
+    if (searchInput.length > 0) {
+        $.ajax({
+            url: "http://localhost/api_toko/Kategori/search",
+            method: "POST",
+            data: {
+                kategori_nama: searchInput
+            },
+            success: function(res) {
+                let data = JSON.parse(res)
+
+                if (data.data) {
+                    $('#daftar-kategori').html(fetchDataKategori(data))
+                } else {
+                    $('#daftar-kategori').html(tampilKategori())
+                }
+            },
+            error: function(){
+                app.dialog.alert("Tidak Terhubung dengan Server!","Error");
+            }
+        })  
+    } else {
+        $('#daftar-kategori').html(tampilKategori())
+    }
+})
+
+function fetchDataKategori(data) {
+    let temp = '';
+
+    data.data.forEach((d) => {
+        temp += `
+            <tr>
+                <td class="label-cell">${d.kategori_nama}</td>
+                <td class="actions-cell"><p class="grid grid-cols-2 grid-gap"><button class="button button-small button-tonal color-blue" onclick="editKategori(${d.kategori_id}, '${d.kategori_nama}')">Edit</button><button class="button button-small button-tonal color-red" onclick="hapusKategori(${d.kategori_id})">Hapus</button></p></td>
+            </tr>
+        `
+    });
+    
+    return temp;
+ 
+}

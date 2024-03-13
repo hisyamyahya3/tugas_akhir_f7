@@ -52,6 +52,7 @@
         $on('pageAfterIn', () => {
             tampilBarangPembelian();
             let nama = localStorage.getItem("supplierNama")
+            $('#detailSupplier').css({display: 'block'})
             $('#detailSupplierPembelian').html(`Atas Nama ${nama}`)
         })
         return $render;

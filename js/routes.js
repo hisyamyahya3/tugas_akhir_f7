@@ -40,6 +40,7 @@ var routes = [
   {path: '/brg-penjualan/', componentUrl: 'pages/barang-penjualan.html'},
   {path: '/brg-pembelian/', componentUrl: 'pages/barang-pembelian.html'},
   {path: '/keranjang/', componentUrl: 'pages/keranjang.html'},
+  {path: '/keranjang/detail-penjualan/:id', componentUrl: 'pages/detail-penjualan.html'},
   {path: '(.*)', url: 'pages/404.html'},
 ];
 // var routes = [

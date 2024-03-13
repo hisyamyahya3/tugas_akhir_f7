@@ -15,8 +15,11 @@ function tampilBarang() {
                         <td class="numeric-cell">${d.barang_harjul}</td>
                         <td class="numeric-cell">${d.barang_stok}</td> 
                         <td class="numeric-cell">${d.kategori_nama}</td> 
-                        <td class="label-cell"><p class="grid grid-cols-2 grid-gap"><button class="button button-small button-tonal color-blue" onclick="editBarang(${d.barang_id}, '${d.barang_nama}', '${d.barang_satuan}', ${d.barang_harpok}, ${d.barang_harjul}, ${d.barang_harjul_grosir}, ${d.barang_stok}, ${d.barang_min_stok}, ${d.barang_kategori_id})">Edit</button><button class="button button-small button-tonal color-red" onclick="hapusBarang(${d.barang_id})">Hapus</button></p></td>
-                  </tr>
+                        <td class="label-cell"><p class="grid grid-cols-2 grid-gap">
+                        <button class="button button-small button-tonal color-blue" onclick="editBarang(${d.barang_id}, '${d.barang_nama}', '${d.barang_satuan}', ${d.barang_harpok}, ${d.barang_harjul}, ${d.barang_harjul_grosir}, ${d.barang_stok}, ${d.barang_min_stok}, ${d.barang_kategori_id})">Edit</button>
+                        <button class="button button-small button-tonal color-red" onclick="hapusBarang(${d.barang_id})">Hapus</button></p>
+                        </td>
+                    </tr>
                 `
             })
             $('#daftar-barang').html(temp)    
@@ -144,6 +147,55 @@ function hapusBarang(id) {
             }
         })
     }
+}
+
+$(document).on('keyup', '#searchTabelBarang', function () {
+    let searchInput = $(this).val()
+    // console.log(searchInput)
+
+    if (searchInput.length > 0) {
+        $.ajax({
+            url: "http://localhost/api_toko/Barang/searchTable",
+            method: "POST",
+            data: {
+                nama_barang: searchInput
+            },
+            success: function(res) {
+                let data = JSON.parse(res)
+
+                if (data.data) {
+                    $('#daftar-barang').html(fetchSearchDataBarang(data))
+                } else {
+                    $('#daftar-barang').html(tampilBarang())
+                }
+            },
+            error: function(){
+                app.dialog.alert("Tidak Terhubung dengan Server!","Error");
+            }
+        })  
+    } else {
+        $('#daftar-barang').html(tampilBarang())
+    }
+})
+
+function fetchSearchDataBarang(data) {
+    let temp = '';
+
+    data.data.forEach((d) => {
+        temp += `
+        <tr>
+            <td class="label-cell">${d.barang_nama}</td>
+            <td class="label-cell">${d.barang_satuan}</td>
+            <td class="numeric-cell">${d.barang_harjul}</td>
+            <td class="numeric-cell">${d.barang_stok}</td> 
+            <td class="numeric-cell">${d.kategori_nama}</td> 
+            <td class="label-cell"><p class="grid grid-cols-2 grid-gap"><button class="button button-small button-tonal color-blue" onclick="editBarang(${d.barang_id}, '${d.barang_nama}', '${d.barang_satuan}', ${d.barang_harpok}, ${d.barang_harjul}, ${d.barang_harjul_grosir}, ${d.barang_stok}, ${d.barang_min_stok}, ${d.barang_kategori_id})">Edit</button><button class="button button-small button-tonal color-red" onclick="hapusBarang(${d.barang_id})">Hapus</button></p></td>
+        </tr>
+        `
+    });
+    
+    return temp;
+ 
 }
 
 

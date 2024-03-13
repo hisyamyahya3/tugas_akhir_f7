@@ -1,0 +1,39 @@
+<template>
+    <div class="page">
+        <div class="navbar navbar-large navbar-transparent">
+            <div class="navbar-bg"></div>
+            <div class="navbar-inner sliding">
+                <div class="left">
+                    <a class="link back">
+                        <i class="icon icon-back"></i>
+                        <span class="if-not-md">Framework7</span>
+                    </a>
+                </div>
+                <div class="title">Detail Penjualan</div>
+                <div class="title-large">
+                    <div class="title-large-text">Detail Penjualan</div>
+                </div>
+            </div>
+        </div>
+        <div class="page-content">
+            <div class="block-title block-title-large nama-pelanggan-keranjang"></div>
+            <div class="grid grid-cols-2" id="tampilBayarPenjualan"></div>
+            <div class="block block-strong block-outline-ios">
+                <p class="grid grid-cols grid-gap">
+                    <button class="button button-large button-tonal" @click="#">Lanjut Ke Pembayaran</button>
+                </p>
+            </div>
+        </div>
+    </div>
+</template>
+<script>
+    export default function (props, { $f7, $on}) {
+        $on('pageAfterIn', () => {
+            let namaPelanggan = localStorage.getItem('namaPelangganKeranjang')
+
+            $('.nama-pelanggan-keranjang').html(namaPelanggan)
+        })
+        tampilBayarPenjualan(props.id)
+        return $render;
+    };
+</script>

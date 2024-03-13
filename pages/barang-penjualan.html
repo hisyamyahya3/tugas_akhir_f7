@@ -54,6 +54,7 @@
         $on('pageAfterIn', () => {
             tampilBarangPenjualan();
             let pelangganNama = localStorage.getItem("pelangganNama")
+            $('#detailPelanggan').css({display: 'block'})
             $('#detailPelangganPenjualan').html(`Atas Nama ${pelangganNama}`)
         })
         return $render;
