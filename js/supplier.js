@@ -15,8 +15,8 @@ function tampilSupplier() {
                         <td class="label-cell" style="width: 30%">${d.suplier_alamat}</td>
                         <td class="numeric-cell" style="width: 20%">${d.suplier_notelp}</td>
                         <td class="label-cell"><p class="grid grid-cols-2 grid-gap"><button class="button button-small button-tonal color-blue" onclick="editSupplier(${d.suplier_id}, '${d.suplier_nama}', '${d.suplier_alamat}', '${d.suplier_notelp}')">Edit</button><button class="button button-small button-tonal color-red" onclick="hapusSupplier(${d.suplier_id})">Hapus</button></p></td>
-                  </tr>
-                `
+                    </tr>
+                `
             })
             $('#daftar-supplier').html(temp)    
         }
@@ -99,4 +99,51 @@ function hapusSupplier(id) {
             app.dialog.alert("Tidak Terhubung dengan Server!","Error");
         }
     })
+}
+
+$(document).on('keyup', '#searchTabelSupplier', function () {
+    let searchInput = $(this).val()
+    // console.log(searchInput)
+
+    if (searchInput.length > 0) {
+        $.ajax({
+            url: "http://localhost/api_toko/Supplier/search",
+            method: "POST",
+            data: {
+                nama_supplier: searchInput
+            },
+            success: function(res) {
+                let data = JSON.parse(res)
+
+                if (data.data) {
+                    $('#daftar-supplier').html(fetchSearchDataSupplier(data))
+                } else {
+                    $('#daftar-supplier').html(tampilSupplier())
+                }
+            },
+            error: function(){
+                app.dialog.alert("Tidak Terhubung dengan Server!","Error");
+            }
+        })  
+    } else {
+        $('#daftar-supplier').html(tampilSupplier())
+    }
+})
+
+function fetchSearchDataSupplier(data) {
+    let temp = '';
+
+    data.data.forEach((d) => {
+        temp += `
+            <tr>
+                <td class="label-cell" style="width: 40%">${d.suplier_nama}</td>
+                <td class="label-cell" style="width: 30%">${d.suplier_alamat}</td>
+                <td class="numeric-cell" style="width: 20%">${d.suplier_notelp}</td>
+                <td class="label-cell"><p class="grid grid-cols-2 grid-gap"><button class="button button-small button-tonal color-blue" onclick="editSupplier(${d.suplier_id}, '${d.suplier_nama}', '${d.suplier_alamat}', '${d.suplier_notelp}')">Edit</button><button class="button button-small button-tonal color-red" onclick="hapusSupplier(${d.suplier_id})">Hapus</button></p></td>
+            </tr>
+        `
+    });
+    
+    return temp;
+ 
 }

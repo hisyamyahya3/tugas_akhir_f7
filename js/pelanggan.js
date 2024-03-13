@@ -116,7 +116,7 @@ $(document).on('keyup', '#searchTabelPelanggan', function () {
                 let data = JSON.parse(res)
 
                 if (data.data) {
-                    $('#daftar-pelanggan').html(fetchDataPelanggan(data))
+                    $('#daftar-pelanggan').html(fetchSearchDataPelanggan(data))
                 } else {
                     $('#daftar-pelanggan').html(tampilPelanggan())
                 }
@@ -130,7 +130,7 @@ $(document).on('keyup', '#searchTabelPelanggan', function () {
     }
 })
 
-function fetchDataPelanggan(data) {
+function fetchSearchDataPelanggan(data) {
     let temp = '';
 
     data.data.forEach((d) => {
