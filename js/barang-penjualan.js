@@ -30,7 +30,8 @@ function tampilBarangPenjualan() {
 function pilihBarangPelanggan (id, harjul, stok) {
     // console.log(`${id} dan ${harjul} dan ${stok}`);
     let pelangganId = localStorage.getItem("pelangganId");
-
+    // console.log(`${id} dan ${harjul} dan ${stok}`);
+    // return;
     $.ajax({
         url: "http://localhost/api_toko/Pelanggan/keranjang",
         method: "POST",

@@ -9,20 +9,20 @@
                         <span class="if-not-md">Framework7</span>
                     </a>
                 </div>
-                <div class="title">Detail Penjualan</div>
+                <div class="title">Detail Pembelian</div>
                 <div class="title-large">
-                    <div class="title-large-text">Detail Penjualan</div>
+                    <div class="title-large-text">Detail Pembelian</div>
                 </div>
             </div>
         </div>
         <div class="page-content">
-            <div class="block-title block-title-large">Pelanggan</div>
+            <div class="block-title block-title-large">Supplier</div>
             <div class="card">
                 <div class="card-content card-content-padding">
-                    <h3 class="col font-17 nama-pelanggan-keranjang"></h3>
+                    <h3 class="col font-17 nama-supplier-keranjang"></h3>
                 </div>
             </div>
-            <div class="grid grid-cols-2" id="tampilBayarPenjualan"></div>
+            <div class="grid grid-cols-2" id="tampilBayarPembelian"></div>
             <div class="block block-strong block-outline-ios">
                 <p class="grid grid-cols grid-gap">
                     <button class="button button-large button-tonal" @click="#">Lanjut Ke Pembayaran</button>
@@ -34,11 +34,11 @@
 <script>
     export default function (props, { $f7, $on}) {
         $on('pageAfterIn', () => {
-            let namaPelanggan = localStorage.getItem('namaPelangganKeranjang')
+            let namaSupplier = localStorage.getItem('namaSupplierKeranjang')
 
-            $('.nama-pelanggan-keranjang').html(namaPelanggan)
+            $('.nama-supplier-keranjang').html(namaSupplier)
         })
-        tampilBayarPenjualan(props.id)
+        tampilBayarPembelian(props.id)
         return $render;
     };
 </script>

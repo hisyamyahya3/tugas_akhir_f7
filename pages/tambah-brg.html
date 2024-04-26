@@ -201,7 +201,7 @@
                 url: "http://localhost/api_toko/Kategori",
                 success: function(result) {
                     let res = JSON.parse(result);
-                    var categoryID = res.data.map(item => item.kategori_id);
+                    var categoryID = res.data.map(item => `${item.kategori_id} - ${item.kategori_nama}`);
                     var categoryName = res.data.map(item => item.kategori_nama);
 
                     console.log(res);
