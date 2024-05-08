@@ -53,3 +53,16 @@ $(document).on('click', '.btn-bayar-penjualan', function () {
     //     }
     // })
 })
+
+$(document).on('keyup', '.jumlah_uang_penjualan_new', function () {
+    let hargaPenjualan = localStorage.getItem("totalPenjualan")
+    var tempUangUser = $(this).val().replace(/[^0-9]/g, '');
+    // let kembalian = hargaPembelian - tempUangUser
+    let kembalian = tempUangUser - hargaPenjualan
+    let finalUangUser = rupiahFormatter(tempUangUser)
+
+    let finalHargaKembalian = rupiahFormatter(kembalian)
+
+    $('.jumlah_uang_penjualan_new').val(finalUangUser)
+    $('.jumlah_kembalian_penjualan_new').val(finalHargaKembalian)
+})

@@ -34,6 +34,8 @@ var routes = [
   {path: '/checkout/', componentUrl: 'pages/checkout.html'},
   {path: '/penjualan/', componentUrl: 'pages/penjualan.html'},
   {path: '/bayarpenjualan/', componentUrl: 'pages/bayar-penjualan.html'},
+  {path: '/bayarpenjualannew/', componentUrl: 'pages/bayar-penjualannew.html'},
+  {path: '/bayarpembelian/', componentUrl: 'pages/bayar-pembelian.html'},
   {path: '/pengeluaran/', componentUrl: 'pages/pengeluaran.html'},
   {path: '/addpengeluaran/', componentUrl: 'pages/tambah-pengeluaran.html'},
   {path: '/pengaturan/', componentUrl: 'pages/pengaturan.html'},

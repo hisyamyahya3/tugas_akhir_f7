@@ -41,13 +41,15 @@
     <script src="js/checkout.js"></script>
     <script src="js/pengeluaran.js"></script>
     <script src="js/bayar-penjualan.js"></script>
+    <script src="js/bayar-pembelian.js"></script>
     <script src="js/pengaturan.js"></script>
     <script src="js/keranjang.js"></script>
     <script>
         document.addEventListener("backbutton", onBackKeyDown, false);
         function onBackKeyDown(e) {
-            e.preventDefault();
-            app.dialog.alert("Back Button is Pressed!", "Info");
+            // e.preventDefault();
+            // app.dialog.alert("Back Button is Pressed!", "Info");
+            e.window.history.back();
         }
     </script>
 </body>

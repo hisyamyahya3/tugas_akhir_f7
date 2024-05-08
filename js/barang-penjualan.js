@@ -39,7 +39,8 @@ function pilihBarangPelanggan (id, harjul, stok) {
             pelangganId: pelangganId,
             pelangganBarangId: id,
             pelangganBarangHarjul: harjul,
-            pelangganBarangStok: stok
+            pelangganBarangStok: stok,
+            pelangganBarangQty: 1
         },
         success: function(res) {
             app.dialog.alert("Data Berhasil Di Masukkan Ke Keranjang","Success");
