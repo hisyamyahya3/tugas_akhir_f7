@@ -2,7 +2,7 @@ function tampilPelangganPenjualan() {
     $.ajax({
         type: "GET",
         url: "http://localhost/api_toko/Pelanggan",
-        success: function(result) {
+        success: function (result) {
             let dt = "";
             let res = JSON.parse(result);
             // console.log(res.data)
@@ -23,12 +23,12 @@ function tampilPelangganPenjualan() {
                 `
             })
 
-            $('#tampilPelangganPenjualan').html(temp)    
+            $('#tampilPelangganPenjualan').html(temp)
         }
     })
 }
 
-function pilihPelanggan (pelangganId, pelangganNama) {
+function pilihPelanggan(pelangganId, pelangganNama) {
     // app.dialog.alert(id);
     // console.log(`${id} dan ${nama}`)
     localStorage.setItem("pelangganId", pelangganId);
@@ -40,7 +40,7 @@ $(document).on('keyup', '#searchPelangganPenjualan', function () {
     let searchInputNew = $(this).val()
 
     // console.log(searchInputNew)
-    
+
     if (searchInputNew.length > 0) {
         $.ajax({
             url: "http://localhost/api_toko/Pelanggan/search",
@@ -48,7 +48,7 @@ $(document).on('keyup', '#searchPelangganPenjualan', function () {
             data: {
                 nama_pelanggan: searchInputNew
             },
-            success: function(res) {
+            success: function (res) {
                 let data = JSON.parse(res)
                 // console.log(data);
                 // return;
@@ -58,8 +58,8 @@ $(document).on('keyup', '#searchPelangganPenjualan', function () {
                     $('#tampilPelangganPenjualan').html(tampilPelangganPenjualan())
                 }
             },
-            error: function(){
-                app.dialog.alert("Tidak Terhubung dengan Server!","Error");
+            error: function () {
+                app.dialog.alert("Tidak Terhubung dengan Server!", "Error");
             }
         })
     } else {
@@ -84,10 +84,10 @@ function fetchDataPelangganPenjualan(data) {
 }
 
 function kembaliPenjualan() {
-    app.dialog.confirm('Apakah anda ingin keluar sebelum melanjutkan penjualan?','Konfirmasi', function (confirmed) {
+    app.dialog.confirm('Apakah anda ingin keluar sebelum melanjutkan penjualan?', 'Konfirmasi', function (confirmed) {
         if (confirmed) {
             var view = app.views.current;
-            view.router.back(view.history[0],{force:true});
+            view.router.back(view.history[0], { force: true });
         }
     });
 }

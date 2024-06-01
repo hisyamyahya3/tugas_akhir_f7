@@ -2,7 +2,7 @@ function tampilBarangPenjualan() {
     $.ajax({
         type: "GET",
         url: "http://localhost/api_toko/Barang",
-        success: function(result) {
+        success: function (result) {
             let dt = "";
             let res = JSON.parse(result);
             // console.log(res.data)
@@ -22,16 +22,14 @@ function tampilBarangPenjualan() {
                     </div>
                 `
             })
-            $('#tampilBarangPenjualan').html(temp)    
+            $('#tampilBarangPenjualan').html(temp)
         }
     })
 }
 
-function pilihBarangPelanggan (id, harjul, stok) {
-    // console.log(`${id} dan ${harjul} dan ${stok}`);
+function pilihBarangPelanggan(id, harjul, stok) {
     let pelangganId = localStorage.getItem("pelangganId");
-    // console.log(`${id} dan ${harjul} dan ${stok}`);
-    // return;
+
     $.ajax({
         url: "http://localhost/api_toko/Pelanggan/keranjang",
         method: "POST",
@@ -39,24 +37,23 @@ function pilihBarangPelanggan (id, harjul, stok) {
             pelangganId: pelangganId,
             pelangganBarangId: id,
             pelangganBarangHarjul: harjul,
-            pelangganBarangStok: stok,
             pelangganBarangQty: 1
         },
-        success: function(res) {
-            app.dialog.alert("Data Berhasil Di Masukkan Ke Keranjang","Success");
+        success: function (res) {
+            app.dialog.alert("Data Berhasil Di Masukkan Ke Keranjang", "Success");
         },
-        error: function() {
-            app.dialog.alert("Tidak Terhubung dengan Server!","Error");
+        error: function () {
+            app.dialog.alert("Tidak Terhubung dengan Server!", "Error");
         }
     })
-    $('#keranjangPenjualan').css({display: 'block'});
+    $('#keranjangPenjualan').css({ display: 'block' });
 }
 
 $(document).on('keyup', '#searchBarangPenjualan', function () {
     let searchInputNew = $(this).val()
 
     // console.log(searchInputNew)
-    
+
     if (searchInputNew.length > 0) {
         $.ajax({
             url: "http://localhost/api_toko/Barang/search",
@@ -64,7 +61,7 @@ $(document).on('keyup', '#searchBarangPenjualan', function () {
             data: {
                 nama_barang: searchInputNew
             },
-            success: function(res) {
+            success: function (res) {
                 let data = JSON.parse(res)
                 // console.log(data);
                 // return;
@@ -74,8 +71,8 @@ $(document).on('keyup', '#searchBarangPenjualan', function () {
                     $('#tampilBarangPenjualan').html(tampilBarangPenjualan())
                 }
             },
-            error: function(){
-                app.dialog.alert("Tidak Terhubung dengan Server!","Error");
+            error: function () {
+                app.dialog.alert("Tidak Terhubung dengan Server!", "Error");
             }
         })
     } else {
