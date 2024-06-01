@@ -27,7 +27,7 @@ function tampilBarangPenjualan() {
     })
 }
 
-function pilihBarangPelanggan(id, harjul, stok) {
+function pilihBarangPelanggan(id, harjul) {
     let pelangganId = localStorage.getItem("pelangganId");
 
     $.ajax({
@@ -40,7 +40,10 @@ function pilihBarangPelanggan(id, harjul, stok) {
             pelangganBarangQty: 1
         },
         success: function (res) {
-            app.dialog.alert("Data Berhasil Di Masukkan Ke Keranjang", "Success");
+            let parsedResult = JSON.parse(res)
+            let status = (parsedResult.status == 'ok') ? 'Success' : 'Error'
+
+            app.dialog.alert(parsedResult.keterangan, status);
         },
         error: function () {
             app.dialog.alert("Tidak Terhubung dengan Server!", "Error");
