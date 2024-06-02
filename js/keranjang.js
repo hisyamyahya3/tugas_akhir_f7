@@ -86,7 +86,7 @@ function tampilBayarPenjualan(id) {
 
             let temp2 = `
                 <h3 class="col font-17">Total Bayar : Rp. ${total}</h3>
-                <button class="button button-large button-tonal" onclick="lanjutBayarPenjualan(${id}, ${total})">Lanjut Ke Pembayaran</button>
+                <button class="button button-large button-tonal" onclick="lanjutBayarPenjualan(${total})">Lanjut Ke Pembayaran</button>
             `
 
             $("#tampilBayarPenjualan").html(temp);
@@ -96,6 +96,10 @@ function tampilBayarPenjualan(id) {
 }
 
 function btnqtyPenjualan(id, barang_id, qty, pelanggan_id, action) {
+    // console.log(`${id} dan ${barang_id} dan ${qty} dan ${pelanggan_id}`)
+    // return;
+    // ajax
+    // console.log(`${id} dan ${barang_id} dan ${qty} dan plus`)
     $.ajax({
         url: "http://localhost/api_toko/Pelanggan/editQty",
         method: "POST",
@@ -141,8 +145,9 @@ function hapusKeranjangPenjualan(pelanggan_id, id) {
     })
 }
 
-function lanjutBayarPenjualan(pelanggan_id, total) {
-    localStorage.setItem("pelangganID", pelanggan_id);
+function lanjutBayarPenjualan(total) {
+    // console.log(total);
+
     localStorage.setItem("totalPenjualan", total);
     app.views.main.router.navigate("/bayarpenjualannew/");
 }
@@ -152,10 +157,13 @@ function tampilKeranjangPembelian() {
         type: "GET",
         url: "http://localhost/api_toko/Supplier/tampilKeranjangPembelian",
         success: function (result) {
+            let dt = "";
             let res = JSON.parse(result);
+            // console.log(res.data)
             let temp = "";
 
             res.forEach((customer) => {
+
                 temp += `
                 <div class="block block-strong block-outline-ios">
                     <h2 class="col" style="font-weight: bold;">${customer.suplier_nama}</h2>
@@ -195,10 +203,15 @@ function tampilBayarPembelian(id) {
         data: { supplierId: id },
         success: function (result) {
             let res = JSON.parse(result);
+            console.log(res);
+            // return;
+
             let temp = "";
+            // let temp2 = "";
             let total = 0;
 
             res.data.forEach((d) => {
+
                 let subtotal = parseInt(d.barang_harjul) * parseInt(d.qty);
                 total += subtotal;
 
@@ -247,6 +260,10 @@ function tampilBayarPembelian(id) {
 }
 
 function btnqtyPembelian(id, barang_id, qty, supplier_id, action) {
+    // console.log(`${id} dan ${barang_id} dan ${qty} dan ${supplier_id}`)
+    // return;
+    // ajax
+    // console.log(`${id} dan ${barang_id} dan ${qty} dan plus`)
     $.ajax({
         url: "http://localhost/api_toko/Supplier/editQty",
         method: "POST",
@@ -263,9 +280,15 @@ function btnqtyPembelian(id, barang_id, qty, supplier_id, action) {
             app.dialog.alert("Tidak Terhubung dengan Server!", "Error");
         }
     })
+
 }
 
+// function btnplus (id, barang_id, qty) {
+//     console.log(`${id} dan ${barang_id} dan ${qty}`)
+// }
+
 function hapusKeranjangPembelian(id, supplier_id) {
+    console.log(id);
     $.ajax({
         url: "http://localhost/api_toko/Supplier/deleteKeranjang",
         method: "POST",
@@ -275,7 +298,10 @@ function hapusKeranjangPembelian(id, supplier_id) {
         success: function (res) {
             let result = JSON.parse(res)
 
+            console.log(result.keterangan)
+
             app.dialog.alert(result.keterangan, "Info");
+            // app.views.main.router.back();
             tampilBayarPembelian(supplier_id)
         },
         error: function () {
@@ -285,6 +311,8 @@ function hapusKeranjangPembelian(id, supplier_id) {
 }
 
 function lanjutBayarPembelian(total) {
+    // console.log(total);
+
     localStorage.setItem("totalPembelian", total);
     app.views.main.router.navigate("/bayarpembelian/");
 }
