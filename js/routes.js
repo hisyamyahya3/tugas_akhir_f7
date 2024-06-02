@@ -46,6 +46,7 @@ var routes = [
   {path: '/keranjang/detail-pembelian/:id', componentUrl: 'pages/detail-pembelian.html'},
   {path: '/login/', componentUrl: 'pages/login.html'},
   {path: '/regis/', componentUrl: 'pages/regis.html'},
+  {path: '/sts-pembayaran/', componentUrl: 'pages/status-pembayaran.html'},
   {path: '(.*)', url: 'pages/404.html'},
 ];
 // var routes = [
