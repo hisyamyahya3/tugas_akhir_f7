@@ -1,0 +1,58 @@
+<template>
+    <div class="page no-toolbar no-navbar no-swipeback login-screen-page">
+        <div class="page-content login-screen-content">
+            <div class="login-screen-title">
+                <i class="icon f7-icons">bag</i> TOKO
+            </div>
+            <div class="block-title block-title-large">Halaman Login</div>
+            <form>
+                <div class="list">
+                    <ul>
+                        <li class="item-content item-input item-input-outline">
+                            <div class="item-inner">
+                                <div class="item-title item-floating-label">Email</div>
+                                <div class="item-input-wrap">
+                                    <input
+                                        type="text"
+                                        name="email"
+                                        id="email"
+                                        class="input-with-value"
+                                    />
+                                    <span class="input-clear-button"></span>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="item-content item-input item-input-outline">
+                            <div class="item-inner">
+                              <div class="item-title item-floating-label">Password</div>
+                              <div class="item-input-wrap">
+                                    <input
+                                        type="password"
+                                        name="password"
+                                        id="password"
+                                        class=""
+                                    />
+                                    <span class="input-clear-button"></span>
+                              </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="list inset">
+                    <ul>
+                        <li><a class="list-button" @click="#">Masuk</a></li>
+                    </ul>
+                </div>
+                <div class="block-footer margin-top">
+                    Jika email anda belum terdaftar. Maka daftar terlebih dahulu.
+                    <p><a class="list-button" href="/regis/">Daftar</a></p>
+                </div>
+            </form>
+        </div>
+    </div>
+</template>
+<script>
+    export default function (props, ctx) {
+        return $render;
+    }
+</script>
