@@ -12,8 +12,6 @@ function rupiahFormatter(number) {
 }
 
 $(document).on('click', '.btn-bayar-penjualan', function () {
-    let tempDataPenjualan = localStorage.getItem("dataPenjualan")
-    let dataPenjualan = JSON.parse(tempDataPenjualan)
     let idPelanggan = localStorage.getItem("pelangganID")
     let hargaPenjualan = localStorage.getItem("totalPenjualan")
     let tempJmlUang = $('.jumlah_uang_penjualan_new').val()
@@ -34,7 +32,10 @@ $(document).on('click', '.btn-bayar-penjualan', function () {
             let result = JSON.parse(res)
 
             if (result.status == 'ok') {
-                app.dialog.alert(result.message)
+                localStorage.setItem("statusNamaUser", result.data.pelanggan_nama);
+                localStorage.setItem("statusNominalPembayaran", result.data.jual_jml_uang);
+
+                app.views.main.router.navigate(`/sts-pembayaran/${result.data.jual_nofak}`);
             }
         },
         error: function () {
