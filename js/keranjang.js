@@ -3,7 +3,10 @@ function tampilKeranjangPenjualan() {
         type: "GET",
         url: "http://localhost/api_toko/Pelanggan/tampilKeranjangPenjualan",
         success: function (result) {
+            let dt = "";
             let res = JSON.parse(result);
+            // console.log(res);
+            // return;
             let temp = ""
 
             res.forEach((customer) => {
@@ -83,7 +86,7 @@ function tampilBayarPenjualan(id) {
 
             let temp2 = `
                 <h3 class="col font-17">Total Bayar : Rp. ${total}</h3>
-                <button class="button button-large button-tonal" onclick="lanjutBayarPenjualan(${total})">Lanjut Ke Pembayaran</button>
+                <button class="button button-large button-tonal" onclick="lanjutBayarPenjualan(${id}, ${total})">Lanjut Ke Pembayaran</button>
             `
 
             $("#tampilBayarPenjualan").html(temp);
@@ -138,7 +141,8 @@ function hapusKeranjangPenjualan(pelanggan_id, id) {
     })
 }
 
-function lanjutBayarPenjualan(total) {
+function lanjutBayarPenjualan(pelanggan_id, total) {
+    localStorage.setItem("pelangganID", pelanggan_id);
     localStorage.setItem("totalPenjualan", total);
     app.views.main.router.navigate("/bayarpenjualannew/");
 }
@@ -152,7 +156,6 @@ function tampilKeranjangPembelian() {
             let temp = "";
 
             res.forEach((customer) => {
-
                 temp += `
                 <div class="block block-strong block-outline-ios">
                     <h2 class="col" style="font-weight: bold;">${customer.suplier_nama}</h2>
@@ -192,7 +195,6 @@ function tampilBayarPembelian(id) {
         data: { supplierId: id },
         success: function (result) {
             let res = JSON.parse(result);
-
             let temp = "";
             let total = 0;
 
