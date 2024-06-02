@@ -66,16 +66,11 @@
         let $on = ctx.$on
 
         $on('pageAfterIn', () => {
-            let totalPembayaran = localStorage.getItem('totalPenjualan')
+            let totalPembayaran = rupiahFormatter(localStorage.getItem('totalPenjualan'))
             let namaPelanggan = localStorage.getItem('namaPelangganKeranjang')
-            $('.nama-pelanggan-keranjang').html(namaPelanggan);
-            
-            let finalHarga = rupiahFormatter(totalPembayaran)
-            document.getElementById('total_penjualan_new').value = finalHarga;
 
-            // $(document).on('keyup', '.jumlah_uang_pembelian', () => {
-            //     alert('ok')
-            // })
+            $('.nama-pelanggan-keranjang').html(namaPelanggan);
+            $('#total_penjualan_new').val(totalPembayaran)
         })
 
         return $render;
