@@ -31,7 +31,11 @@ $(document).on('click', '.btn-bayar-penjualan', function () {
             'jmlKembalian': jmlKembalian,
         },
         success: function (res) {
-            console.log(res)
+            let result = JSON.parse(res)
+
+            if (result.status == 'ok') {
+                app.dialog.alert(result.message)
+            }
         },
         error: function () {
 
