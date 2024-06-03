@@ -9,7 +9,6 @@ function tampilPelangganPenjualan(keyword) {
             let data = JSON.parse(res)
 
             let temp = '';
-            console.log(data)
 
             data.data.forEach((d) => {
                 temp += `<div class="card">
@@ -31,14 +30,14 @@ function tampilPelangganPenjualan(keyword) {
 }
 
 function pilihPelanggan(pelangganID, pelangganNama) {
-    localStorage.setItem("pelangganID", pelangganID);
-    localStorage.setItem("pelangganNama", pelangganNama);
+    localStorage.setItem("cartPelangganID", pelangganID);
+    localStorage.setItem("cartPelangganNama", pelangganNama);
+
     app.views.main.router.navigate("/brg-penjualan/");
 }
 
 $(document).on('keyup', '#searchPelangganPenjualan', function () {
     let searchInputNew = $(this).val()
-    console.log(searchInputNew)
 
     if (searchInputNew.length > 0) {
         tampilPelangganPenjualan(searchInputNew)

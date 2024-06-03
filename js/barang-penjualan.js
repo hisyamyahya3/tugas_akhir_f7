@@ -6,7 +6,7 @@ function tampilBarangPenjualan(keyword) {
             nama_barang: keyword
         },
         success: function (res) {
-            let data = JSON.parse(res);
+            let data = JSON.parse(res)
 
             let temp = '';
 
@@ -19,7 +19,7 @@ function tampilBarangPenjualan(keyword) {
                             <p class="col font-17">Stok: ${d.barang_stok}</p>
                         </div>
                         <div class="card-footer">
-                            <button class="button button-small button-tonal color-blue" onclick="pilihBarangPelanggan('${d.barang_id}', '${d.barang_harjul}', '${d.barang_stok}')">Keranjang</button>
+                            <button class="button button-small button-tonal color-blue" onclick="pilihBarangPelanggan('${d.barang_id}', '${d.barang_harjul}')">Keranjang</button>
                         </div>
                     </div>
                 `
@@ -28,20 +28,25 @@ function tampilBarangPenjualan(keyword) {
             $('#tampilBarangPenjualan').html(temp)
         },
         error: function () {
-            app.dialog.alert("Tidak Terhubung dengan Server!", "Error");
+            app.dialog.alert("Tidak Terhubung dengan Server!", "Error")
         }
     })
 }
 
-function pilihBarangPelanggan(id, harjul) {
-    let pelangganId = localStorage.getItem("pelangganId");
+function pilihBarangPelanggan(barang_id, harjul) {
+    let pelangganId = localStorage.getItem("cartPelangganID")
+
+    if (!pelangganId) {
+        app.dialog.alert("Tidak Terhubung dengan Server!", "Error")
+        return
+    }
 
     $.ajax({
         url: "http://localhost/api_toko/Pelanggan/keranjang",
         method: "POST",
         data: {
             pelangganId: pelangganId,
-            pelangganBarangId: id,
+            pelangganBarangId: barang_id,
             pelangganBarangHarjul: harjul,
             pelangganBarangQty: 1
         },
@@ -49,13 +54,12 @@ function pilihBarangPelanggan(id, harjul) {
             let parsedResult = JSON.parse(res)
             let status = (parsedResult.status == 'ok') ? 'Success' : 'Error'
 
-            app.dialog.alert(parsedResult.keterangan, status);
+            app.dialog.alert(parsedResult.keterangan, status)
         },
         error: function () {
-            app.dialog.alert("Tidak Terhubung dengan Server!", "Error");
+            app.dialog.alert("Tidak Terhubung dengan Server!", "Error")
         }
     })
-    $('#keranjangPenjualan').css({ display: 'block' });
 }
 
 $(document).on('keyup', '#searchBarangPenjualan', function () {
