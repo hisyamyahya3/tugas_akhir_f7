@@ -53,6 +53,14 @@
 </template>
 <script>
     export default function (props, ctx) {
+        ctx.$on('pageBeforeIn', () => {
+            const isLogin = sessionStorage.getItem("isLogin");
+
+            if (isLogin == "true") {
+                app.views.main.router.navigate("/");
+            }
+        })
+
         return $render;
     }
 </script>
