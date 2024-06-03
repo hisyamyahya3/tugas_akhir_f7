@@ -51,8 +51,8 @@
 <script>
     export default function (props, ctx) {
         ctx.$on('pageAfterIn', () => {
-            let pelangganNama = localStorage.getItem("pelangganNama")
             tampilBarangPenjualan('');
+            let pelangganNama = localStorage.getItem("cartPelangganNama")
             $('#detailPelanggan').css({display: 'block'})
             $('#detailPelangganPenjualan').html(`Atas Nama ${pelangganNama}`)
         })
