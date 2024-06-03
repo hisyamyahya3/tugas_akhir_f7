@@ -33,10 +33,10 @@
 </template>
 <script>
     export default function (props, ctx) {
-        let $on = ctx.$on;
-        $on('pageAfterIn', () => {
-            tampilSupplierPembelian();
+        ctx.$on('pageAfterIn', () => {
+            tampilSupplierPembelian('');
         })
+
         return $render;
     };
 </script>

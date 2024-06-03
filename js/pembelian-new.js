@@ -1,13 +1,16 @@
-function tampilSupplierPembelian() {
+function tampilSupplierPembelian(keyword) {
     $.ajax({
-        type: "GET",
-        url: "http://localhost/api_toko/Supplier",
-        success: function (result) {
-            let res = JSON.parse(result);
+        url: "http://localhost/api_toko/Supplier/search",
+        method: "POST",
+        data: {
+            nama_supplier: keyword
+        },
+        success: function (res) {
+            let data = JSON.parse(res)
 
             let temp = '';
 
-            res.data.forEach((d) => {
+            data.data.forEach((d) => {
                 temp += `
                     <div class="card">
                         <div class="card-content card-content-padding">
@@ -21,14 +24,18 @@ function tampilSupplierPembelian() {
                     </div>
                 `
             })
+
             $('#tampilSupplierPembelian').html(temp)
+        },
+        error: function () {
+            app.dialog.alert("Tidak Terhubung dengan Server!", "Error");
         }
     })
 }
 
-function pilihSupplier(id, nama) {
-    localStorage.setItem("supplierId", id);
-    localStorage.setItem("supplierNama", nama);
+function pilihSupplier(supplierID, supplierNama) {
+    localStorage.setItem("supplierID", supplierID);
+    localStorage.setItem("supplierNama", supplierNama);
     app.views.main.router.navigate("/brg-pembelian/");
 }
 
@@ -36,49 +43,11 @@ $(document).on('keyup', '#searchSupplierPembelian', function () {
     let searchInputNew = $(this).val()
 
     if (searchInputNew.length > 0) {
-        $.ajax({
-            url: "http://localhost/api_toko/Supplier/search",
-            method: "POST",
-            data: {
-                nama_supplier: searchInputNew
-            },
-            success: function (res) {
-                let data = JSON.parse(res)
-                // console.log(data);
-                // return;
-                if (data.data) {
-                    $('#tampilSupplierPembelian').html(fetchDataSupplierPembelian(data))
-                } else {
-                    $('#tampilSupplierPembelian').html(tampilSupplierPembelian())
-                }
-            },
-            error: function () {
-                app.dialog.alert("Tidak Terhubung dengan Server!", "Error");
-            }
-        })
+        tampilSupplierPembelian(searchInputNew)
     } else {
-        $('#tampilSupplierPembelian').html(tampilSupplierPembelian())
+        tampilSupplierPembelian('')
     }
 })
-
-function fetchDataSupplierPembelian(data) {
-    let temp = '';
-
-    data.data.forEach((d) => {
-        temp += `<div class="card">
-                    <div class="card-content card-content-padding">
-                        <p class="col font-17">${d.suplier_nama}</p>
-                        <p class="col font-17">${d.suplier_alamat}</p>
-                        <p class="col font-17">${d.suplier_notelp}</p>
-                    </div>
-                    <div class="card-footer">
-                        <button class="button button-small button-tonal color-blue" onclick="pilihSupplier('${d.suplier_id}', '${d.suplier_nama}')">Pilih</button>
-                    </div>
-                </div>`
-    });
-
-    return temp;
-}
 
 function kembaliPembelian() {
     app.dialog.confirm('Apakah anda ingin keluar sebelum melanjutkan pembelian?', 'Konfirmasi', function (confirmed) {
