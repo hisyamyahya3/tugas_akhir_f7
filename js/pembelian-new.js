@@ -2,10 +2,9 @@ function tampilSupplierPembelian() {
     $.ajax({
         type: "GET",
         url: "http://localhost/api_toko/Supplier",
-        success: function(result) {
-            let dt = "";
+        success: function (result) {
             let res = JSON.parse(result);
-            // console.log(res.data)
+
             let temp = '';
 
             res.data.forEach((d) => {
@@ -22,13 +21,12 @@ function tampilSupplierPembelian() {
                     </div>
                 `
             })
-            $('#tampilSupplierPembelian').html(temp)    
+            $('#tampilSupplierPembelian').html(temp)
         }
     })
 }
 
-function pilihSupplier (id, nama) {
-    // console.log(`${id} dan ${nama}`);
+function pilihSupplier(id, nama) {
     localStorage.setItem("supplierId", id);
     localStorage.setItem("supplierNama", nama);
     app.views.main.router.navigate("/brg-pembelian/");
@@ -37,8 +35,6 @@ function pilihSupplier (id, nama) {
 $(document).on('keyup', '#searchSupplierPembelian', function () {
     let searchInputNew = $(this).val()
 
-    // console.log(searchInputNew)
-    
     if (searchInputNew.length > 0) {
         $.ajax({
             url: "http://localhost/api_toko/Supplier/search",
@@ -46,7 +42,7 @@ $(document).on('keyup', '#searchSupplierPembelian', function () {
             data: {
                 nama_supplier: searchInputNew
             },
-            success: function(res) {
+            success: function (res) {
                 let data = JSON.parse(res)
                 // console.log(data);
                 // return;
@@ -56,8 +52,8 @@ $(document).on('keyup', '#searchSupplierPembelian', function () {
                     $('#tampilSupplierPembelian').html(tampilSupplierPembelian())
                 }
             },
-            error: function(){
-                app.dialog.alert("Tidak Terhubung dengan Server!","Error");
+            error: function () {
+                app.dialog.alert("Tidak Terhubung dengan Server!", "Error");
             }
         })
     } else {
@@ -80,14 +76,15 @@ function fetchDataSupplierPembelian(data) {
                     </div>
                 </div>`
     });
+
     return temp;
 }
 
 function kembaliPembelian() {
-    app.dialog.confirm('Apakah anda ingin keluar sebelum melanjutkan pembelian?','Konfirmasi', function (confirmed) {
+    app.dialog.confirm('Apakah anda ingin keluar sebelum melanjutkan pembelian?', 'Konfirmasi', function (confirmed) {
         if (confirmed) {
             var view = app.views.current;
-            view.router.back(view.history[0],{force:true});
+            view.router.back(view.history[1], { force: true });
         }
     });
 }

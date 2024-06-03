@@ -3,9 +3,7 @@ function tampilPelangganPenjualan() {
         type: "GET",
         url: "http://localhost/api_toko/Pelanggan",
         success: function (result) {
-            let dt = "";
             let res = JSON.parse(result);
-            // console.log(res.data)
             let temp = '';
 
             res.data.forEach((d) => {
@@ -29,8 +27,6 @@ function tampilPelangganPenjualan() {
 }
 
 function pilihPelanggan(pelangganId, pelangganNama) {
-    // app.dialog.alert(id);
-    // console.log(`${id} dan ${nama}`)
     localStorage.setItem("pelangganId", pelangganId);
     localStorage.setItem("pelangganNama", pelangganNama);
     app.views.main.router.navigate("/brg-penjualan/");
@@ -38,8 +34,6 @@ function pilihPelanggan(pelangganId, pelangganNama) {
 
 $(document).on('keyup', '#searchPelangganPenjualan', function () {
     let searchInputNew = $(this).val()
-
-    // console.log(searchInputNew)
 
     if (searchInputNew.length > 0) {
         $.ajax({
@@ -50,8 +44,7 @@ $(document).on('keyup', '#searchPelangganPenjualan', function () {
             },
             success: function (res) {
                 let data = JSON.parse(res)
-                // console.log(data);
-                // return;
+
                 if (data.data) {
                     $('#tampilPelangganPenjualan').html(fetchDataPelangganPenjualan(data))
                 } else {
@@ -87,7 +80,7 @@ function kembaliPenjualan() {
     app.dialog.confirm('Apakah anda ingin keluar sebelum melanjutkan penjualan?', 'Konfirmasi', function (confirmed) {
         if (confirmed) {
             var view = app.views.current;
-            view.router.back(view.history[0], { force: true });
+            view.router.back(view.history[1], { force: true });
         }
     });
 }
