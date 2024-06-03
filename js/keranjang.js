@@ -3,10 +3,8 @@ function tampilKeranjangPenjualan() {
         type: "GET",
         url: "http://localhost/api_toko/Pelanggan/tampilKeranjangPenjualan",
         success: function (result) {
-            let dt = "";
             let res = JSON.parse(result);
-            // console.log(res);
-            // return;
+
             let temp = ""
 
             res.forEach((customer) => {
@@ -38,9 +36,11 @@ function tampilKeranjangPenjualan() {
     });
 }
 
-function bayarPenjualan(id, pelanggan_nama) {
+function bayarPenjualan(pelanggan_id, pelanggan_nama) {
+    localStorage.setItem('pelangganID', pelanggan_id)
     localStorage.setItem('namaPelangganKeranjang', pelanggan_nama)
-    app.views.main.router.navigate(`/keranjang/detail-penjualan/${id}`);
+
+    app.views.main.router.navigate(`/keranjang/detail-penjualan/${pelanggan_id}`);
 }
 
 function tampilBayarPenjualan(id) {
@@ -144,6 +144,7 @@ function hapusKeranjangPenjualan(pelanggan_id, id) {
 function lanjutBayarPenjualan(pelanggan_id, total) {
     localStorage.setItem("pelangganID", pelanggan_id);
     localStorage.setItem("totalPenjualan", total);
+
     app.views.main.router.navigate("/bayarpenjualannew/");
 }
 

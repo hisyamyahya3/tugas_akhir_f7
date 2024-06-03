@@ -4,7 +4,9 @@
             <div class="navbar-bg"></div>
             <div class="navbar-inner navbar-inner-centered-title">
                 <div class="left">
-                    <a href="#" class="panel-open" data-panel=".panel-left-1"><i class="icon f7-icons">multiply</i></a>
+                    <a href="#" class="back-to-home">
+                        <i class="icon f7-icons">multiply</i>
+                    </a>
                 </div>
             </div>
         </div>
@@ -28,14 +30,18 @@
 </template>
 <script>
     export default function (props, ctx) {
-        let $on = ctx.$on
-
-        $on('pageAfterIn', () => {
+        ctx.$on('pageAfterIn', () => {
             const namaPelanggan = localStorage.getItem('statusNamaUser')
             const jmlUang = localStorage.getItem('statusNominalPembayaran')
 
             $('.status-nominal-pembayaran').html(`Rp. ${jmlUang}`)
             $('.status-nama-user').html(namaPelanggan)
+
+
+            $('.back-to-home').on('click', () => {
+                app.views.main.router.navigate("/")
+
+            })
         })
 
         return $render;
