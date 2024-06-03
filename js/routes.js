@@ -24,8 +24,6 @@ var routes = [
   {path: '/barangmsk/', componentUrl: 'pages/barang-masuk.html'},
   {path: '/laporan/', componentUrl: 'pages/laporan.html'},
   {path: '/pengeluaran/', componentUrl: 'pages/pengeluaran.html'},
-  {path: '/masuk/', componentUrl: 'pages/login.html'},
-  {path: '/regis/', componentUrl: 'pages/regis.html'},
   {path: '/kategori/', componentUrl: 'pages/kategori.html'},
   {path: '/addktgr/', componentUrl: 'pages/tambah-ktgr.html'},
   {path: '/editktgr/', componentUrl: 'pages/kelola-ktgr.html'},

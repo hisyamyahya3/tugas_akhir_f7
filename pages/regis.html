@@ -16,7 +16,7 @@
                                         type="text"
                                         id="nama"
                                         name="nama"
-                                        class="input-with-value"
+                                        class="regis-name"
                                     />
                                     <span class="input-clear-button"></span>
                                 </div>
@@ -30,7 +30,7 @@
                                         type="text"
                                         name="email"
                                         id="email"
-                                        class="input-with-value"
+                                        class="regis-email"
                                     />
                                     <span class="input-clear-button"></span>
                                 </div>
@@ -44,7 +44,7 @@
                                         type="password"
                                         name="password"
                                         id="password"
-                                        class=""
+                                        class="regis-password"
                                     />
                                     <span class="input-clear-button"></span>
                               </div>
@@ -54,7 +54,7 @@
                 </div>
                 <div class="list inset">
                     <ul>
-                        <a class="list-button" @click="#">Daftar</a>
+                        <a class="list-button" @click="${()=>register()}">Daftar</a>
                     </ul>
                 </div>
                 <div class="block-footer margin-top">
