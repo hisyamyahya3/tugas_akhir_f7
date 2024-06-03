@@ -16,7 +16,7 @@
                                         type="text"
                                         name="email"
                                         id="email"
-                                        class="input-with-value"
+                                        class="login-email"
                                     />
                                     <span class="input-clear-button"></span>
                                 </div>
@@ -30,7 +30,7 @@
                                         type="password"
                                         name="password"
                                         id="password"
-                                        class=""
+                                        class="login-password"
                                     />
                                     <span class="input-clear-button"></span>
                               </div>
@@ -40,7 +40,7 @@
                 </div>
                 <div class="list inset">
                     <ul>
-                        <li><a class="list-button" @click="#">Masuk</a></li>
+                        <li><a class="list-button" @click="${()=>login()}">Masuk</a></li>
                     </ul>
                 </div>
                 <div class="block-footer margin-top">

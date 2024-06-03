@@ -48,9 +48,11 @@
 <script>
     export default function (props, ctx) {
         let $on = ctx.$on;
+
         $on('pageAfterIn', () => {
             tampilPengeluaran();
         })
+
         return $render;
     };
 </script>

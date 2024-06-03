@@ -1,24 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" 
-        content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, viewport-fit=cover">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, viewport-fit=cover"
+    />
     <title>Penjualan Mobile</title>
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="theme-color" content="#fff">
-    <meta http-equiv="Content-Security-Policy" content="default-src * 'self' 'unsafe-inline' 'unsafe-eval' data:">
-    <link rel="stylesheet" href="core/framework7/framework7-bundle.min.css">
-    <link rel="stylesheet" href="css/app.css">
-    <link rel="stylesheet" href="css/custom.css">
-    <link rel="apple-touch-icon" href="img/f7-icon-square.png">
-    <link rel="icon" href="img/f7-icon.png">
-</head>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta
+      name="apple-mobile-web-app-status-bar-style"
+      content="black-translucent"
+    />
+    <meta name="theme-color" content="#fff" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src * 'self' 'unsafe-inline' 'unsafe-eval' data:"
+    />
+    <link rel="stylesheet" href="core/framework7/framework7-bundle.min.css" />
+    <link rel="stylesheet" href="css/app.css" />
+    <link rel="stylesheet" href="css/custom.css" />
+    <link rel="apple-touch-icon" href="img/f7-icon-square.png" />
+    <link rel="icon" href="img/f7-icon.png" />
+  </head>
 
-<body>
+  <body>
     <div id="app">
-        <div class="view view-main view-init safe areas" data-master-detail-breakpoint="768" data-url="/login/"></div>
+      <div
+        class="view view-main view-init safe areas"
+        data-master-detail-breakpoint="768"
+        data-url="/login/"
+      ></div>
     </div>
     <script src="core/framework7/framework7-bundle.min.js"></script>
     <script src="js/user.js"></script>
@@ -46,11 +58,17 @@
     <script src="js/pengaturan.js"></script>
     <script src="js/keranjang.js"></script>
     <script>
-        document.addEventListener("backbutton", onBackKeyDown, false);
+      const isLogin = sessionStorage.getItem("isLogin");
 
-        function onBackKeyDown(e) {
-            e.window.history.back();
-        }
+      if (isLogin == "true") {
+        app.views.main.router.navigate("/");
+      }
+
+      document.addEventListener("backbutton", onBackKeyDown, false);
+
+      function onBackKeyDown(e) {
+        e.window.history.back();
+      }
     </script>
-</body>
+  </body>
 </html>

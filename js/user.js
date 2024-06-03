@@ -27,8 +27,8 @@ let attempts = 0
 const maxAttempts = 5
 
 async function login() {
-    const notelp = $("input[name=notelp]").val()
-    const password = $("input[name=password]").val()
+    let email = $('.login-email').val()
+    let password = $('.login-password').val()
 
     if (attempts >= maxAttempts) {
         const message = 'Telah melewati batas percobaan. Silahkan tunggu beberapa saat!'
@@ -42,14 +42,14 @@ async function login() {
     }
 
     $.ajax({
-        url: "https://joki-magang-gbe.000webhostapp.com/userController.php",
+        url: "http://localhost/api_toko/User/login",
         method: "POST",
         data: {
-            action: "login",
-            notelp: notelp,
+            email: email,
             password: password
         },
-        success: function (res) {
+        success: function (result) {
+            let res = JSON.parse(result)
             let message = ""
 
             if (res.status == 'ok') {
