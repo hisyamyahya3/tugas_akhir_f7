@@ -1,4 +1,6 @@
 var routes = [
+  {path: '/login/', componentUrl: 'pages/login.html'},
+  {path: '/regis/', componentUrl: 'pages/regis.html'},
   {path: '/', componentUrl: 'pages/home.html'},
   {path: '/plgn/', componentUrl: 'pages/plgn.html'},
   {path: '/addplgn/', componentUrl: 'pages/tambah-plgn.html'},
@@ -42,8 +44,6 @@ var routes = [
   {path: '/keranjang/', componentUrl: 'pages/keranjang.html'},
   {path: '/keranjang/detail-penjualan/:id', componentUrl: 'pages/detail-penjualan.html'},
   {path: '/keranjang/detail-pembelian/:id', componentUrl: 'pages/detail-pembelian.html'},
-  {path: '/login/', componentUrl: 'pages/login.html'},
-  {path: '/regis/', componentUrl: 'pages/regis.html'},
   {path: '/sts-pembayaran/:nopembayaran', componentUrl: 'pages/status-pembayaran.html'},
   {path: '(.*)', url: 'pages/404.html'},
 ];

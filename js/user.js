@@ -69,3 +69,13 @@ async function login() {
         }
     })
 }
+
+async function logout() {
+    const isLogin = sessionStorage.getItem('isLogin')
+
+    if (isLogin) {
+        sessionStorage.removeItem('isLogin')
+        app.dialog.alert('Berhasil log out', 'Info')
+        app.views.main.router.navigate('/login/')
+    }
+}
