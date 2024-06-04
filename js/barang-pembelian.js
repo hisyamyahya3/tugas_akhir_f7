@@ -1,14 +1,15 @@
-function tampilBarangPembelian() {
+function tampilBarangPembelian(keyword) {
     $.ajax({
-        type: "GET",
-        url: "http://localhost/api_toko/Barang",
-        success: function(result) {
-            let dt = "";
-            let res = JSON.parse(result);
-            // console.log(res.data)
+        url: "http://localhost/api_toko/Barang/search",
+        method: "POST",
+        data: {
+            nama_barang: keyword
+        },
+        success: function (res) {
+            let data = JSON.parse(res);
             let temp = '';
 
-            res.data.forEach((d) => {
+            data.data.forEach((d) => {
                 temp += `
                     <div class="card">
                         <div class="card-content card-content-padding">
@@ -22,79 +23,44 @@ function tampilBarangPembelian() {
                     </div>
                 `
             })
-            $('#tampilBarangPembelian').html(temp)    
+
+            $('#tampilBarangPembelian').html(temp)
+        },
+        error: function () {
+            app.dialog.alert("Tidak Terhubung dengan Server!", "Error");
         }
     })
 }
 
-function pilihBarangSupplier (id, harjul, stok) {
+function pilihBarangSupplier(id, harjul, stok) {
     let supplierId = localStorage.getItem("supplierId");
 
     $.ajax({
         url: "http://localhost/api_toko/Supplier/keranjang",
         method: "POST",
         data: {
-            supplierId: supplierId, 
-            supplierBarangId: id, 
-            supplierBarangHarjul: harjul, 
+            supplierId: supplierId,
+            supplierBarangId: id,
+            supplierBarangHarjul: harjul,
             supplierBarangStok: stok,
             supplierBarangQty: 1
         },
-        success: function(res) {
-            app.dialog.alert("Data Berhasil Di Masukkan Ke Keranjang","Success");
-            // let a = JSON.parse(res)
-            // console.log(a)
+        success: function (res) {
+            app.dialog.alert("Data Berhasil Di Masukkan Ke Keranjang", "Success");
         },
-        error: function(){
-            app.dialog.alert("Tidak Terhubung dengan Server!","Error");
+        error: function () {
+            app.dialog.alert("Tidak Terhubung dengan Server!", "Error");
         }
     })
-    $('#keranjangPembelian').css({display: 'block'});
+    $('#keranjangPembelian').css({ display: 'block' });
 }
 
 $(document).on('keyup', '#searchBarangPembelian', function () {
     let searchInputNew = $(this).val()
-    
+
     if (searchInputNew.length > 0) {
-        $.ajax({
-            url: "http://localhost/api_toko/Barang/search",
-            method: "POST",
-            data: {
-                nama_barang: searchInputNew
-            },
-            success: function(res) {
-                let data = JSON.parse(res)
-                // console.log(data);
-                // return;
-                if (data.data) {
-                    $('#tampilBarangPembelian').html(fetchDataBarangPembelian(data))
-                } else {
-                    $('#tampilBarangPembelian').html(tampilBarangPembelian())
-                }
-            },
-            error: function(){
-                app.dialog.alert("Tidak Terhubung dengan Server!","Error");
-            }
-        })
+        tampilBarangPembelian(searchInputNew)
     } else {
-        $('#tampilBarangPembelian').html(tampilBarangPembelian())
+        tampilBarangPembelian('')
     }
 })
-
-function fetchDataBarangPembelian(data) {
-    let temp = '';    
-
-    data.data.forEach((d) => {
-        temp += `<div class="card">
-                    <div class="card-content card-content-padding">
-                        <h4 class="col font-17 teks-tengah">${d.barang_nama}</h4>
-                        <p class="col font-17">Harga: ${d.barang_harjul}</p>
-                        <p class="col font-17">Stok: ${d.barang_stok}</p>
-                    </div>
-                    <div class="card-footer">
-                        <button class="button button-small button-tonal color-blue" onclick="pilihBarangSupplier('${d.barang_id}', '${d.barang_nama}', '${d.barang_harjul}', '${d.barang_stok}')">Keranjang</button>
-                    </div>
-                </div>`
-    });
-    return temp;
-}

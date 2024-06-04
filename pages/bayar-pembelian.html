@@ -55,7 +55,7 @@
             </div>
             <div class="block block-strong block-outline-ios">
                 <p class="grid grid-cols grid-gap">
-                    <button class="button button-large button-tonal btn-bayar-penjualan" @click="#">Bayar</button>
+                    <button class="button button-large button-tonal btn-bayar-pembelian">Bayar</button>
                 </p>
             </div>
         </div>
@@ -63,19 +63,13 @@
 </template>
 <script>
     export default function (props, ctx) {
-        let $on = ctx.$on
-
-        $on('pageAfterIn', () => {
+        ctx.$on('pageAfterIn', () => {
             let totalPembayaran = localStorage.getItem('totalPembelian')
             let namaSupplier = localStorage.getItem('namaSupplierKeranjang')
             $('.nama-supplier-keranjang').html(namaSupplier);
             
             let finalHarga = rupiahFormatter(totalPembayaran)
             document.getElementById('total_pembelian').value = finalHarga;
-
-            // $(document).on('keyup', '.jumlah_uang_pembelian', () => {
-            //     alert('ok')
-            // })
         })
 
         return $render;

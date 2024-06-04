@@ -48,13 +48,13 @@
 </template>
 <script>
     export default function (props, ctx) {
-        let $on = ctx.$on;
-        $on('pageAfterIn', () => {
-            tampilBarangPembelian();
-            let nama = localStorage.getItem("supplierNama")
+        ctx.$on('pageAfterIn', () => {
+            tampilBarangPembelian('');
+            let nama = localStorage.getItem("cartSupplierNama")
             $('#detailSupplier').css({display: 'block'})
             $('#detailSupplierPembelian').html(`Atas Nama ${nama}`)
         })
+
         return $render;
     };
 </script>
