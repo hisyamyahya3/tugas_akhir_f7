@@ -1,3 +1,4 @@
+// Penjualan Section
 function tampilKeranjangPenjualan() {
     $.ajax({
         type: "GET",
@@ -148,6 +149,7 @@ function lanjutBayarPenjualan(pelanggan_id, total) {
     app.views.main.router.navigate("/bayarpenjualannew/");
 }
 
+// Pembelian Section
 function tampilKeranjangPembelian() {
     $.ajax({
         type: "GET",
@@ -158,24 +160,24 @@ function tampilKeranjangPembelian() {
 
             res.forEach((customer) => {
                 temp += `
-                <div class="block block-strong block-outline-ios">
-                    <h2 class="col" style="font-weight: bold;">${customer.suplier_nama}</h2>
-                    <div class="left">
-                        <button class="button button-small button-tonal" onclick="bayarPembelian(${customer.suplier_id}, '${customer.suplier_nama}')">Bayar</button>
-                    </div>
-                </div>
-            `;
-
-                customer.data.forEach((detail) => {
-                    temp += `
-                    <div class="card">
-                        <div class="card-content card-content-padding">
-                            <p class="col font-17 teks-tengah" style="font-weight: bold;">${detail.barang_nama}</p>
-                            <p class="col font-17">Stok: ${detail.barang_stok}</p>
-                            <p class="col font-17" style="text-align: left; font-weight: bold;">Harga per item: Rp. ${detail.barang_harjul}</p>
+                    <div class="block block-strong block-outline-ios">
+                        <h2 class="col" style="font-weight: bold;">${customer.suplier_nama}</h2>
+                        <div class="left">
+                            <button class="button button-small button-tonal" onclick="bayarPembelian(${customer.suplier_id}, '${customer.suplier_nama}')">Bayar</button>
                         </div>
                     </div>
                 `;
+
+                customer.data.forEach((detail) => {
+                    temp += `
+                        <div class="card">
+                            <div class="card-content card-content-padding">
+                                <p class="col font-17 teks-tengah" style="font-weight: bold;">${detail.barang_nama}</p>
+                                <p class="col font-17">Stok: ${detail.barang_stok}</p>
+                                <p class="col font-17" style="text-align: left; font-weight: bold;">Harga per item: Rp. ${detail.barang_harjul}</p>
+                            </div>
+                        </div>
+                    `;
                 });
             });
 
@@ -184,9 +186,10 @@ function tampilKeranjangPembelian() {
     });
 }
 
-function bayarPembelian(id, supplier_nama) {
+function bayarPembelian(supplier_id, supplier_nama) {
+    localStorage.setItem('supplierID', supplier_id)
     localStorage.setItem('namaSupplierKeranjang', supplier_nama)
-    app.views.main.router.navigate(`/keranjang/detail-pembelian/${id}`);
+    app.views.main.router.navigate(`/keranjang/detail-pembelian/${supplier_id}`);
 }
 
 function tampilBayarPembelian(id) {
@@ -229,16 +232,9 @@ function tampilBayarPembelian(id) {
                 `
             });
 
-            // temp += `<div class="card">
-            //             <div class="card-content card-content-padding" id="tampilTotalBayarPembelian">
-            //                 <h3 class="col font-17">Total Bayar : Rp. ${total}</h3>
-            //                 <button class="button button-large button-tonal" onclick="lanjutBayarPembelian(${total})">Lanjut Ke Pembayaran</button>
-            //             </div>
-            //         </div>`;
-
             let temp2 = `
                 <h3 class="col font-17">Total Bayar : Rp. ${total}</h3>
-                <button class="button button-large button-tonal" onclick="lanjutBayarPembelian(${total})">Lanjut Ke Pembayaran</button>
+                <button class="button button-large button-tonal" onclick="lanjutBayarPembelian(${id}, ${total})">Lanjut Ke Pembayaran</button>
             `
 
             $("#tampilBayarPembelian").html(temp);
@@ -285,7 +281,8 @@ function hapusKeranjangPembelian(id, supplier_id) {
     })
 }
 
-function lanjutBayarPembelian(total) {
+function lanjutBayarPembelian(supplier_id, total) {
+    localStorage.setItem("supplierID", supplier_id);
     localStorage.setItem("totalPembelian", total);
     app.views.main.router.navigate("/bayarpembelian/");
 }

@@ -34,8 +34,8 @@ function tampilSupplierPembelian(keyword) {
 }
 
 function pilihSupplier(supplierID, supplierNama) {
-    localStorage.setItem("supplierID", supplierID);
-    localStorage.setItem("supplierNama", supplierNama);
+    localStorage.setItem("cartSupplierID", supplierID);
+    localStorage.setItem("cartSupplierNama", supplierNama);
     app.views.main.router.navigate("/brg-pembelian/");
 }
 
