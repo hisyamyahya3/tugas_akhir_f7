@@ -1,9 +1,12 @@
 function tampilBarangPenjualan(keyword) {
+    let userID = localStorage.getItem("userID")
+
     $.ajax({
         url: "http://localhost/api_toko/Barang/search",
         method: "POST",
         data: {
-            nama_barang: keyword
+            nama_barang: keyword,
+            userID: userID,
         },
         success: function (res) {
             let data = JSON.parse(res)

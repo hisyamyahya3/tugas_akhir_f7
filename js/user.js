@@ -55,6 +55,9 @@ async function login() {
             if (res.status == 'ok') {
                 attempts = 0
                 message = res.message
+                const userID = res.data.id_users
+
+                localStorage.setItem("userID", userID);
                 sessionStorage.setItem("isLogin", true)
                 app.dialog.alert(message, "Info")
                 app.views.main.router.navigate("/")

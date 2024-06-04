@@ -1,9 +1,12 @@
 function tampilBarangPembelian(keyword) {
+    let userID = localStorage.getItem("userID")
+
     $.ajax({
         url: "http://localhost/api_toko/Barang/search",
         method: "POST",
         data: {
-            nama_barang: keyword
+            nama_barang: keyword,
+            userID: userID,
         },
         success: function (res) {
             let data = JSON.parse(res);
@@ -33,7 +36,7 @@ function tampilBarangPembelian(keyword) {
 }
 
 function pilihBarangSupplier(id, harjul, stok) {
-    let supplierId = localStorage.getItem("supplierId");
+    let supplierId = localStorage.getItem("cartSupplierID");
 
     $.ajax({
         url: "http://localhost/api_toko/Supplier/keranjang",

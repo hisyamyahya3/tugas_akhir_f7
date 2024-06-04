@@ -1,9 +1,11 @@
 function tampilBarang() {
+    let userID = localStorage.getItem("userID")
+
     $.ajax({
-        type: "GET",
         url: "http://localhost/api_toko/Barang",
-        success: function(result) {
-            let dt = "";
+        method: "POST",
+        data: { userID: userID },
+        success: function (result) {
             let res = JSON.parse(result);
             let temp = '';
 
@@ -19,10 +21,11 @@ function tampilBarang() {
                         <button class="button button-small button-tonal color-blue" onclick="editBarang(${d.barang_id}, '${d.barang_nama}', '${d.barang_satuan}', ${d.barang_harpok}, ${d.barang_harjul}, ${d.barang_harjul_grosir}, ${d.barang_stok}, ${d.barang_min_stok}, ${d.barang_kategori_id})">Edit</button>
                         <button class="button button-small button-tonal color-red" onclick="hapusBarang(${d.barang_id})">Hapus</button></p>
                         </td>
-                    </tr>
-                `
+                    </tr>
+                `
             })
-            $('#daftar-barang').html(temp)    
+
+            $('#daftar-barang').html(temp)
         }
     })
 }
@@ -36,22 +39,22 @@ function tambahBarang() {
     let barang_stok = $("input[name=barang_stok]").val();
     let barang_min_stok = $("input[name=barang_min_stok]").val();
     let barang_kategori_id = $('#pilih_kategori').val();
-    if(barang_nama == "" || barang_satuan == "" || barang_harpok == "" || barang_harjul == "" || barang_harjul_grosir == "" || barang_stok == "" || barang_min_stok == "" || barang_kategori_id == ""){
-        app.dialog.alert("Isian Masih Kosong, Silahkan Cek Kembali","Error");
+    if (barang_nama == "" || barang_satuan == "" || barang_harpok == "" || barang_harjul == "" || barang_harjul_grosir == "" || barang_stok == "" || barang_min_stok == "" || barang_kategori_id == "") {
+        app.dialog.alert("Isian Masih Kosong, Silahkan Cek Kembali", "Error");
         return;
     }
-    
+
 
     $.ajax({
         url: "http://localhost/api_toko/Barang/insert",
         method: "POST",
-        data: {barang_nama: barang_nama, barang_satuan: barang_satuan, barang_harpok: barang_harpok, barang_harjul: barang_harjul, barang_harjul_grosir: barang_harjul_grosir, barang_stok: barang_stok, barang_min_stok: barang_min_stok, barang_kategori_id: barang_kategori_id},
-        success: function(){
-            app.dialog.alert("Data Berhasil Di Input","Success");
+        data: { barang_nama: barang_nama, barang_satuan: barang_satuan, barang_harpok: barang_harpok, barang_harjul: barang_harjul, barang_harjul_grosir: barang_harjul_grosir, barang_stok: barang_stok, barang_min_stok: barang_min_stok, barang_kategori_id: barang_kategori_id },
+        success: function () {
+            app.dialog.alert("Data Berhasil Di Input", "Success");
             app.views.main.router.back();
         },
-        error: function(){
-            app.dialog.alert("Tidak Terhubung dengan Server!","Error");
+        error: function () {
+            app.dialog.alert("Tidak Terhubung dengan Server!", "Error");
         }
     })
 }
@@ -65,7 +68,7 @@ function resetBarang() {
     let barang_stok = $("input[name=barang_stok]").val("");
     let barang_min_stok = $("input[name=barang_min_stok]").val("");
     let barang_kategori_id = $('#pilih_kategori').val("");
-    app.dialog.alert("Form Berhasil di Reset","Success");
+    app.dialog.alert("Form Berhasil di Reset", "Success");
 }
 
 function editBarang(id, nama, satuan, harpok, harjul, grosir, stok, min, barang_kategori_id) {
@@ -92,8 +95,8 @@ function updateBarang() {
     let barang_min_stok = $("input[name=barang_min_stok]").val();
     let barang_kategori_id = $('#pilih_kategori_update').val();
 
-    if(barang_nama == "" || barang_satuan == "" || barang_harpok == "" || barang_harjul == "" || barang_harjul_grosir == "" || barang_stok == "" || barang_min_stok == "" || barang_kategori_id == ""){
-        app.dialog.alert("Isian Masih Kosong, Silahkan Cek Kembali","Error");
+    if (barang_nama == "" || barang_satuan == "" || barang_harpok == "" || barang_harjul == "" || barang_harjul_grosir == "" || barang_stok == "" || barang_min_stok == "" || barang_kategori_id == "") {
+        app.dialog.alert("Isian Masih Kosong, Silahkan Cek Kembali", "Error");
         return;
     }
 
@@ -111,12 +114,12 @@ function updateBarang() {
             barang_min_stok: barang_min_stok,
             barang_kategori_id: barang_kategori_id
         }, // tapi disini lu ga ngirim barang_id??
-        success: function(){
-            app.dialog.alert("Data Berhasil Di Update","Success");
+        success: function () {
+            app.dialog.alert("Data Berhasil Di Update", "Success");
             app.views.main.router.back();
         },
-        error: function(){
-            app.dialog.alert("Tidak Terhubung dengan Server!","Error");
+        error: function () {
+            app.dialog.alert("Tidak Terhubung dengan Server!", "Error");
         }
     })
 }
@@ -125,15 +128,15 @@ function hapusBarang(id) {
     $.ajax({
         url: "http://localhost/api_toko/Barang/delete",
         method: "POST",
-        data: {barang_id: id},
-        success: function(res) {
+        data: { barang_id: id },
+        success: function (res) {
             // console.log(res)
-            app.dialog.alert("Data Berhasil Di Hapus","Success");
+            app.dialog.alert("Data Berhasil Di Hapus", "Success");
             app.views.main.router.refreshPage();
             // app.views.main.router.reload();
         },
-        error: function(){
-            app.dialog.alert("Tidak Terhubung dengan Server!","Error");
+        error: function () {
+            app.dialog.alert("Tidak Terhubung dengan Server!", "Error");
         }
     })
 
@@ -141,7 +144,7 @@ function hapusBarang(id) {
         $.ajax({
             type: "GET",
             url: "http://localhost/api_toko/Kategori",
-            success: function(result) {
+            success: function (result) {
                 let res = JSON.parse(result);
                 console.log(res);
             }
@@ -160,7 +163,7 @@ $(document).on('keyup', '#searchTabelBarang', function () {
             data: {
                 nama_barang: searchInput
             },
-            success: function(res) {
+            success: function (res) {
                 let data = JSON.parse(res)
 
                 if (data.data) {
@@ -169,10 +172,10 @@ $(document).on('keyup', '#searchTabelBarang', function () {
                     $('#daftar-barang').html(tampilBarang())
                 }
             },
-            error: function(){
-                app.dialog.alert("Tidak Terhubung dengan Server!","Error");
+            error: function () {
+                app.dialog.alert("Tidak Terhubung dengan Server!", "Error");
             }
-        })  
+        })
     } else {
         $('#daftar-barang').html(tampilBarang())
     }
@@ -193,9 +196,9 @@ function fetchSearchDataBarang(data) {
         </tr>
         `
     });
-    
+
     return temp;
- 
+
 }
 
 

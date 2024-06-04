@@ -1,11 +1,12 @@
 function tampilSupplier() {
+    let userID = localStorage.getItem("userID")
+
     $.ajax({
-        type: "GET",
         url: "http://localhost/api_toko/Supplier",
-        success: function(result) {
-            let dt = "";
+        method: "POST",
+        data: { userID: userID },
+        success: function (result) {
             let res = JSON.parse(result);
-            // console.log(res.data)
             let temp = '';
 
             res.data.forEach((d) => {
@@ -18,7 +19,8 @@ function tampilSupplier() {
                     </tr>
                 `
             })
-            $('#daftar-supplier').html(temp)    
+
+            $('#daftar-supplier').html(temp)
         }
     })
 }
@@ -27,20 +29,22 @@ function tambahSupplier() {
     let suplier_nama = $("input[name=suplier_nama]").val();
     let suplier_alamat = $("input[name=suplier_alamat]").val();
     let suplier_notelp = $("input[name=suplier_notelp]").val();
-    if(suplier_nama == "" || suplier_alamat == "" || suplier_notelp == ""){
-        app.dialog.alert("Isian Masih Kosong, Silahkan Cek Kembali","Error");
+
+    if (suplier_nama == "" || suplier_alamat == "" || suplier_notelp == "") {
+        app.dialog.alert("Isian Masih Kosong, Silahkan Cek Kembali", "Error");
         return;
     }
+
     $.ajax({
         url: "http://localhost/api_toko/Supplier/insert",
         method: "POST",
-        data: {suplier_nama: suplier_nama, suplier_alamat: suplier_alamat, suplier_notelp: suplier_notelp},
-        success: function(){
-            app.dialog.alert("Data Berhasil Di Input","Success");
+        data: { suplier_nama: suplier_nama, suplier_alamat: suplier_alamat, suplier_notelp: suplier_notelp },
+        success: function () {
+            app.dialog.alert("Data Berhasil Di Input", "Success");
             app.views.main.router.back();
         },
-        error: function(){
-            app.dialog.alert("Tidak Terhubung dengan Server!","Error");
+        error: function () {
+            app.dialog.alert("Tidak Terhubung dengan Server!", "Error");
         }
     })
 }
@@ -59,8 +63,8 @@ function updateSupplier() {
     let suplier_alamat = $("input[name=suplier_alamat]").val();
     let suplier_notelp = $("input[name=suplier_notelp]").val();
 
-    if(suplier_nama == "" || suplier_alamat == "" || suplier_notelp == ""){
-        app.dialog.alert("Isian Masih Kosong, Silahkan Cek Kembali","Error");
+    if (suplier_nama == "" || suplier_alamat == "" || suplier_notelp == "") {
+        app.dialog.alert("Isian Masih Kosong, Silahkan Cek Kembali", "Error");
         return;
     }
 
@@ -73,12 +77,12 @@ function updateSupplier() {
             suplier_alamat: suplier_alamat,
             suplier_notelp: suplier_notelp,
         },
-        success: function(){
-            app.dialog.alert("Data Berhasil Di Update","Success");
+        success: function () {
+            app.dialog.alert("Data Berhasil Di Update", "Success");
             app.views.main.router.back();
         },
-        error: function(){
-            app.dialog.alert("Tidak Terhubung dengan Server!","Error");
+        error: function () {
+            app.dialog.alert("Tidak Terhubung dengan Server!", "Error");
         }
     })
 }
@@ -88,15 +92,15 @@ function hapusSupplier(id) {
     $.ajax({
         url: "http://localhost/api_toko/Supplier/delete",
         method: "POST",
-        data: {suplier_id: id},
-        success: function(res) {
+        data: { suplier_id: id },
+        success: function (res) {
             // console.log(res)
-            app.dialog.alert("Data Berhasil Di Hapus","Success");
+            app.dialog.alert("Data Berhasil Di Hapus", "Success");
             app.views.main.router.refreshPage();
             // app.views.main.router.reload();
         },
-        error: function(){
-            app.dialog.alert("Tidak Terhubung dengan Server!","Error");
+        error: function () {
+            app.dialog.alert("Tidak Terhubung dengan Server!", "Error");
         }
     })
 }
@@ -112,7 +116,7 @@ $(document).on('keyup', '#searchTabelSupplier', function () {
             data: {
                 nama_supplier: searchInput
             },
-            success: function(res) {
+            success: function (res) {
                 let data = JSON.parse(res)
 
                 if (data.data) {
@@ -121,10 +125,10 @@ $(document).on('keyup', '#searchTabelSupplier', function () {
                     $('#daftar-supplier').html(tampilSupplier())
                 }
             },
-            error: function(){
-                app.dialog.alert("Tidak Terhubung dengan Server!","Error");
+            error: function () {
+                app.dialog.alert("Tidak Terhubung dengan Server!", "Error");
             }
-        })  
+        })
     } else {
         $('#daftar-supplier').html(tampilSupplier())
     }
@@ -143,7 +147,7 @@ function fetchSearchDataSupplier(data) {
             </tr>
         `
     });
-    
+
     return temp;
- 
+
 }

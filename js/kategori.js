@@ -1,9 +1,11 @@
 function tampilKategori() {
+    let userID = localStorage.getItem("userID")
+
     $.ajax({
-        type: "GET",
         url: "http://localhost/api_toko/Kategori",
-        success: function(result) {
-            let dt = "";
+        method: "POST",
+        data: { userID: userID },
+        success: function (result) {
             let res = JSON.parse(result);
             let temp = '';
 
@@ -15,28 +17,29 @@ function tampilKategori() {
                     </tr>
                 `
             })
-            $('#daftar-kategori').html(temp)    
+
+            $('#daftar-kategori').html(temp)
         }
     })
 }
 
 function tambahKategori() {
     let kategori_nama = $("input[name=kategori_nama]").val();
-    if(kategori_nama == ""){
-        app.dialog.alert("Isian Masih Kosong, Silahkan Cek Kembali","Error");
+    if (kategori_nama == "") {
+        app.dialog.alert("Isian Masih Kosong, Silahkan Cek Kembali", "Error");
         return;
     }
 
     $.ajax({
         url: "http://localhost/api_toko/Kategori/insert",
         method: "POST",
-        data: {kategori_nama: kategori_nama},
-        success: function(){
-            app.dialog.alert("Data Berhasil Di Input","Success");
+        data: { kategori_nama: kategori_nama },
+        success: function () {
+            app.dialog.alert("Data Berhasil Di Input", "Success");
             app.views.main.router.back();
         },
-        error: function(){
-            app.dialog.alert("Tidak Terhubung dengan Server!","Error");
+        error: function () {
+            app.dialog.alert("Tidak Terhubung dengan Server!", "Error");
         }
     })
     // app.dialog.alert(kategori_nama,"Info");
@@ -58,8 +61,8 @@ function updateKategori() {
     let idKategori = localStorage.getItem("idKategori");
     let kategori_nama = $("input[name=kategori_nama]").val();
 
-    if(kategori_nama == ""){
-        app.dialog.alert("Isian Masih Kosong, Silahkan Cek Kembali","Error");
+    if (kategori_nama == "") {
+        app.dialog.alert("Isian Masih Kosong, Silahkan Cek Kembali", "Error");
         return;
     }
 
@@ -70,12 +73,12 @@ function updateKategori() {
             id_kategori: idKategori,
             kategori_nama: kategori_nama
         },
-        success: function(){
-            app.dialog.alert("Data Berhasil Di Update","Success");
+        success: function () {
+            app.dialog.alert("Data Berhasil Di Update", "Success");
             app.views.main.router.back();
         },
-        error: function(){
-            app.dialog.alert("Tidak Terhubung dengan Server!","Error");
+        error: function () {
+            app.dialog.alert("Tidak Terhubung dengan Server!", "Error");
         }
     })
 }
@@ -84,15 +87,15 @@ function hapusKategori(id) {
     $.ajax({
         url: "http://localhost/api_toko/Kategori/delete",
         method: "POST",
-        data: {id_kategori: id},
-        success: function(res) {
+        data: { id_kategori: id },
+        success: function (res) {
             // console.log(res)
-            app.dialog.alert("Data Berhasil Di Hapus","Success");
+            app.dialog.alert("Data Berhasil Di Hapus", "Success");
             app.views.main.router.refreshPage();
             // app.views.main.router.reload();
         },
-        error: function(){
-            app.dialog.alert("Tidak Terhubung dengan Server!","Error");
+        error: function () {
+            app.dialog.alert("Tidak Terhubung dengan Server!", "Error");
         }
     })
 }
@@ -108,7 +111,7 @@ $(document).on('keyup', '#searchTabelKategori', function () {
             data: {
                 kategori_nama: searchInput
             },
-            success: function(res) {
+            success: function (res) {
                 let data = JSON.parse(res)
 
                 if (data.data) {
@@ -117,10 +120,10 @@ $(document).on('keyup', '#searchTabelKategori', function () {
                     $('#daftar-kategori').html(tampilKategori())
                 }
             },
-            error: function(){
-                app.dialog.alert("Tidak Terhubung dengan Server!","Error");
+            error: function () {
+                app.dialog.alert("Tidak Terhubung dengan Server!", "Error");
             }
-        })  
+        })
     } else {
         $('#daftar-kategori').html(tampilKategori())
     }
@@ -137,7 +140,7 @@ function fetchDataKategori(data) {
             </tr>
         `
     });
-    
+
     return temp;
- 
+
 }
