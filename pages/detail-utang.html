@@ -1,0 +1,93 @@
+<template>
+  <div class="page">
+    <div class="navbar navbar-large navbar-transparent">
+      <div class="navbar-bg"></div>
+      <div class="navbar-inner sliding">
+        <div class="left">
+          <a class="link back">
+            <i class="icon icon-back"></i>
+            <span class="if-not-md">Framework7</span>
+          </a>
+        </div>
+        <div class="title">Detail Hutang</div>
+        <div class="title-large">
+          <div class="title-large-text">Detail Hutang</div>
+        </div>
+      </div>
+    </div>
+    <div class="page-content">
+      <div class="block-title block-title-large teks-tengah">
+        <i class="icon f7-icons">square_arrow_down</i>Detail
+      </div>
+      <div class="card warna-biru radius10">
+        <div class="card-content card-content-padding card-detail-utang"></div>
+      </div>
+      <div class="card data-table warna-biru radius10">
+        <table>
+          <thead>
+            <tr>
+              <th>Nama Barang</th>
+              <th>Harga</th>
+              <th>Qty</th>
+              <th>Total</th>
+            </tr>
+          </thead>
+          <tbody id="detail_utang_table"></tbody>
+        </table>
+      </div>
+    </div>
+    <div class="fab fab-extended fab-center-bottom">
+      <a href="/addutang/">
+        <i class="icon f7-icons if-not-md">plus</i>
+        <i class="icon material-icons md-only">add</i>
+        <div class="fab-text">Bayar</div>
+      </a>
+    </div>
+  </div>
+</template>
+
+<script>
+  export default function (props, ctx) {
+    ctx.$on("pageBeforeIn", async () => {
+      const utangID = props.id;
+
+      await $.ajax({
+        url: "http://localhost/api_toko/Utang/detail",
+        method: "POST",
+        data: {
+          utangID: utangID,
+        },
+        success: function (res) {
+          let result = JSON.parse(res);
+          let transaction = result.data.transaction;
+          let detailTransaction = result.data.detail;
+          let table = "";
+
+          $(".card-detail-utang").html(`
+                <p class="col">Nama Supplier. : ${transaction.suplier_nama}</p>
+                <p class="col">No. Transaksi : ${transaction.beli_nofak}</p>
+                <p class="col">Tanggal Transaksi : ${transaction.tgl_transaksi}</p>
+            `);
+
+          detailTransaction.forEach((d) => {
+            table += `
+                <tr>
+                    <td>${d.barang_nama}</td>
+                    <td>${d.d_beli_harga}</td>
+                    <td>${d.d_beli_jumlah}</td>
+                    <td>${d.d_beli_total}</td>
+                </tr>
+                `;
+          });
+
+          $("#detail_utang_table").html(table);
+        },
+        error: function () {
+          app.dialog.alert("Tidak Terhubung dengan Server!", "Error");
+        },
+      });
+    });
+
+    return $render;
+  }
+</script>

@@ -14,6 +14,7 @@ var routes = [
   {path: '/piutang/', componentUrl: 'pages/piutang.html'},
   {path: '/addpiutang/', componentUrl: 'pages/tambah-piutang.html'},
   {path: '/utang/', componentUrl: 'pages/utang.html'},
+  {path: '/utang/detail/:id', componentUrl: 'pages/detail-utang.html'},
   {path: '/addutang/', componentUrl: 'pages/tambah-utang.html'},
   {path: '/pbyr/', componentUrl: 'pages/pembayaran.html'},
   {path: '/addpbyr/', componentUrl: 'pages/tambah-pbyr.html'},

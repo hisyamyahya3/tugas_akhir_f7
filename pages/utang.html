@@ -26,7 +26,7 @@
                             <th class="numeric-cell" style="width: 20%">Jml Transaksi</th>
                             <th class="numeric-cell" style="width: 10%">Jml Dibayar</th>
                             <th class="numeric-cell" style="width: 10%">Jml Kekurangan</th>
-                            <th class="numeric-cell" style="width: 10%">Action</th>
+                            <th class="numeric-cell" style="width: 10%">Detail</th>
                         </tr>
                     </thead>
                     <tbody id="daftar-utang">
@@ -34,22 +34,15 @@
                     </tbody>
                 </table>
             </div>
-        </div>  
-        <div class="fab fab-extended fab-center-bottom">
-            <a href="/addutang/">
-                <i class="icon f7-icons if-not-md">plus</i>
-                <i class="icon material-icons md-only">add</i>
-                <div class="fab-text">Bayar</div>
-            </a>
         </div>
     </div>
 </template>
 <script>
     export default function (props, ctx) {
-        let $on = ctx.$on;
-        $on('pageAfterIn', () => {
+        ctx.$on('pageAfterIn', () => {
             tampilUtang();
         })
+
         return $render;
     };
 </script>
