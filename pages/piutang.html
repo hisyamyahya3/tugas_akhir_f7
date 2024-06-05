@@ -16,17 +16,16 @@
             </div>
         </div>
         <div class="page-content">
-            <div class="block-title block-title-medium">Tabel Data Piutang</div>
             <div class="card data-table">
                 <table>
                     <thead>
                         <tr>
-                            <th class="label-cell" style="width: 20%">Nama Pelanggan</th>
-                            <th class="numeric-cell" style="width: 20%">Tgl Transaksi</th>
-                            <th class="numeric-cell" style="width: 20%">Jml Transaksi</th>
-                            <th class="numeric-cell" style="width: 10%">Jml Dibayar</th>
-                            <th class="numeric-cell" style="width: 10%">Jml Kekurangan</th>
-                            <th class="numeric-cell" style="width: 10%">Action</th>
+                            <th class="label-cell">Nama Pelanggan</th>
+                            <th class="numeric-cell">Tgl Transaksi</th>
+                            <th class="numeric-cell">Jml Transaksi</th>
+                            <th class="numeric-cell">Jml Dibayar</th>
+                            <th class="numeric-cell">Jml Kekurangan</th>
+                            <th class="numeric-cell">Detail</th>
                         </tr>
                     </thead>
                     <tbody id="daftar-piutang">
@@ -34,22 +33,15 @@
                     </tbody>
                 </table>
             </div>
-        </div>  
-        <div class="fab fab-extended fab-center-bottom">
-            <a href="/addpiutang/">
-                <i class="icon f7-icons if-not-md">plus</i>
-                <i class="icon material-icons md-only">add</i>
-                <div class="fab-text">Bayar</div>
-            </a>
         </div>
     </div>
 </template>
 <script>
     export default function (props, ctx) {
-        let $on = ctx.$on;
-        $on('pageAfterIn', () => {
+        ctx.$on('pageAfterIn', () => {
             tampilPiutang();
         })
+
         return $render;
     };
 </script>
