@@ -70,12 +70,15 @@
             `);
 
           detailTransaction.forEach((d) => {
+            const beli_harga = rupiahFormatter(d.d_beli_harga);
+            const beli_total = rupiahFormatter(d.d_beli_total);
+
             table += `
                 <tr>
                     <td>${d.barang_nama}</td>
-                    <td>${d.d_beli_harga}</td>
+                    <td>${beli_harga}</td>
                     <td>${d.d_beli_jumlah}</td>
-                    <td>${d.d_beli_total}</td>
+                    <td>${beli_total}</td>
                 </tr>
                 `;
           });
