@@ -37,11 +37,7 @@
             $('.status-nominal-pembayaran').html(`Rp. ${jmlUang}`)
             $('.status-nama-user').html(namaPelanggan)
 
-
-            $('.back-to-home').on('click', () => {
-                app.views.main.router.navigate("/")
-
-            })
+            $('.back-to-home').on('click', () => {app.views.main.router.navigate("/")})
         })
 
         return $render;

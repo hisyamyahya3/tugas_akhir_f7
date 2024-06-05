@@ -40,10 +40,10 @@
       </div>
     </div>
     <div class="fab fab-extended fab-center-bottom">
-      <a href="/addutang/">
+      <a @click="${()=>transaction('utang')}">
         <i class="icon f7-icons if-not-md">plus</i>
         <i class="icon material-icons md-only">add</i>
-        <div class="fab-text">Bayar</div>
+        <p class="fab-text">Bayar</p>
       </a>
     </div>
   </div>
@@ -65,6 +65,10 @@
           let transaction = result.data.transaction;
           let detailTransaction = result.data.detail;
           let table = "";
+          localStorage.setItem("totalTransaction", transaction.jml_transaksi);
+          localStorage.setItem("outstandingBalance", transaction.jml_kekurangan);
+          localStorage.setItem("utangID", utangID);
+          localStorage.setItem("beli_nofak", transaction.beli_nofak);
 
           $(".card-detail-utang").html(`
                 <p class="col">Nama Supplier. : ${transaction.suplier_nama}</p>
