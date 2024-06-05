@@ -1,9 +1,12 @@
 function tampilSupplierPembelian(keyword) {
+    let userID = localStorage.getItem("userID")
+
     $.ajax({
         url: "http://localhost/api_toko/Supplier/search",
         method: "POST",
         data: {
-            nama_supplier: keyword
+            nama_supplier: keyword,
+            userID: userID
         },
         success: function (res) {
             let data = JSON.parse(res)

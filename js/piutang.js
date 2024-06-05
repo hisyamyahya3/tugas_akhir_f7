@@ -1,11 +1,12 @@
 function tampilPiutang() {
+    let userID = localStorage.getItem("userID")
+
     $.ajax({
-        type: "GET",
         url: "http://localhost/api_toko/Piutang",
-        success: function(result) {
-            let dt = "";
+        method: "POST",
+        data: { userID: userID },
+        success: function (result) {
             let res = JSON.parse(result);
-            // console.log(res.data)
             let temp = '';
 
             res.data.forEach((d) => {
@@ -16,11 +17,11 @@ function tampilPiutang() {
                         <td class="numeric-cell" style="width: 20%">${d.jml_transaksi}</td>
                         <td class="numeric-cell" style="width: 20%">${d.jml_dibayar}</td>
                         <td class="numeric-cell" style="width: 20%">${d.jml_kekurangan}</td>
-                        <td class="label-cell"><button class="button button-small button-tonal" onclick="#">Edit</button></td>
-                  </tr>
-                `
+                        <td class="label-cell"><button class="button button-small button-tonal" onclick="#">Lihat</button></td>
+                    </tr>
+                `
             })
-            $('#daftar-piutang').html(temp)    
+            $('#daftar-piutang').html(temp)
         }
     })
 }
