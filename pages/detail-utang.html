@@ -22,6 +22,9 @@
       <div class="card warna-biru radius10">
         <div class="card-content card-content-padding card-detail-utang"></div>
       </div>
+      <div class="block-title block-title-small text-align-left">
+        <p>Daftar pembelian barang</p>
+      </div>
       <div class="card data-table warna-biru radius10">
         <table>
           <thead>
@@ -67,18 +70,18 @@
                 <p class="col">Nama Supplier. : ${transaction.suplier_nama}</p>
                 <p class="col">No. Transaksi : ${transaction.beli_nofak}</p>
                 <p class="col">Tanggal Transaksi : ${transaction.tgl_transaksi}</p>
+                <p class="col">Total : ${rupiahFormatter(transaction.jml_transaksi)}</p>
+                <p class="col">Nominal Pembayaran : ${rupiahFormatter(transaction.jml_dibayar)}</p>
+                <p class="col">Jumlah Kekurangan : ${rupiahFormatter(transaction.jml_kekurangan)}</p>
             `);
 
           detailTransaction.forEach((d) => {
-            const beli_harga = rupiahFormatter(d.d_beli_harga);
-            const beli_total = rupiahFormatter(d.d_beli_total);
-
             table += `
                 <tr>
                     <td>${d.barang_nama}</td>
-                    <td>${beli_harga}</td>
+                    <td>${rupiahFormatter(d.d_beli_harga)}</td>
                     <td>${d.d_beli_jumlah}</td>
-                    <td>${beli_total}</td>
+                    <td>${rupiahFormatter(d.d_beli_total)}</td>
                 </tr>
                 `;
           });
