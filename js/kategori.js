@@ -25,6 +25,7 @@ function tampilKategori() {
 
 function tambahKategori() {
     let kategori_nama = $("input[name=kategori_nama]").val();
+    let userID = localStorage.getItem("userID")
     if (kategori_nama == "") {
         app.dialog.alert("Isian Masih Kosong, Silahkan Cek Kembali", "Error");
         return;
@@ -33,7 +34,7 @@ function tambahKategori() {
     $.ajax({
         url: "http://localhost/api_toko/Kategori/insert",
         method: "POST",
-        data: { kategori_nama: kategori_nama },
+        data: { kategori_nama: kategori_nama, userID: userID },
         success: function () {
             app.dialog.alert("Data Berhasil Di Input", "Success");
             app.views.main.router.back();
@@ -103,13 +104,14 @@ function hapusKategori(id) {
 $(document).on('keyup', '#searchTabelKategori', function () {
     let searchInput = $(this).val()
     // console.log(searchInput)
+    let userID = localStorage.getItem("userID");
 
     if (searchInput.length > 0) {
         $.ajax({
             url: "http://localhost/api_toko/Kategori/search",
             method: "POST",
             data: {
-                kategori_nama: searchInput
+                kategori_nama: searchInput, userID: userID
             },
             success: function (res) {
                 let data = JSON.parse(res)

@@ -1,7 +1,9 @@
 function tampilPengeluaran() {
+    let userID = localStorage.getItem("userID")
     $.ajax({
-        type: "GET",
+        type: "POST",
         url: "http://localhost/api_toko/Pengeluaran",
+        data: { userID: userID },
         success: function(result) {
             let dt = "";
             let res = JSON.parse(result);
@@ -11,7 +13,7 @@ function tampilPengeluaran() {
                 temp += `
                     <tr>
                         <td class="label-cell">${d.uraian}</td>
-                        <td class="numeric-cell">${d.nominal}</td>
+                        <td class="numeric-cell">${rupiahFormatter(d.nominal)}</td>
                         <td class="numeric-cell">${d.waktu}</td>
                         <td class="actions-cell"><p class="grid grid-cols-2 grid-gap"><button class="button button-small button-tonal color-red" onclick="hapusPengeluaran(${d.id_pengeluaran})">Hapus</button></p></td>
                     </tr>
@@ -25,6 +27,7 @@ function tampilPengeluaran() {
 function tambahPengeluaran() {
     let uraian = $("input[name=uraian]").val();
     let nominal = $("input[name=nominal]").val();
+    let userID = localStorage.getItem("userID")
     if(uraian == "" || nominal == ""){
         app.dialog.alert("Isian Masih Kosong, Silahkan Cek Kembali","Error");
         return;
@@ -33,7 +36,7 @@ function tambahPengeluaran() {
     $.ajax({
         url: "http://localhost/api_toko/Pengeluaran/insert",
         method: "POST",
-        data: {uraian: uraian, nominal: nominal},
+        data: {uraian: uraian, nominal: nominal, userID: userID},
         success: function(){
             app.dialog.alert("Data Berhasil Di Input","Success");
             app.views.main.router.back();

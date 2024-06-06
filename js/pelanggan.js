@@ -1,7 +1,9 @@
 function tampilPelanggan() {
+    let userID = localStorage.getItem("userID")
     $.ajax({
-        type: "GET",
+        type: "POST",
         url: "http://localhost/api_toko/Pelanggan",
+        data: { userID: userID },
         success: function(result) {
             let dt = "";
             let res = JSON.parse(result);
@@ -27,6 +29,7 @@ function tambahPelanggan() {
     let pelanggan_nama = $("input[name=pelanggan_nama]").val();
     let pelanggan_alamat = $("input[name=pelanggan_alamat]").val();
     let pelanggan_notelp = $("input[name=pelanggan_notelp]").val();
+    let userID = localStorage.getItem("userID")
     if(pelanggan_nama == "" || pelanggan_alamat == "" || pelanggan_notelp == ""){
         app.dialog.alert("Isian Masih Kosong, Silahkan Cek Kembali","Error");
         return;
@@ -34,7 +37,7 @@ function tambahPelanggan() {
     $.ajax({
         url: "http://localhost/api_toko/Pelanggan/insert",
         method: "POST",
-        data: {pelanggan_nama: pelanggan_nama, pelanggan_alamat: pelanggan_alamat, pelanggan_notelp: pelanggan_notelp},
+        data: {pelanggan_nama: pelanggan_nama, pelanggan_alamat: pelanggan_alamat, pelanggan_notelp: pelanggan_notelp, userID: userID},
         success: function(){
             app.dialog.alert("Data Berhasil Di Input","Success");
             app.views.main.router.back();
@@ -104,13 +107,14 @@ function hapusPelanggan(id) {
 $(document).on('keyup', '#searchTabelPelanggan', function () {
     let searchInput = $(this).val()
     // console.log(searchInput)
+    let userID = localStorage.getItem("userID")
 
     if (searchInput.length > 0) {
         $.ajax({
             url: "http://localhost/api_toko/Pelanggan/search",
             method: "POST",
             data: {
-                nama_pelanggan: searchInput
+                nama_pelanggan: searchInput, userID: userID
             },
             success: function(res) {
                 let data = JSON.parse(res)

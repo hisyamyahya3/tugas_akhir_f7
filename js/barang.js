@@ -14,7 +14,7 @@ function tampilBarang() {
                     <tr>
                         <td class="label-cell">${d.barang_nama}</td>
                         <td class="label-cell">${d.barang_satuan}</td>
-                        <td class="numeric-cell">${d.barang_harjul}</td>
+                        <td class="numeric-cell">${rupiahFormatter(d.barang_harjul)}</td>
                         <td class="numeric-cell">${d.barang_stok}</td> 
                         <td class="numeric-cell">${d.kategori_nama}</td> 
                         <td class="label-cell"><p class="grid grid-cols-2 grid-gap">
@@ -39,6 +39,7 @@ function tambahBarang() {
     let barang_stok = $("input[name=barang_stok]").val();
     let barang_min_stok = $("input[name=barang_min_stok]").val();
     let barang_kategori_id = $('#pilih_kategori').val();
+    let userID = localStorage.getItem("userID")
     if (barang_nama == "" || barang_satuan == "" || barang_harpok == "" || barang_harjul == "" || barang_harjul_grosir == "" || barang_stok == "" || barang_min_stok == "" || barang_kategori_id == "") {
         app.dialog.alert("Isian Masih Kosong, Silahkan Cek Kembali", "Error");
         return;
@@ -48,7 +49,7 @@ function tambahBarang() {
     $.ajax({
         url: "http://localhost/api_toko/Barang/insert",
         method: "POST",
-        data: { barang_nama: barang_nama, barang_satuan: barang_satuan, barang_harpok: barang_harpok, barang_harjul: barang_harjul, barang_harjul_grosir: barang_harjul_grosir, barang_stok: barang_stok, barang_min_stok: barang_min_stok, barang_kategori_id: barang_kategori_id },
+        data: { barang_nama: barang_nama, barang_satuan: barang_satuan, barang_harpok: barang_harpok, barang_harjul: barang_harjul, barang_harjul_grosir: barang_harjul_grosir, barang_stok: barang_stok, barang_min_stok: barang_min_stok, barang_kategori_id: barang_kategori_id, userID: userID },
         success: function () {
             app.dialog.alert("Data Berhasil Di Input", "Success");
             app.views.main.router.back();
@@ -155,13 +156,14 @@ function hapusBarang(id) {
 $(document).on('keyup', '#searchTabelBarang', function () {
     let searchInput = $(this).val()
     // console.log(searchInput)
+    let userID = localStorage.getItem("userID");
 
     if (searchInput.length > 0) {
         $.ajax({
             url: "http://localhost/api_toko/Barang/searchTable",
             method: "POST",
             data: {
-                nama_barang: searchInput
+                nama_barang: searchInput, userID: userID
             },
             success: function (res) {
                 let data = JSON.parse(res)

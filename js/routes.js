@@ -48,6 +48,8 @@ var routes = [
   {path: '/keranjang/detail-penjualan/:id', componentUrl: 'pages/detail-penjualan.html'},
   {path: '/keranjang/detail-pembelian/:id', componentUrl: 'pages/detail-pembelian.html'},
   {path: '/sts-pembayaran/:nopembayaran', componentUrl: 'pages/status-pembayaran.html'},
+  {path: '/laporan-penjualan/', componentUrl: 'pages/laporan-penjualan.html'},
+  {path: '/laporan-pembelian/', componentUrl: 'pages/laporan-pembelian.html'},
   {path: '(.*)', url: 'pages/404.html'},
 ];
 // var routes = [

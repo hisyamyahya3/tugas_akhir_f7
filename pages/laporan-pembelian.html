@@ -9,26 +9,25 @@
                         <span class="if-not-md">Framework7</span>
                     </a>
                 </div>
-                <div class="title">Data Hutang</div>
+                <div class="title">Laporan Pembelian</div>
                 <div class="title-large">
-                    <div class="title-large-text">Data Hutang</div>
+                    <div class="title-large-text">Laporan Pembelian</div>
                 </div>
             </div>
         </div>
         <div class="page-content">
+            <div class="block-title block-title-medium">Data Pembelian</div>
             <div class="card data-table">
                 <table>
                     <thead>
                         <tr>
-                            <th class="label-cell">Nama Supplier</th>
-                            <th class="numeric-cell">Tgl Transaksi</th>
-                            <th class="numeric-cell">Jml Transaksi</th>
-                            <th class="numeric-cell">Jml Dibayar</th>
-                            <th class="numeric-cell">Jml Kekurangan</th>
-                            <th class="numeric-cell">Detail</th>
+                            <th class="label-cell" style="width: 70%">Uraian</th>
+                            <th class="numeric-cell" style="width: 10%">Nominal</th>
+                            <th class="numeric-cell" style="width: 10%">Tanggal Input</th>
+                            <th class="numeric-cell" style="width: 10%">Action</th>
                         </tr>
                     </thead>
-                    <tbody id="daftar-utang">
+                    <tbody id="daftar-pengeluaran">
                         
                     </tbody>
                 </table>
@@ -38,10 +37,12 @@
 </template>
 <script>
     export default function (props, ctx) {
-        ctx.$on('pageAfterIn', () => {
-            tampilUtang();
-        })
-
+        let $on = ctx.$on;
+    
+        // $on('pageAfterIn', () => {
+        //     tampilPengeluaran();
+        // })
+    
         return $render;
     };
 </script>

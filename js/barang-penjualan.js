@@ -18,7 +18,7 @@ function tampilBarangPenjualan(keyword) {
                     <div class="card">
                         <div class="card-content card-content-padding">
                             <h4 class="col font-17 teks-tengah">${d.barang_nama}</h4>
-                            <p class="col font-17">Harga: ${d.barang_harjul}</p>
+                            <p class="col font-17">Harga: ${rupiahFormatter(d.barang_harjul)}</p>
                             <p class="col font-17">Stok: ${d.barang_stok}</p>
                         </div>
                         <div class="card-footer">

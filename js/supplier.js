@@ -29,6 +29,7 @@ function tambahSupplier() {
     let suplier_nama = $("input[name=suplier_nama]").val();
     let suplier_alamat = $("input[name=suplier_alamat]").val();
     let suplier_notelp = $("input[name=suplier_notelp]").val();
+    let userID = localStorage.getItem("userID")
 
     if (suplier_nama == "" || suplier_alamat == "" || suplier_notelp == "") {
         app.dialog.alert("Isian Masih Kosong, Silahkan Cek Kembali", "Error");
@@ -38,7 +39,7 @@ function tambahSupplier() {
     $.ajax({
         url: "http://localhost/api_toko/Supplier/insert",
         method: "POST",
-        data: { suplier_nama: suplier_nama, suplier_alamat: suplier_alamat, suplier_notelp: suplier_notelp },
+        data: { suplier_nama: suplier_nama, suplier_alamat: suplier_alamat, suplier_notelp: suplier_notelp, userID: userID },
         success: function () {
             app.dialog.alert("Data Berhasil Di Input", "Success");
             app.views.main.router.back();
@@ -108,13 +109,14 @@ function hapusSupplier(id) {
 $(document).on('keyup', '#searchTabelSupplier', function () {
     let searchInput = $(this).val()
     // console.log(searchInput)
+    let userID = localStorage.getItem("userID")
 
     if (searchInput.length > 0) {
         $.ajax({
             url: "http://localhost/api_toko/Supplier/search",
             method: "POST",
             data: {
-                nama_supplier: searchInput
+                nama_supplier: searchInput, userID: userID
             },
             success: function (res) {
                 let data = JSON.parse(res)
