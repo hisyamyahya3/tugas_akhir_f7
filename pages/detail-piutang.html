@@ -20,7 +20,7 @@
         <i class="icon f7-icons">square_arrow_down</i>Detail
       </div>
       <div class="card warna-biru radius10">
-        <div class="card-content card-content-padding card-detail-utang"></div>
+        <div class="card-content card-content-padding card-detail-piutang"></div>
       </div>
       <div class="block-title block-title-small text-align-left">
         <p>Daftar pembelian barang</p>
@@ -35,7 +35,7 @@
               <th>Total</th>
             </tr>
           </thead>
-          <tbody id="detail_utang_table"></tbody>
+          <tbody id="detail_piutang_table"></tbody>
         </table>
       </div>
     </div>
@@ -71,13 +71,14 @@
           localStorage.setItem("noTransaksi", transaction.jual_nofak);
           localStorage.setItem("transaksiUtangPiutang", 'piutang');
 
-          $(".card-detail-utang").html(`
+          $(".card-detail-piutang").html(`
                 <p class="col">Nama Pelanggan. : ${transaction.pelanggan_nama}</p>
                 <p class="col">No. Transaksi : ${transaction.jual_nofak}</p>
                 <p class="col">Tanggal Transaksi : ${transaction.tgl_transaksi}</p>
                 <p class="col">Total : ${rupiahFormatter(transaction.jml_transaksi)}</p>
                 <p class="col">Nominal Pembayaran : ${rupiahFormatter(transaction.jml_dibayar)}</p>
                 <p class="col">Jumlah Kekurangan : ${rupiahFormatter(transaction.jml_kekurangan)}</p>
+                <p class="col">Status Pembayaran : ${transaction.status}</p>
             `);
 
           detailTransaction.forEach((d) => {
@@ -91,7 +92,7 @@
                 `;
           });
 
-          $("#detail_utang_table").html(table);
+          $("#detail_piutang_table").html(table);
 
           if (transaction.status == 'BELUM LUNAS') {
             $('.bayar-piutang').css('display', 'block')

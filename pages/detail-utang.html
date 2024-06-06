@@ -78,6 +78,7 @@
                 <p class="col">Total : ${rupiahFormatter(transaction.jml_transaksi)}</p>
                 <p class="col">Nominal Pembayaran : ${rupiahFormatter(transaction.jml_dibayar)}</p>
                 <p class="col">Jumlah Kekurangan : ${rupiahFormatter(transaction.jml_kekurangan)}</p>
+                <p class="col">Status Pembayaran : ${transaction.status}</p>
             `);
 
           detailTransaction.forEach((d) => {
