@@ -29,5 +29,4 @@ function tampilUtang() {
 
 function detailUtang(id) {
     app.views.main.router.navigate(`/utang/detail/${id}`);
-
 }

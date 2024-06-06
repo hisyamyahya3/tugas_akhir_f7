@@ -10,32 +10,35 @@ $(document).on('keyup', '.transaction_jml_uang', function () {
 })
 
 $(document).on('click', '.btn-settle', function () {
-    let utangID = localStorage.getItem("utangID")
-    let beliNofak = localStorage.getItem("beli_nofak")
+    let utangPiutangID = localStorage.getItem("utangPiutangID")
+    let noTransaksi = localStorage.getItem("noTransaksi")
+    let action = localStorage.getItem("transaksiUtangPiutang")
     let jmlUang = $('.transaction_jml_uang').val().split('Rp.')[1].replace('.', '')
 
+    let endpoint = (action == 'utang') ? 'Utang' : 'Piutang'
+
     $.ajax({
-        url: "http://localhost/api_toko/Utang/transaction",
+        url: `http://localhost/api_toko/${endpoint}/transaction`,
         method: "POST",
         data: {
-            'utangID': utangID,
-            'beliNofak': beliNofak,
+            'id': utangPiutangID,
+            'noTransaksi': noTransaksi,
             'jmlUang': jmlUang,
         },
         success: function (res) {
             let result = JSON.parse(res)
 
             if (result.status == 'ok') {
-                localStorage.setItem("statusNamaUser", result.data.nama_supplier)
+                localStorage.setItem("statusNamaUser", result.data.nama)
                 localStorage.setItem("statusNominalPembayaran", result.data.jml_angsuran)
 
-                app.views.main.router.navigate(`/sts-pembayaran/${result.data.beli_nofak}`)
+                app.views.main.router.navigate(`/sts-pembayaran/${result.data.noTransaksi}`)
             } else {
                 app.dialog.alert(result.message, 'Info');
             }
         },
         error: function () {
-
+            app.dialog.alert("Tidak Terhubung dengan Server!", "Error")
         }
     })
 })

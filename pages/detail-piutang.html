@@ -9,9 +9,9 @@
             <span class="if-not-md">Framework7</span>
           </a>
         </div>
-        <div class="title">Detail Hutang</div>
+        <div class="title">Detail Piutang</div>
         <div class="title-large">
-          <div class="title-large-text">Detail Hutang</div>
+          <div class="title-large-text">Detail Piutang</div>
         </div>
       </div>
     </div>
@@ -40,7 +40,7 @@
       </div>
     </div>
     <div class="fab fab-extended fab-center-bottom">
-      <a @click="${()=>transaction('utang')}">
+      <a @click="${()=>transaction('piutang')}">
         <i class="icon f7-icons if-not-md">plus</i>
         <i class="icon material-icons md-only">add</i>
         <p class="fab-text">Bayar</p>
@@ -52,13 +52,13 @@
 <script>
   export default function (props, ctx) {
     ctx.$on("pageBeforeIn", async () => {
-      const utangID = props.id;
+      const piutangID = props.id;
 
       await $.ajax({
-        url: "http://localhost/api_toko/Utang/detail",
+        url: "http://localhost/api_toko/Piutang/detail",
         method: "POST",
         data: {
-          utangID: utangID,
+          piutangID: piutangID,
         },
         success: function (res) {
           let result = JSON.parse(res);
@@ -67,13 +67,13 @@
           let table = "";
           localStorage.setItem("totalTransaction", transaction.jml_transaksi);
           localStorage.setItem("outstandingBalance", transaction.jml_kekurangan);
-          localStorage.setItem("utangPiutangID", utangID);
-          localStorage.setItem("noTransaksi", transaction.beli_nofak);
-          localStorage.setItem("transaksiUtangPiutang", 'utang');
+          localStorage.setItem("utangPiutangID", piutangID);
+          localStorage.setItem("noTransaksi", transaction.jual_nofak);
+          localStorage.setItem("transaksiUtangPiutang", 'piutang');
 
           $(".card-detail-utang").html(`
-                <p class="col">Nama Supplier. : ${transaction.suplier_nama}</p>
-                <p class="col">No. Transaksi : ${transaction.beli_nofak}</p>
+                <p class="col">Nama Pelanggan. : ${transaction.pelanggan_nama}</p>
+                <p class="col">No. Transaksi : ${transaction.jual_nofak}</p>
                 <p class="col">Tanggal Transaksi : ${transaction.tgl_transaksi}</p>
                 <p class="col">Total : ${rupiahFormatter(transaction.jml_transaksi)}</p>
                 <p class="col">Nominal Pembayaran : ${rupiahFormatter(transaction.jml_dibayar)}</p>
@@ -84,9 +84,9 @@
             table += `
                 <tr>
                     <td>${d.barang_nama}</td>
-                    <td>${rupiahFormatter(d.d_beli_harga)}</td>
-                    <td>${d.d_beli_jumlah}</td>
-                    <td>${rupiahFormatter(d.d_beli_total)}</td>
+                    <td>${rupiahFormatter(d.d_jual_barang_harjul)}</td>
+                    <td>${d.d_jual_qty}</td>
+                    <td>${rupiahFormatter(d.d_jual_total)}</td>
                 </tr>
                 `;
           });

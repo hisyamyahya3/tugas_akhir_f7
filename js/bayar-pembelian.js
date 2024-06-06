@@ -11,6 +11,7 @@ $(document).on('keyup', '.jumlah_uang_pembelian', function () {
 
 $(document).on('click', '.btn-bayar-pembelian', function () {
     let idSupplier = localStorage.getItem("supplierID")
+    let userID = localStorage.getItem("userID")
     let totalPembelian = $('.total_pembelian').val().split('Rp.')[1].replace('.', '')
     let jmlUang = $('.jumlah_uang_pembelian').val().split('Rp.')[1].replace('.', '')
     let jmlKembalian = $('.jumlah_kembalian_pembelian').val().split('Rp.')[1].replace('.', '')
@@ -20,6 +21,7 @@ $(document).on('click', '.btn-bayar-pembelian', function () {
         method: "POST",
         data: {
             'idSupplier': idSupplier,
+            'userID': userID,
             'totalPembelian': totalPembelian,
             'jmlUang': jmlUang,
             'jmlKembalian': jmlKembalian,

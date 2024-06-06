@@ -17,7 +17,7 @@ function tampilPiutang() {
                         <td class="numeric-cell">${rupiahFormatter(d.jml_transaksi)}</td>
                         <td class="numeric-cell">${rupiahFormatter(d.jml_dibayar)}</td>
                         <td class="numeric-cell">${rupiahFormatter(d.jml_kekurangan)}</td>
-                        <td class="label-cell"><button class="button button-small button-tonal" onclick="#">Lihat</button></td>
+                        <td class="label-cell"><button class="button button-small button-tonal" onclick="detailPiutang(${d.id})">Lihat</button></td>
                     </tr>
                 `
             })
@@ -25,4 +25,8 @@ function tampilPiutang() {
             $('#daftar-piutang').html(temp)
         }
     })
+}
+
+function detailPiutang(id) {
+    app.views.main.router.navigate(`/piutang/detail/${id}`);
 }

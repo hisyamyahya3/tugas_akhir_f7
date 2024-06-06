@@ -83,6 +83,10 @@
         titlePage = "Pembayaran Utang";
       }
 
+      if (props.action == "piutang") {
+        titlePage = "Pembayaran Piutang";
+      }
+
       $("#page-title").html(titlePage);
       $(".transaction_total").val(rupiahFormatter(totalTransaction));
       $(".outstanding_balance").val(rupiahFormatter(outstandingBalance));

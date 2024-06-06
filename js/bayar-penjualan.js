@@ -1,6 +1,7 @@
 $(document).on('click', '.btn-bayar-penjualan', function () {
     let idPelanggan = localStorage.getItem("pelangganID")
     let hargaPenjualan = localStorage.getItem("totalPenjualan")
+    let userID = localStorage.getItem("userID")
     let tempJmlUang = $('.jumlah_uang_penjualan_new').val()
     let tempJmlKembalian = $('.jumlah_kembalian_penjualan_new').val()
     let jmlUang = tempJmlUang.split('Rp.')[1].replace('.', '')
@@ -11,6 +12,7 @@ $(document).on('click', '.btn-bayar-penjualan', function () {
         method: "POST",
         data: {
             'idPel': idPelanggan,
+            'userID': userID,
             'hargaPenjualan': hargaPenjualan,
             'jmlUang': jmlUang,
             'jmlKembalian': jmlKembalian,
