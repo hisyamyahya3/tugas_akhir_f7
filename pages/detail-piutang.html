@@ -39,7 +39,7 @@
         </table>
       </div>
     </div>
-    <div class="fab fab-extended fab-center-bottom">
+    <div class="fab fab-extended fab-center-bottom bayar-piutang">
       <a @click="${()=>transaction('piutang')}">
         <i class="icon f7-icons if-not-md">plus</i>
         <i class="icon material-icons md-only">add</i>
@@ -92,6 +92,12 @@
           });
 
           $("#detail_utang_table").html(table);
+
+          if (transaction.status == 'BELUM LUNAS') {
+            $('.bayar-piutang').css('display', 'block')
+          } else {
+            $('.bayar-piutang').css('display', 'none')
+          }
         },
         error: function () {
           app.dialog.alert("Tidak Terhubung dengan Server!", "Error");
