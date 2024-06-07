@@ -60,3 +60,42 @@ function kembaliPembelian() {
         }
     });
 }
+
+function tampilLaporanPembelian(keyword) {
+    let userID = localStorage.getItem("userID")
+
+    $.ajax({
+        url: "http://localhost/api_toko/Pembelian/laporan",
+        method: "POST",
+        data: {
+            nama_pelanggan: keyword,
+            userID: userID
+        },
+        success: function (res) {
+            let data = JSON.parse(res)
+
+            let temp = '';
+
+            data.data.forEach((d) => {
+                temp += `
+                <tr>
+                    <td class="label-cell">${d.suplier_nama}</td>
+                    <td class="numeric-cell">${d.beli_nofak}</td>
+                    <td class="numeric-cell">${d.beli_tanggal}</td>
+                    <td class="label-cell">${d.barang_nama}</td>
+                    <td class="numeric-cell">${rupiahFormatter(d.d_beli_harga)}</td>
+                    <td class="numeric-cell">${d.d_beli_jumlah}</td>
+                    <td class="numeric-cell">${rupiahFormatter(d.beli_total)}</td>
+                    <td class="numeric-cell">${rupiahFormatter(d.beli_jml_uang)}</td>
+                    <td class="numeric-cell">${d.beli_keterangan}</td>
+                </tr>
+                `
+            });
+
+            $('#laporan-pembelian').html(temp)
+        },
+        error: function () {
+            app.dialog.alert("Tidak Terhubung dengan Server!", "Error");
+        }
+    })
+}

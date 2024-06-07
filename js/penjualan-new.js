@@ -57,3 +57,42 @@ function kembaliPenjualan() {
         }
     });
 }
+
+function tampilLaporanPenjualan(keyword) {
+    let userID = localStorage.getItem("userID")
+
+    $.ajax({
+        url: "http://localhost/api_toko/Penjualan/laporan",
+        method: "POST",
+        data: {
+            nama_pelanggan: keyword,
+            userID: userID
+        },
+        success: function (res) {
+            let data = JSON.parse(res)
+
+            let temp = '';
+
+            data.data.forEach((d) => {
+                temp += `
+                <tr>
+                    <td class="label-cell">${d.pelanggan_nama}</td>
+                    <td class="numeric-cell">${d.jual_nofak}</td>
+                    <td class="numeric-cell">${d.jual_tanggal}</td>
+                    <td class="label-cell">${d.d_jual_barang_nama}</td>
+                    <td class="numeric-cell">${rupiahFormatter(d.d_jual_barang_harjul)}</td>
+                    <td class="numeric-cell">${d.d_jual_qty}</td>
+                    <td class="numeric-cell">${rupiahFormatter(d.d_jual_total)}</td>
+                    <td class="numeric-cell">${rupiahFormatter(d.jual_jml_uang)}</td>
+                    <td class="numeric-cell">${d.jual_keterangan}</td>
+                </tr>
+                `
+            });
+
+            $('#laporan-penjualan').html(temp)
+        },
+        error: function () {
+            app.dialog.alert("Tidak Terhubung dengan Server!", "Error");
+        }
+    })
+}

@@ -16,18 +16,44 @@
             </div>
         </div>
         <div class="page-content">
+            <div class="block-title block-title-medium">Pilih Tanggal</div>
+            <div class="list list-strong-ios list-dividers-ios inset-ios">
+                <ul>
+                    <li class="item-content item-input item-input-outline">
+                        <div class="item-inner">
+                            <div class="item-title item-floating-label">Multiple Date</div>
+                            <div class="item-input-wrap">
+                                <input name="date" type="text"/>
+                                <span class="input-clear-button"></span>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="block block-strong block-outline-ios">
+                <div class="grid grid-cols-3 grid-gap">
+                    <button class="button button-small button-tonal">Lihat</button>
+                    <button class="button button-small button-tonal">Reset</button>
+                    <button class="button button-small button-tonal">Cetak</button>
+                </div>
+            </div>
             <div class="block-title block-title-medium">Data Penjualan</div>
             <div class="card data-table">
                 <table>
                     <thead>
                         <tr>
-                            <th class="label-cell">Uraian</th>
-                            <th class="numeric-cell" style="width: 10%">Nominal</th>
-                            <th class="numeric-cell" style="width: 10%">Tanggal Input</th>
-                            <th class="numeric-cell" style="width: 10%">Action</th>
+                            <th class="label-cell">Nama Pelanggan</th>
+                            <th class="numeric-cell">No. Transaksi</th>
+                            <th class="numeric-cell">Tgl Transaksi</th>
+                            <th class="label-cell">Nama Barang</th>
+                            <th class="numeric-cell">Harga</th>
+                            <th class="numeric-cell">Qty</th>
+                            <th class="numeric-cell">Total Harga</th>
+                            <th class="numeric-cell">Nominal Pembayaran</th>
+                            <th class="numeric-cell">Status Pembayaran</th>
                         </tr>
                     </thead>
-                    <tbody id="daftar-pengeluaran">
+                    <tbody id="laporan-penjualan">
                         
                     </tbody>
                 </table>
@@ -39,9 +65,9 @@
     export default function (props, ctx) {
         let $on = ctx.$on;
     
-        // $on('pageAfterIn', () => {
-        //     tampilPengeluaran();
-        // })
+        $on('pageAfterIn', () => {
+            tampilLaporanPenjualan()
+        })
     
         return $render;
     };
