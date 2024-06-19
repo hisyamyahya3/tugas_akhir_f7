@@ -21,9 +21,18 @@
                 <ul>
                     <li class="item-content item-input item-input-outline">
                         <div class="item-inner">
-                            <div class="item-title item-floating-label">Multiple Date</div>
+                            <div class="item-title item-floating-label">Dari</div>
                             <div class="item-input-wrap">
-                                <input name="date" type="text"/>
+                                <input name="from-date-penjualan" type="text" readonly id="from-date-penjualan"/>
+                                <span class="input-clear-button"></span>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="item-content item-input item-input-outline">
+                        <div class="item-inner">
+                            <div class="item-title item-floating-label">Sampai</div>
+                            <div class="item-input-wrap">
+                                <input name="to-date-penjualan" type="text" readonly id="to-date-penjualan"/>
                                 <span class="input-clear-button"></span>
                             </div>
                         </div>
@@ -32,9 +41,9 @@
             </div>
             <div class="block block-strong block-outline-ios">
                 <div class="grid grid-cols-3 grid-gap">
-                    <button class="button button-small button-tonal">Lihat</button>
-                    <button class="button button-small button-tonal">Reset</button>
-                    <button class="button button-small button-tonal">Cetak</button>
+                    <button class="button button-small button-tonal" @click="${()=>cariTanggalPenjualan()}">Lihat</button>
+                    <button class="button button-small button-tonal" @click="${()=>resetLaporanPenjualan()}">Reset</button>
+                    <button class="button button-small button-tonal" @click="${()=>cetakLaporanPenjualan()}">Cetak</button>
                 </div>
             </div>
             <div class="block-title block-title-medium">Data Penjualan</div>
@@ -62,11 +71,18 @@
     </div>
 </template>
 <script>
-    export default function (props, ctx) {
-        let $on = ctx.$on;
+    export default function (props, { $f7, $on }) {
+        let calendarDefault;
     
         $on('pageAfterIn', () => {
             tampilLaporanPenjualan()
+
+            calendarDefault = $f7.calendar.create({
+                inputEl: '#from-date-penjualan',
+            });
+            calendarDefault = $f7.calendar.create({
+                inputEl: '#to-date-penjualan',
+            });
         })
     
         return $render;
