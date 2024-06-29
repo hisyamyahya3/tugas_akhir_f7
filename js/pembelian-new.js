@@ -99,3 +99,67 @@ function tampilLaporanPembelian(keyword) {
         }
     })
 }
+
+function cariTanggalPembelian() {
+    let userID = localStorage.getItem("userID")
+    let dariTgl = $("input[name=from-date-pembelian]").val();
+    let sampaiTgl = $("input[name=to-date-pembelian]").val();
+    // console.log(`${userID} dan ${dariTgl} dan ${sampaiTgl}`);
+    if (dariTgl == "" || sampaiTgl == "") {
+        app.dialog.alert("Isian Masih Kosong, Silahkan Cek Kembali", "Error");
+        return;
+    }
+    // console.log(`${dariTgl} dan ${sampaiTgl}`);
+    // return;
+    
+    $.ajax({
+        url: "http://localhost/api_toko/Pembelian/filterTanggal",
+        method: "POST",
+        data: {
+            userID: userID,
+            dariTgl: dariTgl,
+            sampaiTgl: sampaiTgl
+        },
+        success: function (res) {
+            let data = JSON.parse(res)
+
+            if (data.data) {
+                $('#laporan-pembelian').html(fetchFilterPembelian(data))
+            } else {
+                $('#laporan-pembelian').html('')
+            }
+            // $('#laporan-penjualan').html(temp)
+        },
+        error: function () {
+            app.dialog.alert("Tidak Terhubung dengan Server!", "Error");
+        }
+    })
+}
+
+function fetchFilterPembelian(data) {
+    let temp = '';
+
+    data.data.forEach((d) => {
+        temp += `
+        <tr>
+            <td class="label-cell">${d.suplier_nama}</td>
+            <td class="numeric-cell">${d.beli_nofak}</td>
+            <td class="numeric-cell">${d.beli_tanggal}</td>
+            <td class="label-cell">${d.barang_nama}</td>
+            <td class="numeric-cell">${rupiahFormatter(d.d_beli_harga)}</td>
+            <td class="numeric-cell">${d.d_beli_jumlah}</td>
+            <td class="numeric-cell">${rupiahFormatter(d.beli_total)}</td>
+            <td class="numeric-cell">${rupiahFormatter(d.beli_jml_uang)}</td>
+            <td class="numeric-cell">${d.beli_keterangan}</td>
+        </tr>
+        `
+    })
+
+    return temp
+}
+
+function resetLaporanPembelian() {
+    let dariTgl = $("input[name=from-date-pembelian]").val("");
+    let sampaiTgl = $("input[name=to-date-pembelian]").val("");
+    tampilLaporanPembelian()
+}
