@@ -70,8 +70,18 @@ function tampilLaporanPenjualan(keyword) {
         },
         success: function (res) {
             let data = JSON.parse(res)
+            let pic = '';
 
-            $('#laporan-penjualan').html(fetchFilterPenjualan(data))
+            if (data.data.length === 0) {
+                pic = `<div class="teks-tengah">
+                            <img src="img/nodata.jpg" class="besar" />
+                        </div>`;
+            } else {
+                $('#laporan-penjualan').html(fetchFilterPenjualan(data))
+            }
+
+            $('#nodata').html(pic)
+
         },
         error: function () {
             app.dialog.alert("Tidak Terhubung dengan Server!", "Error");

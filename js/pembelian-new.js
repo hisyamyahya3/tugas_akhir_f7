@@ -10,7 +10,6 @@ function tampilSupplierPembelian(keyword) {
         },
         success: function (res) {
             let data = JSON.parse(res)
-
             let temp = '';
 
             data.data.forEach((d) => {
@@ -73,26 +72,33 @@ function tampilLaporanPembelian(keyword) {
         },
         success: function (res) {
             let data = JSON.parse(res)
-
             let temp = '';
+            let pic = '';
 
-            data.data.forEach((d) => {
-                temp += `
-                <tr>
-                    <td class="label-cell">${d.suplier_nama}</td>
-                    <td class="numeric-cell">${d.beli_nofak}</td>
-                    <td class="numeric-cell">${d.beli_tanggal}</td>
-                    <td class="label-cell">${d.barang_nama}</td>
-                    <td class="numeric-cell">${rupiahFormatter(d.d_beli_harga)}</td>
-                    <td class="numeric-cell">${d.d_beli_jumlah}</td>
-                    <td class="numeric-cell">${rupiahFormatter(d.beli_total)}</td>
-                    <td class="numeric-cell">${rupiahFormatter(d.beli_jml_uang)}</td>
-                    <td class="numeric-cell">${d.beli_keterangan}</td>
-                </tr>
-                `
-            });
+            if (data.data.length === 0) {
+                pic = `<div class="teks-tengah">
+                            <img src="img/nodata.jpg" class="besar" />
+                        </div>`;
+            } else {
+                data.data.forEach((d) => {
+                    temp += `
+                    <tr>
+                        <td class="label-cell">${d.suplier_nama}</td>
+                        <td class="numeric-cell">${d.beli_nofak}</td>
+                        <td class="numeric-cell">${d.beli_tanggal}</td>
+                        <td class="label-cell">${d.barang_nama}</td>
+                        <td class="numeric-cell">${rupiahFormatter(d.d_beli_harga)}</td>
+                        <td class="numeric-cell">${d.d_beli_jumlah}</td>
+                        <td class="numeric-cell">${rupiahFormatter(d.beli_total)}</td>
+                        <td class="numeric-cell">${rupiahFormatter(d.beli_jml_uang)}</td>
+                        <td class="numeric-cell">${d.beli_keterangan}</td>
+                    </tr>
+                    `
+                });
+            }
 
             $('#laporan-pembelian').html(temp)
+            $('#nodata').html(pic)
         },
         error: function () {
             app.dialog.alert("Tidak Terhubung dengan Server!", "Error");

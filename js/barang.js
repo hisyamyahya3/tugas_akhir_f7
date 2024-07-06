@@ -8,24 +8,34 @@ function tampilBarang() {
         success: function (result) {
             let res = JSON.parse(result);
             let temp = '';
+            let pic = '';
 
-            res.data.forEach((d) => {
-                temp += `
-                    <tr>
-                        <td class="label-cell">${d.barang_nama}</td>
-                        <td class="label-cell">${d.barang_satuan}</td>
-                        <td class="numeric-cell">${rupiahFormatter(d.barang_harjul)}</td>
-                        <td class="numeric-cell">${d.barang_stok}</td> 
-                        <td class="numeric-cell">${d.kategori_nama}</td> 
-                        <td class="label-cell"><p class="grid grid-cols-2 grid-gap">
-                        <button class="button button-small button-tonal color-blue" onclick="editBarang(${d.barang_id}, '${d.barang_nama}', '${d.barang_satuan}', ${d.barang_harpok}, ${d.barang_harjul}, ${d.barang_harjul_grosir}, ${d.barang_stok}, ${d.barang_min_stok}, ${d.barang_kategori_id})">Edit</button>
-                        <button class="button button-small button-tonal color-red" onclick="hapusBarang(${d.barang_id})">Hapus</button></p>
-                        </td>
-                    </tr>
-                `
-            })
+            if (res.data.length === 0) {
+                pic = `<div class="teks-tengah">
+                            <img src="img/nodata.jpg" class="besar" />
+                        </div>`;
+            } else {
 
+                res.data.forEach((d) => {
+                    temp += `
+                        <tr>
+                            <td class="label-cell">${d.barang_nama}</td>
+                            <td class="label-cell">${d.barang_satuan}</td>
+                            <td class="numeric-cell">${rupiahFormatter(d.barang_harjul)}</td>
+                            <td class="numeric-cell">${d.barang_stok}</td> 
+                            <td class="numeric-cell">${d.kategori_nama}</td> 
+                            <td class="label-cell"><p class="grid grid-cols-2 grid-gap">
+                            <button class="button button-small button-tonal color-blue" onclick="editBarang(${d.barang_id}, '${d.barang_nama}', '${d.barang_satuan}', ${d.barang_harpok}, ${d.barang_harjul}, ${d.barang_harjul_grosir}, ${d.barang_stok}, ${d.barang_min_stok}, ${d.barang_kategori_id})">Edit</button>
+                            <button class="button button-small button-tonal color-red" onclick="hapusBarang(${d.barang_id})">Hapus</button></p>
+                            </td>
+                        </tr>
+                    `
+                })
+    
+            }
+            
             $('#daftar-barang').html(temp)
+            $('#nodata').html(pic)
         }
     })
 }

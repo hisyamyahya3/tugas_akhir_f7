@@ -8,17 +8,25 @@ function tampilKategori() {
         success: function (result) {
             let res = JSON.parse(result);
             let temp = '';
+            let pic = '';
 
-            res.data.forEach((d) => {
-                temp += `
-                    <tr>
-                        <td class="label-cell">${d.kategori_nama}</td>
-                        <td class="actions-cell"><p class="grid grid-cols-2 grid-gap"><button class="button button-small button-tonal color-blue" onclick="editKategori(${d.kategori_id}, '${d.kategori_nama}')">Edit</button><button class="button button-small button-tonal color-red" onclick="hapusKategori(${d.kategori_id})">Hapus</button></p></td>
-                    </tr>
-                `
-            })
+            if (res.data.length === 0) {
+                pic = `<div class="teks-tengah">
+                            <img src="img/nodata.jpg" class="besar" />
+                        </div>`;
+            } else {
+                res.data.forEach((d) => {
+                    temp += `
+                        <tr>
+                            <td class="label-cell">${d.kategori_nama}</td>
+                            <td class="actions-cell"><p class="grid grid-cols-2 grid-gap"><button class="button button-small button-tonal color-blue" onclick="editKategori(${d.kategori_id}, '${d.kategori_nama}')">Edit</button><button class="button button-small button-tonal color-red" onclick="hapusKategori(${d.kategori_id})">Hapus</button></p></td>
+                        </tr>
+                    `
+                })
+            }
 
             $('#daftar-kategori').html(temp)
+            $('#nodata').html(pic)
         }
     })
 }

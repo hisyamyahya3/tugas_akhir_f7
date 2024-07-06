@@ -5,22 +5,29 @@ function tampilPelanggan() {
         url: "http://localhost/api_toko/Pelanggan",
         data: { userID: userID },
         success: function(result) {
-            let dt = "";
             let res = JSON.parse(result);
-            // console.log(res.data)
             let temp = '';
+            let pic = "";
 
-            res.data.forEach((d) => {
-                temp += `
-                    <tr>
-                        <td class="label-cell" style="width: 40%">${d.pelanggan_nama}</td>
-                        <td class="label-cell" style="width: 20%">${d.pelanggan_alamat}</td>
-                        <td class="numeric-cell" style="width: 20%">${d.pelanggan_notelp}</td>
-                        <td class="label-cell"><p class="grid grid-cols-2 grid-gap"><button class="button button-small button-tonal color-blue" onclick="editPelanggan(${d.pelanggan_id}, '${d.pelanggan_nama}', '${d.pelanggan_alamat}', '${d.pelanggan_notelp}',)">Edit</button><button class="button button-small button-tonal color-red" onclick="hapusPelanggan(${d.pelanggan_id})">Hapus</button></p></td>
-                    </tr>
-                `
-            })
-            $('#daftar-pelanggan').html(temp)    
+            if (res.data.length === 0) {
+                pic = `<div class="teks-tengah">
+                            <img src="img/nodata.jpg" class="besar" />
+                        </div>`;
+            } else {
+                res.data.forEach((d) => {
+                    temp += `
+                        <tr>
+                            <td class="label-cell" style="width: 40%">${d.pelanggan_nama}</td>
+                            <td class="label-cell" style="width: 20%">${d.pelanggan_alamat}</td>
+                            <td class="numeric-cell" style="width: 20%">${d.pelanggan_notelp}</td>
+                            <td class="label-cell"><p class="grid grid-cols-2 grid-gap"><button class="button button-small button-tonal color-blue" onclick="editPelanggan(${d.pelanggan_id}, '${d.pelanggan_nama}', '${d.pelanggan_alamat}', '${d.pelanggan_notelp}',)">Edit</button><button class="button button-small button-tonal color-red" onclick="hapusPelanggan(${d.pelanggan_id})">Hapus</button></p></td>
+                        </tr>
+                    `
+                })
+            }
+
+            $('#daftar-pelanggan').html(temp) 
+            $('#nodata').html(pic)   
         }
     })
 }
