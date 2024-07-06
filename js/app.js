@@ -51,3 +51,25 @@ var app = new Framework7({
     placementId: 'pltd4o7ibb9rc653x14',
   },
 });
+
+// function detectDevice() {
+//   let pixelRatio = window.devicePixelRatio;
+//   app.dialog.log('Device Pixel Ratio', pixelRatio);
+// }
+
+// function detectDevice() {
+//   if (Framework7.device.tablet) {
+//     handleTabletActions();
+//   } else {
+//     handleMobileActions();
+//   }
+//   handlePixelRatio(pixelRatio);
+// }
+
+// function handleTabletActions() {
+//   app.dialog.alert('Tablet detected');
+// }
+
+// function handleMobileActions() {
+//   app.dialog.alert('Mobile phone detected');
+// }

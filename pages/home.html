@@ -3,9 +3,6 @@
         <div class="navbar navbar-large navbar-transparent">
             <div class="navbar-bg"></div>
             <div class="navbar-inner navbar-inner-centered-title">
-                <div class="left">
-                    <a href="#" class="panel-open" data-panel=".panel-left-1"><i class="icon f7-icons">ellipsis_vertical</i></a>
-                </div>
                 <div class="title sliding" id="toko"><i class="icon f7-icons">bag</i> TOKO</div>
                 <div class="title-large">
                     <div class="title-large-text" id="toko"><i class="icon f7-icons">bag</i> TOKO</div>
@@ -15,54 +12,14 @@
                 </div>
             </div>
         </div>
-        <div class="panel panel-left panel-left-1 panel-cover panel-resizable panel init">
-            <div class="block-title teks-tengah">Menu Pengaturan</div>
-            <div class="list list-strong inset list-dividers-ios">
-                <ul>
-                    <li>
-                        <a class="item-content item-link panel-close" href="/">
-                            <div class="item-media">
-                                <i class="icon f7-icons if-not-md">home</i>
-                                <i class="icon material-icons md-only">home</i>
-                            </div>
-                            <div class="item-inner">
-                                <div class="item-title">Halaman Utama</div>
-                            </div>
-                        </a>                         
-                    </li>
-                    <li>
-                        <a class="item-content item-link panel-close" href="/pengaturan/">
-                            <div class="item-media">
-                                <i class="icon f7-icons if-not-md">setting</i>
-                                <i class="icon material-icons md-only">settings</i>
-                            </div>
-                            <div class="item-inner">
-                                <div class="item-title">Pengaturan</div>
-                            </div>
-                        </a>                         
-                    </li>
-                    <li>
-                        <a class="item-content item-link panel-close" @click="${()=>logout()}">
-                            <div class="item-media">
-                                <i class="icon f7-icons if-not-md">logout</i>
-                                <i class="icon material-icons md-only">exit_to_app</i>
-                            </div>
-                            <div class="item-inner">
-                                <div class="item-title">Logout</div>
-                            </div>
-                        </a>                         
-                    </li>
-                </ul>
-            </div>
-        </div>
         <div class="page-content">
-            <div class="grid grid-cols-2">
+            <div class="grid grid-cols-4">
                 <div class="card">
                     <div class="card-content card-content-padding">
                         <a class="item-content item-link" href="/penjualannew/">
-                            <div class="item-media"><i class="f7-icons">bag_badge_minus</i></div>
+                            <div class="item-media teks-tengah"><img src="img/finance.png" class="besar-icon" /></div>
                             <div class="item-inner">
-                                <div class="item-title">Penjualan</div>
+                                <div class="item-title teks-tengah"><h4>Penjualan</h4></div>
                             </div>
                         </a>
                     </div>
@@ -70,81 +27,19 @@
                 <div class="card">
                     <div class="card-content card-content-padding">
                         <a class="item-content item-link" href="/pembeliannew/">
-                            <div class="item-media"><i class="f7-icons">bag_badge_plus</i></div>
+                            <div class="item-media teks-tengah"><img src="img/product.png" class="besar-icon" /></div>
                             <div class="item-inner">
-                                <div class="item-title">Pembelian</div>
+                                <div class="item-title teks-tengah"><h4>Pembelian</h4></div>
                             </div>
                         </a>
                     </div>
                 </div>
                 <div class="card">
                     <div class="card-content card-content-padding">
-                        <a class="item-content item-link" href="/kategori/">
-                            <div class="item-media"><i class="f7-icons">square_grid_2x2</i></div>
+                        <a class="item-content item-link" href="/keranjang/">
+                            <div class="item-media teks-tengah"><img src="img/shop.png" class="besar-icon" /></div>
                             <div class="item-inner">
-                                <div class="item-title">Kategori</div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-content card-content-padding">
-                        <a class="item-content item-link" href="/brg/">
-                            <div class="item-media"><i class="f7-icons">shippingbox_fill</i></div>
-                            <div class="item-inner">
-                                <div class="item-title">Barang</div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-content card-content-padding">
-                        <a class="item-content item-link" href="/plgn/">
-                            <div class="item-media"><i class="f7-icons">person</i></div>
-                            <div class="item-inner">
-                                <div class="item-title">Pelanggan</div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-content card-content-padding">
-                        <a class="item-content item-link" href="/supplier/">
-                            <div class="item-media"><i class="f7-icons">person_3</i></div>
-                            <div class="item-inner">
-                                <div class="item-title">Supplier</div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-content card-content-padding">
-                        <a class="item-content item-link" href="/laporan-penjualan/">
-                            <div class="item-media"><i class="f7-icons">doc_text</i></div>
-                            <div class="item-inner">
-                                <div class="item-title">Laporan Penjualan</div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-content card-content-padding">
-                        <a class="item-content item-link" href="/laporan-pembelian/">
-                            <div class="item-media"><i class="f7-icons">doc_text_fill</i></div>
-                            <div class="item-inner">
-                                <div class="item-title">Laporan Pembelian</div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <div class="grid grid-cols-1">
-                <div class="card">
-                    <div class="card-content card-content-padding">
-                        <a class="item-content item-link" href="/kategori/">
-                            <div class="item-media"><i class="f7-icons">doc_fill</i></div>
-                            <div class="item-inner">
-                                <div class="item-title">Riwayat Pembayaran</div>
+                                <div class="item-title teks-tengah"><h4>Keranjang</h4></div>
                             </div>
                         </a>
                     </div>
@@ -152,21 +47,103 @@
                 <div class="card">
                     <div class="card-content card-content-padding">
                         <a class="item-content item-link" href="/pengeluaran/">
-                            <div class="item-media"><i class="f7-icons">wallet</i></div>
+                            <div class="item-media teks-tengah"><img src="img/wallet.png" class="besar-icon" /></div>
                             <div class="item-inner">
-                                <div class="item-title">Pengeluaran</div>
+                                <div class="item-title teks-tengah"><h4>Pengeluaran</h4></div>
                             </div>
                         </a>
                     </div>
                 </div>
             </div>
-            <div class="grid grid-cols-2">
+            <div class="card">
+                <div class="card-content card-content-padding">
+                    <h4 class="teks-tengah">Selamat Datang!</h4>
+                    <h1 class="nama">
+                        
+                    </h1>
+                    <div class="grid grid-cols-2 grid-gap">
+                        <button class="button button-tonal" @click="${()=>openSettings()}">Pengaturan</button>
+                        <button class="button button-tonal" @click="${()=>logout()}">Keluar</button>
+                    </div>
+                </div>
+            </div>
+            <div class="grid grid-cols-3">
+                <div class="card">
+                    <div class="card-content card-content-padding">
+                        <a class="item-content item-link" href="/kategori/">
+                            <div class="item-media teks-tengah"><img src="img/verified.png" class="besar-icon" /></div>
+                            <div class="item-inner">
+                                <div class="item-title teks-tengah"><h4>Kategori</h4></div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-content card-content-padding">
+                        <a class="item-content item-link" href="/brg/">
+                            <div class="item-media teks-tengah"><img src="img/product2.png" class="besar-icon" /></div>
+                            <div class="item-inner">
+                                <div class="item-title teks-tengah"><h4>Barang</h4></div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-content card-content-padding">
+                        <a class="item-content item-link" href="/plgn/">
+                            <div class="item-media teks-tengah"><img src="img/customer.png" class="besar-icon" /></div>
+                            <div class="item-inner">
+                                <div class="item-title teks-tengah"><h4>Pelanggan</h4></div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-content card-content-padding">
+                        <a class="item-content item-link" href="/supplier/">
+                            <div class="item-media teks-tengah"><img src="img/supplier.png" class="besar-icon" /></div>
+                            <div class="item-inner">
+                                <div class="item-title teks-tengah"><h4>Supplier</h4></div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-content card-content-padding">
+                        <a class="item-content item-link" href="/laporan-penjualan/">
+                            <div class="item-media teks-tengah"><img src="img/sales.png" class="besar-icon" /></div>
+                            <div class="item-inner">
+                                <div class="item-title teks-tengah"><h4>Laporan Penjualan</h4></div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-content card-content-padding">
+                        <a class="item-content item-link" href="/laporan-pembelian/">
+                            <div class="item-media teks-tengah"><img src="img/sales2.png" class="besar-icon" /></div>
+                            <div class="item-inner">
+                                <div class="item-title teks-tengah"><h4>Laporan Pembelian</h4></div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-content card-content-padding">
+                        <a class="item-content item-link" href="/kategori/">
+                            <div class="item-media teks-tengah"><img src="img/history.png" class="besar-icon" /></div>
+                            <div class="item-inner">
+                                <div class="item-title teks-tengah"><h4>Riwayat Pembayaran</h4></div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
                 <div class="card">
                     <div class="card-content card-content-padding">
                         <a class="item-content item-link" href="/utang/">
-                            <div class="item-media"><i class="f7-icons">today</i></div>
+                            <div class="item-media teks-tengah"><img src="img/piggy.png" class="besar-icon" /></div>
                             <div class="item-inner">
-                                <div class="item-title">Hutang</div>
+                                <div class="item-title teks-tengah"><h4>Utang</h4></div>
                             </div>
                         </a>
                     </div>
@@ -174,49 +151,24 @@
                 <div class="card">
                     <div class="card-content card-content-padding">
                         <a class="item-content item-link" href="/piutang/">
-                            <div class="item-media"><i class="f7-icons">today_fill</i></div>
+                            <div class="item-media teks-tengah"><img src="img/usa.png" class="besar-icon" /></div>
                             <div class="item-inner">
-                                <div class="item-title">Piutang</div>
+                                <div class="item-title teks-tengah"><h4>Piutang</h4></div>
                             </div>
                         </a>
                     </div>
                 </div>
             </div>
-            <!-- <div class="list list-strong inset list-dividers-ios">
-                <ul>
-                    <li>
-                        <a class="item-content item-link" href="/pembelian/">
-                            <div class="item-media"><i class="f7-icons">cart</i></div>
-                            <div class="item-inner">
-                                <div class="item-title">Pembelian</div>
-                            </div>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="item-content item-link" href="/penjualan/">
-                            <div class="item-media"><i class="f7-icons">cart_fill</i></div>
-                            <div class="item-inner">
-                                <div class="item-title">Penjualan</div>
-                            </div>
-                        </a>
-                    </li>
-                </ul>
-            </div> -->
         </div>
-        <!-- <div class="tabs">
-            <div id="menu" class="page-content tab tab-active">
-            </div>
-            <div id="setting" class="page-content tab">
-            </div>
-        </div> -->
     </div>
 </template>
 <script>
     export default function (props, ctx) {
-        // let $on = ctx.$on;
-        // $on('pageInit', () => {
-        //     $('#toko').html(`<i class="icon f7-icons teks-putih">cart_fill</i> TOKO`)
-        // })
+        let $on = ctx.$on;
+        $on('pageBeforeIn', () => {
+            let username = sessionStorage.getItem("username");
+            $('.nama').html(username)
+        })
         return $render;
     };
 </script>

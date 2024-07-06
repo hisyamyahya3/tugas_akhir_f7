@@ -38,7 +38,29 @@
                         </li>
                     </ul>
                 </div>
-                <div class="list inset">
+                <div class="grid grid-cols-2">
+                    <div class="card">
+                        <div class="card-content card-content-padding">
+                            <a class="item-content item-link" @click="${()=>login()}">
+                                <div class="item-media"></div>
+                                <div class="item-inner">
+                                    <div class="item-title teks-tengah"><h4>Login</h4></div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-content card-content-padding">
+                            <a class="item-content item-link" href="/regis/">
+                                <div class="item-media"></div>
+                                <div class="item-inner">
+                                    <div class="item-title teks-tengah"><h4>Daftar</h4></div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <!-- <div class="list inset">
                     <ul>
                         <li><a class="list-button" @click="${()=>login()}">Masuk</a></li>
                     </ul>
@@ -46,7 +68,7 @@
                 <div class="block-footer margin-top">
                     Jika email anda belum terdaftar. Maka daftar terlebih dahulu.
                     <p><a class="list-button" href="/regis/">Daftar</a></p>
-                </div>
+                </div> -->
             </form>
         </div>
     </div>

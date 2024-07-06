@@ -16,6 +16,7 @@ async function register() {
             let message = res.message
 
             app.dialog.alert(message, "Info")
+            app.views.main.router.navigate("/login/")
         },
         error: function () {
             app.dialog.alert("Tidak Terhubung dengan Server!", "Error")
@@ -59,7 +60,7 @@ async function login() {
 
                 localStorage.setItem("userID", userID);
                 sessionStorage.setItem("isLogin", true)
-                app.dialog.alert(message, "Info")
+                sessionStorage.setItem("username", res.data.full_name)
                 app.views.main.router.navigate("/")
             } else {
                 attempts++
@@ -74,11 +75,13 @@ async function login() {
 }
 
 async function logout() {
-    const isLogin = sessionStorage.getItem('isLogin')
-
-    if (isLogin) {
-        sessionStorage.removeItem('isLogin')
-        app.dialog.alert('Berhasil log out', 'Info')
-        app.views.main.router.navigate('/login/')
-    }
+    app.dialog.confirm('Apakah Anda Yakin Ingin Keluar?','Info', function () {
+        const isLogin = sessionStorage.getItem('isLogin')
+    
+        if (isLogin) {
+            sessionStorage.removeItem('username')
+            sessionStorage.removeItem('isLogin')
+            app.views.main.router.navigate('/login/')
+        }   
+    })
 }

@@ -163,3 +163,59 @@ function resetLaporanPembelian() {
     let sampaiTgl = $("input[name=to-date-pembelian]").val("");
     tampilLaporanPembelian()
 }
+
+
+function cetakLaporanPembelian() {
+    let dariTgl = $("input[name=from-date-pembelian]").val();
+    let sampaiTgl = $("input[name=to-date-pembelian]").val();
+    if (dariTgl == "" || sampaiTgl == "") {
+        app.dialog.alert("Silahkan isi pilihan tanggal terlebih dahulu!", "Error");
+        return;
+    }
+    $.ajax({
+        url: "http://localhost/api_toko/Pembelian/filterTanggal",
+        method: "POST",
+        data: {
+            userID: userID,
+            dariTgl: dariTgl,
+            sampaiTgl: sampaiTgl
+        },
+        success: function (res) {
+            let data = JSON.parse(res)
+
+            let temp = '';
+
+            data.data.forEach((d) => {
+                temp += `
+                <tr>
+                    <td class="label-cell">${d.suplier_nama}</td>
+                    <td class="numeric-cell">${d.beli_nofak}</td>
+                    <td class="numeric-cell">${d.beli_tanggal}</td>
+                    <td class="label-cell">${d.barang_nama}</td>
+                    <td class="numeric-cell">${rupiahFormatter(d.d_beli_harga)}</td>
+                    <td class="numeric-cell">${d.d_beli_jumlah}</td>
+                    <td class="numeric-cell">${rupiahFormatter(d.beli_total)}</td>
+                    <td class="numeric-cell">${rupiahFormatter(d.beli_jml_uang)}</td>
+                    <td class="numeric-cell">${d.beli_keterangan}</td>
+                </tr>
+                `
+            })
+
+            let datacetak = `<html><h1>LAPORAN PEMBELIAN DARI TANGGAL ${dariTgl} SAMPAI ${sampaiTgl}</h1><table border="1">${temp}</table></html>`;
+            var opsi = {
+                documentSize: 'A4',
+                type: 'share',
+                fileName: `cetak_laporan_pemebelian_dari_tanggal${dariTgl}_sampai_${sampaiTgl}.pdf`
+            };
+
+            pdf.fromData(datacetak, opsi)
+            .then((stats) => console.log(stats))
+            .catch((err) => console.log(err));
+
+
+        },
+        error: function () {
+            app.dialog.alert("Tidak Terhubung dengan Server!", "Error");
+        }
+    })
+}
