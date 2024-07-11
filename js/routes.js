@@ -50,6 +50,7 @@ var routes = [
   {path: '/sts-pembayaran/:nopembayaran', componentUrl: 'pages/status-pembayaran.html'},
   {path: '/laporan-penjualan/', componentUrl: 'pages/laporan-penjualan.html'},
   {path: '/laporan-pembelian/', componentUrl: 'pages/laporan-pembelian.html'},
+  {path: '/riwayat/', componentUrl: 'pages/riwayat.html'},
   {path: '(.*)', url: 'pages/404.html'},
 ];
 // var routes = [

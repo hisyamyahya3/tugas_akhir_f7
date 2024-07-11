@@ -12,8 +12,8 @@ function lockscreenorientation() {
     app.dialog.alert("Rotasi Berhasil Dikunci","Success");
 }
 
-$(window).resize(function() {
-    //resize just happened, pixels changed
-    console.log("screen is been resize")
-});
+// $(window).resize(function() {
+//     //resize just happened, pixels changed
+//     console.log("screen is been resize")
+// });
  

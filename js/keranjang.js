@@ -5,34 +5,49 @@ function tampilKeranjangPenjualan() {
         url: "http://localhost/api_toko/Pelanggan/tampilKeranjangPenjualan",
         success: function (result) {
             let res = JSON.parse(result);
+            let pic = ""
+            let cartName = ""
+            let cartDetail = ""
 
-            let temp = ""
+            if (res.length === 0) {
+                pic = `<div class="teks-tengah">
+                            <img src="img/nodata.jpg" class="besar" />
+                        </div>`;
+            } 
 
             res.forEach((customer) => {
-                temp += `
-                    <div class="block block-strong block-outline-ios">
-                        <h2 class="col" style="font-weight: bold;">${customer.pelanggan_nama}</h2>
-                        <div class="left">
-                            <button class="button button-small button-tonal" onclick="bayarPenjualan(${customer.pelanggan_id}, '${customer.pelanggan_nama}')">Bayar</button>
+                cartName += `
+                    <div class="card">
+                        <div class="card-content card-content-padding">
+                            <p class="col">Nama Pelanggan: ${customer.pelanggan_nama}</p>
+                            <p class="col">Alamat Pelanggan: ${customer.pelanggan_alamat}</p>
+                            <p class="col">Nomor Telpon: ${customer.pelanggan_notelp}</p>
+                            <div class="left">
+                                <button class="button button-small button-tonal" onclick="bayarPenjualan(${customer.pelanggan_id}, '${customer.pelanggan_nama}')">Bayar</button>
+                            </div>
                         </div>
                     </div>
                 `;
 
                 customer.data.forEach((detail) => {
-                    temp += `
+                    const total = detail.barang_harjul * detail.qty;
+                    cartDetail += `
                         <div class="card">
                             <div class="card-content card-content-padding">
                                 <input type="hidden" class="barang-id" value="${detail.barang_id}">
-                                <p class="col font-17 teks-tengah" style="font-weight: bold;">${detail.barang_nama}</p>
-                                <p class="col font-17">Stok: ${detail.barang_stok}</p>
-                                <p class="col font-17" style="text-align: left; font-weight: bold;">Harga per item: Rp. ${detail.barang_harjul}</p>
+                                <h2 class="col font-17" style="font-weight: bold;">Nama Barang: ${detail.barang_nama}</h2>
+                                <p class="col font-17">Jumlah Barang: ${detail.qty}</p>
+                                <p class="col font-17">Harga per item: ${rupiahFormatter(detail.barang_harjul)}</p>
+                                <p class="col font-17">Total: ${rupiahFormatter(total)}</p>
                             </div>
                         </div>
                     `;
                 });
             });
 
-            $("#keranjangPenjualan").html(temp);
+            $('#nodata').html(pic)
+            $("#keranjangPenjualan").html(cartName);
+            $("#keranjangPenjualanBarang").html(cartDetail);
         },
     });
 }
@@ -54,6 +69,10 @@ function tampilBayarPenjualan(id) {
 
             let temp = "";
             let total = 0;
+
+            if (res.length == 0) {
+                app.views.main.router.back();
+            } 
 
             res.data.forEach((d) => {
                 let subtotal = parseInt(d.barang_harjul) * parseInt(d.qty);
@@ -156,10 +175,18 @@ function tampilKeranjangPembelian() {
         url: "http://localhost/api_toko/Supplier/tampilKeranjangPembelian",
         success: function (result) {
             let res = JSON.parse(result);
-            let temp = "";
+            let pic = ""
+            let cartNameP = ""
+            let cartDetailP = ""
 
+            if (res.length === 0) {
+                pic = `<div class="teks-tengah">
+                            <img src="img/nodata.jpg" class="besar" />
+                        </div>`;
+            } 
+            
             res.forEach((customer) => {
-                temp += `
+                cartNameP += `
                     <div class="block block-strong block-outline-ios">
                         <h2 class="col" style="font-weight: bold;">${customer.suplier_nama}</h2>
                         <div class="left">
@@ -169,7 +196,7 @@ function tampilKeranjangPembelian() {
                 `;
 
                 customer.data.forEach((detail) => {
-                    temp += `
+                    cartDetailP += `
                         <div class="card">
                             <div class="card-content card-content-padding">
                                 <p class="col font-17 teks-tengah" style="font-weight: bold;">${detail.barang_nama}</p>
@@ -181,7 +208,9 @@ function tampilKeranjangPembelian() {
                 });
             });
 
-            $("#keranjangPembelian").html(temp);
+            $('#nodata1').html(pic)
+            $("#keranjangPembelian").html(cartNameP);
+            $("#keranjangPembelianBarang").html(cartDetailP);
         },
     });
 }
@@ -201,6 +230,10 @@ function tampilBayarPembelian(id) {
             let res = JSON.parse(result);
             let temp = "";
             let total = 0;
+
+            if (res.length == 0) {
+                app.views.main.router.back();
+            } 
 
             res.data.forEach((d) => {
                 let subtotal = parseInt(d.barang_harjul) * parseInt(d.qty);

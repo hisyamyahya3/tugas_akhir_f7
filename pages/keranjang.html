@@ -29,22 +29,34 @@
                 </a>
             </div>
         </div>
-        <div class="tabs-animated-wrap">
-            <div class="tabs">
-                <div id="penjualan" class="page-content tab tab-active">
-                    <div class="block-title">Keranjang Penjualan</div>
-                    <div class="grid grid-cols" id="keranjangPenjualan">
-                
-                    </div>
+        <swiper-container class="tabs">
+            <swiper-slide id="penjualan" class="page-content tab tab-active">
+                <div class="block-title">Detail Keranjang Penjualan</div>
+                <div class="grid grid-cols" id="keranjangPenjualan">
+            
                 </div>
-                <div id="pembelian" class="page-content tab">
-                    <div class="block-title">Keranjang Pembelian</div>
-                    <div class="grid grid-cols" id="keranjangPembelian">
+                <div class="block-title">Detail Barang</div>
+                <div class="grid grid-cols" id="keranjangPenjualanBarang">
+            
+                </div>
+                <div class="teks-tengah" id="nodata">
 
-                    </div>
                 </div>
-            </div>
-        </div>
+            </swiper-slide>
+            <swiper-slide id="pembelian" class="page-content tab">
+                <div class="block-title">Detail Keranjang Pembelian</div>
+                <div class="grid grid-cols" id="keranjangPembelian">
+
+                </div>
+                <div class="block-title">Detail Barang</div>
+                <div class="grid grid-cols" id="keranjangPembelianBarang">
+
+                </div>
+                <div class="teks-tengah" id="nodata1">
+
+                </div>
+            </swiper-slide>
+        </swiper-container>
     </div>
 </template>
 <script>
