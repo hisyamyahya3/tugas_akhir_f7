@@ -18,17 +18,15 @@ function tampilBarang() {
 
                 res.data.forEach((d) => {
                     temp += `
-                        <tr>
-                            <td class="label-cell">${d.barang_nama}</td>
-                            <td class="label-cell">${d.barang_satuan}</td>
-                            <td class="numeric-cell">${rupiahFormatter(d.barang_harjul)}</td>
-                            <td class="numeric-cell">${d.barang_stok}</td> 
-                            <td class="numeric-cell">${d.kategori_nama}</td> 
-                            <td class="label-cell"><p class="grid grid-cols-2 grid-gap">
-                            <button class="button button-small button-tonal color-blue" onclick="editBarang(${d.barang_id}, '${d.barang_nama}', '${d.barang_satuan}', ${d.barang_harpok}, ${d.barang_harjul}, ${d.barang_harjul_grosir}, ${d.barang_stok}, ${d.barang_min_stok}, ${d.barang_kategori_id})">Edit</button>
-                            <button class="button button-small button-tonal color-red" onclick="hapusBarang(${d.barang_id})">Hapus</button></p>
-                            </td>
-                        </tr>
+                        <div class="card" onclick="editBarang(${d.barang_id}, '${d.barang_nama}', '${d.barang_satuan}', ${d.barang_harpok}, ${d.barang_harjul}, ${d.barang_harjul_grosir}, ${d.barang_stok}, ${d.barang_min_stok}, ${d.barang_kategori_id})">
+                            <div class="card-content card-content-padding">
+                                <h2 class="col font-17" style="font-weight: bold;">Nama Barang: ${d.barang_nama}</h2>
+                                <p class="col font-17">Harga: ${rupiahFormatter(d.barang_harjul)}</p>
+                                <p class="col font-17">Stok Barang: ${d.barang_stok}</p>
+                                <p class="col font-17">Kategori Barang: ${d.kategori_nama}</p>
+                                <button class="button button-small button-tonal color-red" onclick="hapusBarang(${d.barang_id})">Hapus</button>
+                            </div>
+                        </div>
                     `
                 })
     
@@ -198,14 +196,15 @@ function fetchSearchDataBarang(data) {
 
     data.data.forEach((d) => {
         temp += `
-        <tr>
-            <td class="label-cell">${d.barang_nama}</td>
-            <td class="label-cell">${d.barang_satuan}</td>
-            <td class="numeric-cell">${d.barang_harjul}</td>
-            <td class="numeric-cell">${d.barang_stok}</td> 
-            <td class="numeric-cell">${d.kategori_nama}</td> 
-            <td class="label-cell"><p class="grid grid-cols-2 grid-gap"><button class="button button-small button-tonal color-blue" onclick="editBarang(${d.barang_id}, '${d.barang_nama}', '${d.barang_satuan}', ${d.barang_harpok}, ${d.barang_harjul}, ${d.barang_harjul_grosir}, ${d.barang_stok}, ${d.barang_min_stok}, ${d.barang_kategori_id})">Edit</button><button class="button button-small button-tonal color-red" onclick="hapusBarang(${d.barang_id})">Hapus</button></p></td>
-        </tr>
+        <div class="card" onclick="editBarang(${d.barang_id}, '${d.barang_nama}', '${d.barang_satuan}', ${d.barang_harpok}, ${d.barang_harjul}, ${d.barang_harjul_grosir}, ${d.barang_stok}, ${d.barang_min_stok}, ${d.barang_kategori_id})">
+            <div class="card-content card-content-padding">
+                <h2 class="col font-17" style="font-weight: bold;">Nama Barang: ${d.barang_nama}</h2>
+                <p class="col font-17">Harga: ${rupiahFormatter(d.barang_harjul)}</p>
+                <p class="col font-17">Stok Barang: ${d.barang_stok}</p>
+                <p class="col font-17">Kategori Barang: ${d.kategori_nama}</p>
+                <button class="button button-small button-tonal color-red" onclick="hapusBarang(${d.barang_id})">Hapus</button>
+            </div>
+        </div>
         `
     });
 

@@ -15,24 +15,21 @@
                 </div>
             </div>
         </div>
+        <div class="toolbar tabbar tabbar-icons toolbar-bottom">
+            <div class="toolbar-inner" style="display: flex; justify-content: center; align-items: center;">
+                <h3 class="teks-tengah font17" id="tampilTotalBayarPenjualan"></h3>
+            </div>
+        </div>
         <div class="page-content">
-            <div class="block-title block-title-large">Pelanggan</div>
+            <div class="block-title">Detail Pelanggan</div>
             <div class="card">
                 <div class="card-content card-content-padding">
                     <h3 class="col font-17 nama-pelanggan-keranjang"></h3>
+                    <div class="grid grid-cols" id="tombolBayarPenjualan"></div>
                 </div>
             </div>
-            <div class="grid grid-cols-2" id="tampilBayarPenjualan"></div>
-            <div class="card">
-                <div class="card-content card-content-padding" id="tampilTotalBayarPenjualan">
-                    
-                </div>
-            </div>
-            <!-- <div class="block block-strong block-outline-ios">
-                <p class="grid grid-cols grid-gap">
-                    <button class="button button-large button-tonal" @click="#">Lanjut Ke Pembayaran</button>
-                </p>
-            </div> -->
+            <div class="block-title">Detail Barang</div>
+            <div class="grid grid-cols" id="tampilBayarPenjualan"></div>
         </div>
     </div>
 </template>
@@ -41,7 +38,7 @@
         $on('pageAfterIn', () => {
             let namaPelanggan = localStorage.getItem('namaPelangganKeranjang')
 
-            $('.nama-pelanggan-keranjang').html(namaPelanggan)
+            $('.nama-pelanggan-keranjang').html(`Nama Pelanggan: ${namaPelanggan}`)
         })
         tampilBayarPenjualan(props.id)
         return $render;

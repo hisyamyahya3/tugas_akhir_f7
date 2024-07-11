@@ -17,10 +17,16 @@
         </div>
         <div class="page-content">
             <div class="block-title">Riwayat Penjualan</div>
+            <div class="grid grid-cols" id="rwytPenjualan">
+
+            </div>
             <div class="teks-tengah" id="nodata">
 
             </div>
             <div class="block-title">Riwayat Pembelian</div>
+            <div class="grid grid-cols" id="rwytPembelian">
+
+            </div>
             <div class="teks-tengah" id="nodata1">
 
             </div>
@@ -30,7 +36,8 @@
 <script>
     export default function (props, ctx) {
         ctx.$on('pageAfterIn', () => {
-           
+            tampilRiwayatPenjualan()
+            tampilRiwayatPembelian()
         })
 
         return $render;

@@ -13,18 +13,21 @@ function tampilPelanggan() {
                 pic = `<div class="teks-tengah">
                             <img src="img/nodata.jpg" class="besar" />
                         </div>`;
-            } else {
-                res.data.forEach((d) => {
-                    temp += `
-                        <tr>
-                            <td class="label-cell" style="width: 40%">${d.pelanggan_nama}</td>
-                            <td class="label-cell" style="width: 20%">${d.pelanggan_alamat}</td>
-                            <td class="numeric-cell" style="width: 20%">${d.pelanggan_notelp}</td>
-                            <td class="label-cell"><p class="grid grid-cols-2 grid-gap"><button class="button button-small button-tonal color-blue" onclick="editPelanggan(${d.pelanggan_id}, '${d.pelanggan_nama}', '${d.pelanggan_alamat}', '${d.pelanggan_notelp}',)">Edit</button><button class="button button-small button-tonal color-red" onclick="hapusPelanggan(${d.pelanggan_id})">Hapus</button></p></td>
-                        </tr>
-                    `
-                })
-            }
+            } 
+        
+            res.data.forEach((d) => {
+                temp += `
+                    <div class="card" onclick="editPelanggan(${d.pelanggan_id}, '${d.pelanggan_nama}', '${d.pelanggan_alamat}', '${d.pelanggan_notelp}',)">
+                        <div class="card-content card-content-padding">
+                            <h2 class="col font-17" style="font-weight: bold;">Nama Pelanggan: ${d.pelanggan_nama}</h2>
+                            <p class="col font-17">Alamat Pelanggan: ${d.pelanggan_alamat}</p>
+                            <p class="col font-17">Alamat Pelanggan: ${d.pelanggan_notelp}</p>
+                            <button class="button button-small button-tonal color-red" onclick="hapusPelanggan(${d.pelanggan_id})">Hapus</button>
+                        </div>
+                    </div>
+                `
+            })
+            
 
             $('#daftar-pelanggan').html(temp) 
             $('#nodata').html(pic)   
@@ -146,12 +149,14 @@ function fetchSearchDataPelanggan(data) {
 
     data.data.forEach((d) => {
         temp += `
-            <tr>
-                <td class="label-cell" style="width: 40%">${d.pelanggan_nama}</td>
-                <td class="label-cell" style="width: 20%">${d.pelanggan_alamat}</td>
-                <td class="numeric-cell" style="width: 20%">${d.pelanggan_notelp}</td>
-                <td class="label-cell"><p class="grid grid-cols-2 grid-gap"><button class="button button-small button-tonal color-blue" onclick="editPelanggan(${d.pelanggan_id}, '${d.pelanggan_nama}', '${d.pelanggan_alamat}', '${d.pelanggan_notelp}',)">Edit</button><button class="button button-small button-tonal color-red" onclick="hapusPelanggan(${d.pelanggan_id})">Hapus</button></p></td>
-            </tr>
+            <div class="card" onclick="editPelanggan(${d.pelanggan_id}, '${d.pelanggan_nama}', '${d.pelanggan_alamat}', '${d.pelanggan_notelp}',)">
+                <div class="card-content card-content-padding">
+                    <h2 class="col font-17" style="font-weight: bold;">Nama Pelanggan: ${d.pelanggan_nama}</h2>
+                    <p class="col font-17">Alamat Pelanggan: ${d.pelanggan_alamat}</p>
+                    <p class="col font-17">Alamat Pelanggan: ${d.pelanggan_notelp}</p>
+                    <button class="button button-small button-tonal color-red" onclick="hapusPelanggan(${d.pelanggan_id})">Hapus</button>
+                </div>
+            </div>
         `
     });
     

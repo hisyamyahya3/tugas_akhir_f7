@@ -17,12 +17,14 @@ function tampilSupplier() {
             } else {
                 res.data.forEach((d) => {
                     temp += `
-                        <tr>
-                            <td class="label-cell" style="width: 40%">${d.suplier_nama}</td>
-                            <td class="label-cell" style="width: 30%">${d.suplier_alamat}</td>
-                            <td class="numeric-cell" style="width: 20%">${d.suplier_notelp}</td>
-                            <td class="label-cell"><p class="grid grid-cols-2 grid-gap"><button class="button button-small button-tonal color-blue" onclick="editSupplier(${d.suplier_id}, '${d.suplier_nama}', '${d.suplier_alamat}', '${d.suplier_notelp}')">Edit</button><button class="button button-small button-tonal color-red" onclick="hapusSupplier(${d.suplier_id})">Hapus</button></p></td>
-                        </tr>
+                    <div class="card" onclick="editSupplier(${d.suplier_id}, '${d.suplier_nama}', '${d.suplier_alamat}', '${d.suplier_notelp}',)">
+                        <div class="card-content card-content-padding">
+                            <h2 class="col font-17" style="font-weight: bold;">Nama Supplier: ${d.suplier_nama}</h2>
+                            <p class="col font-17">Alamat Supplier: ${d.suplier_alamat}</p>
+                            <p class="col font-17">Alamat Supplier: ${d.suplier_notelp}</p>
+                            <button class="button button-small button-tonal color-red" onclick="hapusSupplier(${d.suplier_id})">Hapus</button>
+                        </div>
+                    </div>
                     `
                 })
             }
@@ -150,12 +152,14 @@ function fetchSearchDataSupplier(data) {
 
     data.data.forEach((d) => {
         temp += `
-            <tr>
-                <td class="label-cell" style="width: 40%">${d.suplier_nama}</td>
-                <td class="label-cell" style="width: 30%">${d.suplier_alamat}</td>
-                <td class="numeric-cell" style="width: 20%">${d.suplier_notelp}</td>
-                <td class="label-cell"><p class="grid grid-cols-2 grid-gap"><button class="button button-small button-tonal color-blue" onclick="editSupplier(${d.suplier_id}, '${d.suplier_nama}', '${d.suplier_alamat}', '${d.suplier_notelp}')">Edit</button><button class="button button-small button-tonal color-red" onclick="hapusSupplier(${d.suplier_id})">Hapus</button></p></td>
-            </tr>
+            <div class="card" onclick="editSupplier(${d.suplier_id}, '${d.suplier_nama}', '${d.suplier_alamat}', '${d.suplier_notelp}',)">
+                <div class="card-content card-content-padding">
+                    <h2 class="col font-17" style="font-weight: bold;">Nama Supplier: ${d.suplier_nama}</h2>
+                    <p class="col font-17">Alamat Supplier: ${d.suplier_alamat}</p>
+                    <p class="col font-17">Alamat Supplier: ${d.suplier_notelp}</p>
+                    <button class="button button-small button-tonal color-red" onclick="hapusSupplier(${d.suplier_id})">Hapus</button>
+                </div>
+            </div>
         `
     });
 

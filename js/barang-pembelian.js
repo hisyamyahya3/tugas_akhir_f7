@@ -16,7 +16,7 @@ function tampilBarangPembelian(keyword) {
                 temp += `
                     <div class="card">
                         <div class="card-content card-content-padding">
-                            <h4 class="col font-17 teks-tengah">${d.barang_nama}</h4>
+                            <h2 class="col font-17" style="font-weight: bold;">Nama Barang: ${d.barang_nama}</h2>
                             <p class="col font-17">Harga: ${rupiahFormatter(d.barang_harjul)}</p>
                             <p class="col font-17">Stok: ${d.barang_stok}</p>
                         </div>

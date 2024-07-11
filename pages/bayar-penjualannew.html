@@ -4,7 +4,7 @@
             <div class="navbar-bg"></div>
             <div class="navbar-inner sliding">
                 <div class="left">
-                    <a href="#" class="back-pembelian">
+                    <a class="link back">
                         <i class="icon icon-back"></i>
                         <span class="if-not-md">Framework7</span>
                     </a>
@@ -67,7 +67,7 @@
             let totalPembayaran = rupiahFormatter(localStorage.getItem('totalPenjualan'))
             let namaPelanggan = localStorage.getItem('namaPelangganKeranjang')
 
-            $('.nama-pelanggan-keranjang').html(namaPelanggan);
+            $('.nama-pelanggan-keranjang').html(`Nama Pelanggan: ${namaPelanggan}`);
             $('#total_penjualan_new').val(totalPembayaran)
         })
 

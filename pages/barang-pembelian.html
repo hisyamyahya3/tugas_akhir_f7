@@ -16,9 +16,10 @@
             </div>
         </div>
         <div class="page-content">
+            <div class="block-title">Nama Supplier</div>
             <div class="card" id="detailSupplier" style="display: none">
                 <div class="card-content card-content-padding">
-                    <p class="col font-17" id="detailSupplierPembelian"></p>
+                    <p class="col font-17" style="font-weight: bold;" id="detailSupplierPembelian"></p>
                 </div>
             </div>
             <div class="block-title">Pilih Barang</div>
@@ -30,11 +31,8 @@
                     </div>
                 </div>
             </form>
-            <div class="grid grid-cols-2" id="tampilBarangPembelian">
+            <div class="grid grid-cols" id="tampilBarangPembelian">
                 
-            </div>
-            <div class="block block-strong block-outline-ios">
-                <p class="grid grid-cols-2 grid-gap"></p>
             </div>
         </div>
         <div class="fab fab-extended fab-center-bottom">
@@ -52,7 +50,7 @@
             tampilBarangPembelian('');
             let nama = localStorage.getItem("cartSupplierNama")
             $('#detailSupplier').css({display: 'block'})
-            $('#detailSupplierPembelian').html(`Atas Nama ${nama}`)
+            $('#detailSupplierPembelian').html(nama)
         })
 
         return $render;

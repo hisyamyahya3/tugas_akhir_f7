@@ -11,15 +11,16 @@
             </div>
         </div>
         <div class="page-content">
-            <div class="block-title block-title-large teks-tengah">Pembayaran berhasil</div>
+            <div class="block-title teks-tengah">Pembayaran berhasil</div>
             <div class="card">
                 <div class="card-content card-content-padding">
-                    <i class="icon f7-icons teks-tengah">checkmark_2</i>     Hore! Pembayaran mu telah selesai
+                    <i class="icon f7-icons teks-tengah">checkmark_2</i>
+                    <p class="col font17" style="font-weight: bold;">Hore! Pembayaran mu telah selesai</p>
                 </div>
             </div>
-            <div class="block-title block-title-medium teks-tengah">Jumlah Pembayaran</div>
+            <div class="block-title teks-tengah">Jumlah Pembayaran</div>
             <h1 class="teks-tengah status-nominal-pembayaran"></h1>
-            <div class="block-title block-title-medium">Atas Nama</div>
+            <div class="block-title">Detail</div>
             <div class="card">
                 <div class="card-content card-content-padding">
                     <h3 class="status-nama-user"></h3>
@@ -34,7 +35,7 @@
             const namaPelanggan = localStorage.getItem('statusNamaUser')
             const jmlUang = localStorage.getItem('statusNominalPembayaran')
 
-            $('.status-nominal-pembayaran').html(`Rp. ${jmlUang}`)
+            $('.status-nominal-pembayaran').html(`${rupiahFormatter(jmlUang)}`)
             $('.status-nama-user').html(namaPelanggan)
 
             $('.back-to-home').on('click', () => {app.views.main.router.navigate("/")})

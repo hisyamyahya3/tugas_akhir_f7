@@ -81,9 +81,7 @@ function tampilBayarPenjualan(id) {
                 temp += `
                 <div class="card">
                     <div class="card-content card-content-padding">
-                        <p class="col font-17 teks-tengah" style="font-weight: bold;">${d.barang_nama}</p>
-                        <p class="col font-17">Stok: ${d.barang_stok}</p>
-                        <p class="col font-17" style="text-align: left; font-weight: bold;">Harga: Rp. ${d.barang_harjul}</p>
+                        <h2 class="col font-17" style="font-weight: bold;">Nama Barang: ${d.barang_nama}</h2>
                         <div class="grid grid-cols">
                             <div>
                                 <div class="stepper stepper-fill stepper-init">
@@ -95,7 +93,9 @@ function tampilBayarPenjualan(id) {
                                 </div>
                             </div>
                         </div>
-                        <p class="col font-17" style="text-align: left; font-weight: bold;">Subtotal: Rp. ${subtotal}</p>
+                        <p class="col font-17">Stok: ${d.barang_stok}</p>
+                        <p class="col font-17">Harga: ${rupiahFormatter(d.barang_harjul)}</p>
+                        <p class="col font-17">Subtotal: ${rupiahFormatter(subtotal)}</p>
                     </div>
                     <div class="card-footer">
                         <button class="button button-small button-tonal color-red" onclick="hapusKeranjangPenjualan(${d.pelanggan_id}, ${d.id})">Hapus Barang</button>
@@ -105,12 +105,15 @@ function tampilBayarPenjualan(id) {
             });
 
             let temp2 = `
-                <h3 class="col font-17">Total Bayar : Rp. ${total}</h3>
+                <p class="col font-17">Total: ${rupiahFormatter(total)}</p>
+            `
+            let temp3 = `
                 <button class="button button-large button-tonal" onclick="lanjutBayarPenjualan(${id}, ${total})">Lanjut Ke Pembayaran</button>
             `
 
             $("#tampilBayarPenjualan").html(temp);
             $("#tampilTotalBayarPenjualan").html(temp2);
+            $("#tombolBayarPenjualan").html(temp3);
         },
     });
 }
@@ -187,21 +190,28 @@ function tampilKeranjangPembelian() {
             
             res.forEach((customer) => {
                 cartNameP += `
-                    <div class="block block-strong block-outline-ios">
-                        <h2 class="col" style="font-weight: bold;">${customer.suplier_nama}</h2>
-                        <div class="left">
-                            <button class="button button-small button-tonal" onclick="bayarPembelian(${customer.suplier_id}, '${customer.suplier_nama}')">Bayar</button>
+                    <div class="card">
+                        <div class="card-content card-content-padding">
+                            <p class="col">Nama Supplier: ${customer.suplier_nama}</p>
+                            <p class="col">Alamat Supplier: ${customer.suplier_alamat}</p>
+                            <p class="col">Nomor Telp: ${customer.suplier_notelp}</p>
+                            <div class="left">
+                                <button class="button button-small button-tonal" onclick="bayarPembelian(${customer.suplier_id}, '${customer.suplier_nama}')">Bayar</button>
+                            </div>
                         </div>
-                    </div>
+                    </div>    
                 `;
 
                 customer.data.forEach((detail) => {
+                    const total = detail.barang_harjul * detail.qty;
                     cartDetailP += `
                         <div class="card">
                             <div class="card-content card-content-padding">
-                                <p class="col font-17 teks-tengah" style="font-weight: bold;">${detail.barang_nama}</p>
-                                <p class="col font-17">Stok: ${detail.barang_stok}</p>
-                                <p class="col font-17" style="text-align: left; font-weight: bold;">Harga per item: Rp. ${detail.barang_harjul}</p>
+                                <input type="hidden" class="barang-id" value="${detail.barang_id}">
+                                <h2 class="col font-17" style="font-weight: bold;">Nama Barang: ${detail.barang_nama}</h2>
+                                <p class="col font-17">Jumlah Barang: ${detail.qty}</p>
+                                <p class="col font-17">Harga per item: ${rupiahFormatter(detail.barang_harjul)}</p>
+                                <p class="col font-17">Total: ${rupiahFormatter(total)}</p>
                             </div>
                         </div>
                     `;
@@ -242,9 +252,7 @@ function tampilBayarPembelian(id) {
                 temp += `
                 <div class="card">
                     <div class="card-content card-content-padding">
-                        <p class="col font-17 teks-tengah" style="font-weight: bold;">${d.barang_nama}</p>
-                        <p class="col font-17">Stok: ${d.barang_stok}</p>
-                        <p class="col font-17" style="text-align: left; font-weight: bold;">Harga: Rp. ${d.barang_harjul}</p>
+                        <h2 class="col font-17" style="font-weight: bold;">Nama Barang: ${d.barang_nama}</h2>
                         <div class="grid grid-cols">
                             <div>
                                 <div class="stepper stepper-fill stepper-init">
@@ -256,7 +264,9 @@ function tampilBayarPembelian(id) {
                                 </div>
                             </div>
                         </div>
-                        <p class="col font-17" style="text-align: left; font-weight: bold;">Subtotal: Rp. ${subtotal}</p>
+                        <p class="col font-17">Stok: ${d.barang_stok}</p>
+                        <p class="col font-17">Harga: ${rupiahFormatter(d.barang_harjul)}</p>
+                        <p class="col font-17">Subtotal: ${rupiahFormatter(subtotal)}</p>
                     </div>
                     <div class="card-footer">
                         <button class="button button-small button-tonal color-red" onclick="hapusKeranjangPembelian(${d.id}, ${d.supplier_id})">Hapus Barang</button>
@@ -266,12 +276,17 @@ function tampilBayarPembelian(id) {
             });
 
             let temp2 = `
-                <h3 class="col font-17">Total Bayar : Rp. ${total}</h3>
+                <p class="col font-17">Total: ${rupiahFormatter(total)}</p>
+                `
+
+            let temp3 = `
                 <button class="button button-large button-tonal" onclick="lanjutBayarPembelian(${id}, ${total})">Lanjut Ke Pembayaran</button>
+            
             `
 
             $("#tampilBayarPembelian").html(temp);
             $("#tampilTotalBayarPembelian").html(temp2);
+            $("#tombolBayarPembelian").html(temp3);
         },
     });
 }

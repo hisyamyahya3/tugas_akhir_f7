@@ -16,9 +16,9 @@ function tampilPelangganPenjualan(keyword) {
             data.data.forEach((d) => {
                 temp += `<div class="card">
                     <div class="card-content card-content-padding">
-                        <p class="col font-17">${d.pelanggan_nama}</p>
-                        <p class="col font-17">${d.pelanggan_alamat}</p>
-                        <p class="col font-17">${d.pelanggan_notelp}</p>
+                        <h2 class="col font-17" style="font-weight: bold;">Nama Pelanggan: ${d.pelanggan_nama}</h2>
+                        <p class="col font-17">Alamat Pelanggan: ${d.pelanggan_alamat}</p>
+                        <p class="col font-17">Nomor Telpon: ${d.pelanggan_notelp}</p>
                     </div>
                     <div class="card-footer"><button class="button button-small button-tonal color-blue" onclick="pilihPelanggan('${d.pelanggan_id}', '${d.pelanggan_nama}')">Pilih</button></div>
                 </div>`
@@ -199,6 +199,50 @@ function cetakLaporanPenjualan() {
             pdf.fromData(datacetak, opsi)
             .then((stats) => console.log(stats))
             .catch((err) => console.log(err));
+
+
+        },
+        error: function () {
+            app.dialog.alert("Tidak Terhubung dengan Server!", "Error");
+        }
+    })
+}
+
+function tampilRiwayatPenjualan () {
+    let userID = localStorage.getItem("userID")
+
+    $.ajax({
+        url: "http://localhost/api_toko/Penjualan/laporan",
+        method: "POST",
+        data: {
+            userID: userID,
+        },
+        success: function (res) {
+            let data = JSON.parse(res)
+            let pic = '';
+            let temp = '';
+
+            if (data.data.length === 0) {
+                pic = `<div class="teks-tengah">
+                            <img src="img/nodata.jpg" class="besar" />
+                        </div>`;
+            } 
+
+            data.data.forEach((d) => {
+                temp += `
+                <div class="card">
+                    <div class="card-content card-content-padding">
+                        <p class="col">No. Transaksi: ${d.jual_nofak}</p>
+                        <p class="col">Nama Pelanggan: ${d.pelanggan_nama}</p>
+                        <p class="col">Tgl Transaksi: ${d.jual_tanggal}</p>
+                        <p class="col">Total: ${rupiahFormatter(d.d_jual_total)}</p>
+                    </div>
+                </div>
+                `
+            })
+
+            $('#nodata').html(pic)
+            $('#rwytPenjualan').html(temp)
 
 
         },

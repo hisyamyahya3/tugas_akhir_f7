@@ -16,12 +16,14 @@ function tampilPengeluaran() {
             } else {
                 res.data.forEach((d) => {
                     temp += `
-                        <tr>
-                            <td class="label-cell">${d.uraian}</td>
-                            <td class="numeric-cell">${rupiahFormatter(d.nominal)}</td>
-                            <td class="numeric-cell">${d.waktu}</td>
-                            <td class="actions-cell"><p class="grid grid-cols-2 grid-gap"><button class="button button-small button-tonal color-red" onclick="hapusPengeluaran(${d.id_pengeluaran})">Hapus</button></p></td>
-                        </tr>
+                        <div class="card">
+                            <div class="card-content card-content-padding">
+                                <h2 class="col font-17" style="font-weight: bold;">Uraian: ${d.uraian}</h2>
+                                <p class="col font-17">Nominal: ${rupiahFormatter(d.nominal)}</p>
+                                <p class="col font-17">Tanggal/ Jam: ${d.waktu}</p>
+                                <button class="button button-small button-tonal color-red" onclick="hapusPengeluaran(${d.id_pengeluaran})">Hapus</button>
+                            </div>
+                        </div>
                     `
                 })
             }
