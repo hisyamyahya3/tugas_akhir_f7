@@ -17,12 +17,15 @@ function tampilSupplier() {
             } else {
                 res.data.forEach((d) => {
                     temp += `
-                    <div class="card" onclick="editSupplier(${d.suplier_id}, '${d.suplier_nama}', '${d.suplier_alamat}', '${d.suplier_notelp}',)">
+                    <div class="card">
                         <div class="card-content card-content-padding">
                             <h2 class="col font-17" style="font-weight: bold;">Nama Supplier: ${d.suplier_nama}</h2>
                             <p class="col font-17">Alamat Supplier: ${d.suplier_alamat}</p>
                             <p class="col font-17">Alamat Supplier: ${d.suplier_notelp}</p>
-                            <button class="button button-small button-tonal color-red" onclick="hapusSupplier(${d.suplier_id})">Hapus</button>
+                            <div class="grid grid-cols-2 grid-gap">
+                                <button class="button button-small button-tonal color-blue" onclick="editSupplier(${d.suplier_id}, '${d.suplier_nama}', '${d.suplier_alamat}', '${d.suplier_notelp}',)">Edit</button>
+                                <button class="button button-small button-tonal color-red" onclick="hapusSupplier(${d.suplier_id})">Hapus</button>           
+                            </div>
                         </div>
                     </div>
                     `
@@ -72,7 +75,7 @@ function editSupplier(id, nama, alamat, notelp) {
 function updateSupplier() {
     let kodeSupplier = localStorage.getItem("kodeSupplier");
     let suplier_nama = $("input[name=suplier_nama]").val();
-    let suplier_alamat = $("input[name=suplier_alamat]").val();
+    let suplier_alamat = $("textarea[name=suplier_alamat]").val();
     let suplier_notelp = $("input[name=suplier_notelp]").val();
 
     if (suplier_nama == "" || suplier_alamat == "" || suplier_notelp == "") {
@@ -152,12 +155,15 @@ function fetchSearchDataSupplier(data) {
 
     data.data.forEach((d) => {
         temp += `
-            <div class="card" onclick="editSupplier(${d.suplier_id}, '${d.suplier_nama}', '${d.suplier_alamat}', '${d.suplier_notelp}',)">
+            <div class="card">
                 <div class="card-content card-content-padding">
                     <h2 class="col font-17" style="font-weight: bold;">Nama Supplier: ${d.suplier_nama}</h2>
                     <p class="col font-17">Alamat Supplier: ${d.suplier_alamat}</p>
                     <p class="col font-17">Alamat Supplier: ${d.suplier_notelp}</p>
-                    <button class="button button-small button-tonal color-red" onclick="hapusSupplier(${d.suplier_id})">Hapus</button>
+                    <div class="grid grid-cols-2 grid-gap">
+                        <button class="button button-small button-tonal color-blue" onclick="editSupplier(${d.suplier_id}, '${d.suplier_nama}', '${d.suplier_alamat}', '${d.suplier_notelp}',)">Edit</button>
+                        <button class="button button-small button-tonal color-red" onclick="hapusSupplier(${d.suplier_id})">Hapus</button>           
+                    </div>
                 </div>
             </div>
         `

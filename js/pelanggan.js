@@ -17,12 +17,15 @@ function tampilPelanggan() {
         
             res.data.forEach((d) => {
                 temp += `
-                    <div class="card" onclick="editPelanggan(${d.pelanggan_id}, '${d.pelanggan_nama}', '${d.pelanggan_alamat}', '${d.pelanggan_notelp}',)">
+                    <div class="card">
                         <div class="card-content card-content-padding">
                             <h2 class="col font-17" style="font-weight: bold;">Nama Pelanggan: ${d.pelanggan_nama}</h2>
                             <p class="col font-17">Alamat Pelanggan: ${d.pelanggan_alamat}</p>
                             <p class="col font-17">Alamat Pelanggan: ${d.pelanggan_notelp}</p>
-                            <button class="button button-small button-tonal color-red" onclick="hapusPelanggan(${d.pelanggan_id})">Hapus</button>
+                            <div class="grid grid-cols-2 grid-gap">
+                                <button class="button button-small button-tonal color-blue" onclick="editPelanggan(${d.pelanggan_id}, '${d.pelanggan_nama}', '${d.pelanggan_alamat}', '${d.pelanggan_notelp}',)">Edit</button>
+                                <button class="button button-small button-tonal color-red" onclick="hapusPelanggan(${d.pelanggan_id})">Hapus</button>
+                            </div>
                         </div>
                     </div>
                 `
@@ -69,7 +72,7 @@ function editPelanggan(id, nama, alamat, notelp) {
 function updatePelanggan() {
     let kodePelanggan = localStorage.getItem("kodePelanggan");
     let pelanggan_nama = $("input[name=pelanggan_nama]").val();
-    let pelanggan_alamat = $("input[name=pelanggan_alamat]").val();
+    let pelanggan_alamat = $("textarea[name=pelanggan_alamat]").val();
     let pelanggan_notelp = $("input[name=pelanggan_notelp]").val();
 
     if(pelanggan_nama == "" || pelanggan_alamat == "" || pelanggan_notelp == ""){
@@ -149,12 +152,15 @@ function fetchSearchDataPelanggan(data) {
 
     data.data.forEach((d) => {
         temp += `
-            <div class="card" onclick="editPelanggan(${d.pelanggan_id}, '${d.pelanggan_nama}', '${d.pelanggan_alamat}', '${d.pelanggan_notelp}',)">
+            <div class="card">
                 <div class="card-content card-content-padding">
                     <h2 class="col font-17" style="font-weight: bold;">Nama Pelanggan: ${d.pelanggan_nama}</h2>
                     <p class="col font-17">Alamat Pelanggan: ${d.pelanggan_alamat}</p>
                     <p class="col font-17">Alamat Pelanggan: ${d.pelanggan_notelp}</p>
-                    <button class="button button-small button-tonal color-red" onclick="hapusPelanggan(${d.pelanggan_id})">Hapus</button>
+                    <div class="grid grid-cols-2 grid-gap">
+                        <button class="button button-small button-tonal color-blue" onclick="editPelanggan(${d.pelanggan_id}, '${d.pelanggan_nama}', '${d.pelanggan_alamat}', '${d.pelanggan_notelp}',)">Edit</button>
+                        <button class="button button-small button-tonal color-red" onclick="hapusPelanggan(${d.pelanggan_id})">Hapus</button>
+                    </div>
                 </div>
             </div>
         `

@@ -9,30 +9,21 @@
                         <span class="if-not-md">Framework7</span>
                     </a>
                 </div>
-                <div class="title">Tambah Pengeluaran</div>
+                <div class="title">Kelola Satuan</div>
                 <div class="title-large">
-                    <div class="title-large-text">Tambah Pengeluaran</div>
+                    <div class="title-large-text">Kelola Satuan</div>
                 </div>
             </div>
         </div>
         <div class="page-content">
-            <div class="block-title block-title-medium">Form Tambah Pengeluaran</div>
+            <div class="block-title block-title-medium">Form Kelola Satuan</div>
             <div class="list list-strong-ios list-dividers-ios inset-ios">
                 <ul>
                     <li class="item-content item-input item-input-outline">
                         <div class="item-inner">
-                            <div class="item-title item-floating-label">Uraian</div>
+                            <div class="item-title item-label">Nama Satuan</div>
                             <div class="item-input-wrap">
-                                <input name="uraian" type="text"/>
-                                <span class="input-clear-button"></span>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="item-content item-input item-input-outline">
-                        <div class="item-inner">
-                            <div class="item-title item-floating-label">Nominal</div>
-                            <div class="item-input-wrap">
-                                <input name="nominal" type="tel"/>
+                                <input name="satuan_nama" type="text" id="satuan_nama"/>
                                 <span class="input-clear-button"></span>
                             </div>
                         </div>
@@ -41,7 +32,7 @@
             </div>
             <div class="block block-strong block-outline-ios">
                 <p class="grid grid-cols grid-gap">
-                    <button class="button button-large button-tonal color-blue" @click="${()=>tambahPengeluaran()}">Simpan</button>
+                    <button class="button button-large button-tonal color-blue" @click="${()=>updateSatuan()}">Update</button>
                 </p>
             </div>
         </div>
@@ -49,6 +40,13 @@
 </template>
 <script>
     export default function (props, ctx) {
-        return $render;
+        let $on = ctx.$on;
+
+        $on('pageAfterIn', () => {
+            let namaSatuan = localStorage.getItem("namaSatuan");
+            let idSatuan = localStorage.getItem("idSatuan");
+            document.getElementById('satuan_nama').value = namaSatuan;
+        })
+        return $render
     }
 </script>

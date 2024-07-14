@@ -51,6 +51,9 @@ var routes = [
   {path: '/laporan-penjualan/', componentUrl: 'pages/laporan-penjualan.html'},
   {path: '/laporan-pembelian/', componentUrl: 'pages/laporan-pembelian.html'},
   {path: '/riwayat/', componentUrl: 'pages/riwayat.html'},
+  {path: '/satuan/', componentUrl: 'pages/satuan.html'},
+  {path: '/addsatuan/', componentUrl: 'pages/tambah-satuan.html'},
+  {path: '/editsatuan/', componentUrl: 'pages/kelola-satuan.html'},
   {path: '(.*)', url: 'pages/404.html'},
 ];
 // var routes = [

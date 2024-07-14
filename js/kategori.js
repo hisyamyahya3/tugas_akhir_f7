@@ -18,7 +18,7 @@ function tampilKategori() {
                 res.data.forEach((d) => {
                     temp += `
                         <tr>
-                            <td class="label-cell">${d.kategori_nama}</td>
+                            <td class="label-cell font-17 teks-tengah" style="font-weight: bold;">${d.kategori_nama}</td>
                             <td class="actions-cell"><p class="grid grid-cols-2 grid-gap"><button class="button button-small button-tonal color-blue" onclick="editKategori(${d.kategori_id}, '${d.kategori_nama}')">Edit</button><button class="button button-small button-tonal color-red" onclick="hapusKategori(${d.kategori_id})">Hapus</button></p></td>
                         </tr>
                     `

@@ -6,8 +6,7 @@ function tampilKeranjangPenjualan() {
         success: function (result) {
             let res = JSON.parse(result);
             let pic = ""
-            let cartName = ""
-            let cartDetail = ""
+            let temp = ""
 
             if (res.length === 0) {
                 pic = `<div class="teks-tengah">
@@ -16,7 +15,8 @@ function tampilKeranjangPenjualan() {
             } 
 
             res.forEach((customer) => {
-                cartName += `
+                temp += `
+                    <div class="block-title">Detail Pelanggan Penjualan</div>
                     <div class="card">
                         <div class="card-content card-content-padding">
                             <p class="col">Nama Pelanggan: ${customer.pelanggan_nama}</p>
@@ -29,9 +29,13 @@ function tampilKeranjangPenjualan() {
                     </div>
                 `;
 
+                if (customer.data.length > 0) {
+                    temp += `<div class="block-title">Detail Barang</div>`;
+                }
+
                 customer.data.forEach((detail) => {
                     const total = detail.barang_harjul * detail.qty;
-                    cartDetail += `
+                    temp += `
                         <div class="card">
                             <div class="card-content card-content-padding">
                                 <input type="hidden" class="barang-id" value="${detail.barang_id}">
@@ -46,8 +50,7 @@ function tampilKeranjangPenjualan() {
             });
 
             $('#nodata').html(pic)
-            $("#keranjangPenjualan").html(cartName);
-            $("#keranjangPenjualanBarang").html(cartDetail);
+            $("#keranjangPenjualan").html(temp);
         },
     });
 }
@@ -179,8 +182,7 @@ function tampilKeranjangPembelian() {
         success: function (result) {
             let res = JSON.parse(result);
             let pic = ""
-            let cartNameP = ""
-            let cartDetailP = ""
+            let temp = ""
 
             if (res.length === 0) {
                 pic = `<div class="teks-tengah">
@@ -189,7 +191,8 @@ function tampilKeranjangPembelian() {
             } 
             
             res.forEach((customer) => {
-                cartNameP += `
+                temp += `
+                    <div class="block-title">Detail Supplier Pembelian</div>
                     <div class="card">
                         <div class="card-content card-content-padding">
                             <p class="col">Nama Supplier: ${customer.suplier_nama}</p>
@@ -202,9 +205,13 @@ function tampilKeranjangPembelian() {
                     </div>    
                 `;
 
+                if (customer.data.length > 0) {
+                    temp += `<div class="block-title">Detail Barang</div>`;
+                }
+
                 customer.data.forEach((detail) => {
                     const total = detail.barang_harjul * detail.qty;
-                    cartDetailP += `
+                    temp += `
                         <div class="card">
                             <div class="card-content card-content-padding">
                                 <input type="hidden" class="barang-id" value="${detail.barang_id}">
@@ -219,8 +226,7 @@ function tampilKeranjangPembelian() {
             });
 
             $('#nodata1').html(pic)
-            $("#keranjangPembelian").html(cartNameP);
-            $("#keranjangPembelianBarang").html(cartDetailP);
+            $("#keranjangPembelian").html(temp);
         },
     });
 }
