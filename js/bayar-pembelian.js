@@ -35,9 +35,11 @@ $(document).on('click', '.btn-bayar-pembelian', function () {
 
                 app.views.main.router.navigate(`/sts-pembayaran/${result.data.beli_nofak}`)
             }
-        },
-        error: function () {
 
+            app.dialog.alert(result.message, "Information");
+        },
+        error: function (error) {
+            console.log(error)
         }
     })
 })
