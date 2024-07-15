@@ -17,14 +17,18 @@ function tampilPiutang() {
             } else {
                 res.data.forEach((d) => {
                     temp += `
-                        <tr>
-                            <td class="label-cell">${d.pelanggan_nama}</td>
-                            <td class="numeric-cell">${d.tgl_transaksi}</td>
-                            <td class="numeric-cell">${rupiahFormatter(d.jml_transaksi)}</td>
-                            <td class="numeric-cell">${rupiahFormatter(d.jml_dibayar)}</td>
-                            <td class="numeric-cell">${rupiahFormatter(d.jml_kekurangan)}</td>
-                            <td class="label-cell"><button class="button button-small button-tonal" onclick="detailPiutang(${d.id})">Lihat</button></td>
-                        </tr>
+                        <div class="card">
+                            <div class="card-content card-content-padding">
+                                <h2 class="col font-17" style="font-weight: bold;">Nama Supplier: ${d.pelanggan_nama}</h2>
+                                <p class="col font-17">Tgl Transaksi: ${d.tgl_transaksi}</p>
+                                <p class="col font-17">Jumlah Transaksi: ${rupiahFormatter(d.jml_transaksi)}</p>
+                                <p class="col font-17">Jumlah Dibayar: ${rupiahFormatter(d.jml_dibayar)}</p>
+                                <p class="col font-17">Jumlah Kekurangan: ${rupiahFormatter(d.jml_kekurangan)}</p>
+                                <div class="grid grid-cols grid-gap">
+                                    <button class="button button-small button-tonal" onclick="detailPiutang(${d.id})">Lihat</button>
+                                </div>
+                            </div>
+                        </div>
                     `
                 })
             }
@@ -38,4 +42,57 @@ function tampilPiutang() {
 
 function detailPiutang(id) {
     app.views.main.router.navigate(`/piutang/detail/${id}`);
+}
+
+$(document).on('keyup', '#searchTabelPiutang', function () {
+    let searchInput = $(this).val()
+    let userID = localStorage.getItem("userID")
+
+    if (searchInput.length > 0) {
+        $.ajax({
+            url: "http://localhost/api_toko/Piutang/search",
+            method: "POST",
+            data: {
+                pelanggan_nama: searchInput,
+                userID: userID
+            },
+            success: function (result) {
+                let res = JSON.parse(result)
+
+                if (res.data) {
+                    $('#daftar-piutang').html(fetchSearchDataPiutang(res))
+                } else {
+                    $('#daftar-piutang').html(tampilPiutang())
+                }
+            },
+            error: function () {
+                app.dialog.alert("Tidak Terhubung dengan Server!","Error");
+            }
+        })
+    } else {
+        $('#daftar-piutang').html(tampilPiutang())
+    }
+})
+
+function fetchSearchDataPiutang (res) {
+    let temp = ''
+
+    res.data.forEach((d) => {
+        temp += `
+            <div class="card">
+                <div class="card-content card-content-padding">
+                    <h2 class="col font-17" style="font-weight: bold;">Nama Supplier: ${d.pelanggan_nama}</h2>
+                    <p class="col font-17">Tgl Transaksi: ${d.tgl_transaksi}</p>
+                    <p class="col font-17">Jumlah Transaksi: ${rupiahFormatter(d.jml_transaksi)}</p>
+                    <p class="col font-17">Jumlah Dibayar: ${rupiahFormatter(d.jml_dibayar)}</p>
+                    <p class="col font-17">Jumlah Kekurangan: ${rupiahFormatter(d.jml_kekurangan)}</p>
+                    <div class="grid grid-cols grid-gap">
+                        <button class="button button-small button-tonal" onclick="detailPiutang(${d.id})">Lihat</button>
+                    </div>
+                </div>
+            </div>
+        `
+    });
+
+    return temp;
 }

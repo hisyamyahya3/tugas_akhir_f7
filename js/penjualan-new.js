@@ -208,46 +208,46 @@ function cetakLaporanPenjualan() {
     })
 }
 
-function tampilRiwayatPenjualan () {
-    let userID = localStorage.getItem("userID")
+// function tampilRiwayatPenjualan () {
+//     let userID = localStorage.getItem("userID")
 
-    $.ajax({
-        url: "http://localhost/api_toko/Penjualan/laporan",
-        method: "POST",
-        data: {
-            userID: userID,
-        },
-        success: function (res) {
-            let data = JSON.parse(res)
-            let pic = '';
-            let temp = '';
+//     $.ajax({
+//         url: "http://localhost/api_toko/Penjualan/laporan",
+//         method: "POST",
+//         data: {
+//             userID: userID,
+//         },
+//         success: function (res) {
+//             let data = JSON.parse(res)
+//             let pic = '';
+//             let temp = '';
 
-            if (data.data.length === 0) {
-                pic = `<div class="teks-tengah">
-                            <img src="img/nodata.jpg" class="besar" />
-                        </div>`;
-            } 
+//             if (data.data.length === 0) {
+//                 pic = `<div class="teks-tengah">
+//                             <img src="img/nodata.jpg" class="besar" />
+//                         </div>`;
+//             } 
 
-            data.data.forEach((d) => {
-                temp += `
-                <div class="card">
-                    <div class="card-content card-content-padding">
-                        <p class="col">No. Transaksi: ${d.jual_nofak}</p>
-                        <p class="col">Nama Pelanggan: ${d.pelanggan_nama}</p>
-                        <p class="col">Tgl Transaksi: ${d.jual_tanggal}</p>
-                        <p class="col">Total: ${rupiahFormatter(d.d_jual_total)}</p>
-                    </div>
-                </div>
-                `
-            })
+//             data.data.forEach((d) => {
+//                 temp += `
+//                 <div class="card">
+//                     <div class="card-content card-content-padding">
+//                         <p class="col">No. Transaksi: ${d.jual_nofak}</p>
+//                         <p class="col">Nama Pelanggan: ${d.pelanggan_nama}</p>
+//                         <p class="col">Tgl Transaksi: ${d.jual_tanggal}</p>
+//                         <p class="col">Total: ${rupiahFormatter(d.d_jual_total)}</p>
+//                     </div>
+//                 </div>
+//                 `
+//             })
 
-            $('#nodata').html(pic)
-            $('#rwytPenjualan').html(temp)
+//             $('#nodata').html(pic)
+//             $('#rwytPenjualan').html(temp)
 
 
-        },
-        error: function () {
-            app.dialog.alert("Tidak Terhubung dengan Server!", "Error");
-        }
-    })
-}
+//         },
+//         error: function () {
+//             app.dialog.alert("Tidak Terhubung dengan Server!", "Error");
+//         }
+//     })
+// }

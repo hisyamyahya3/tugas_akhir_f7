@@ -21,7 +21,7 @@ function tampilPelanggan() {
                         <div class="card-content card-content-padding">
                             <h2 class="col font-17" style="font-weight: bold;">Nama Pelanggan: ${d.pelanggan_nama}</h2>
                             <p class="col font-17">Alamat Pelanggan: ${d.pelanggan_alamat}</p>
-                            <p class="col font-17">Alamat Pelanggan: ${d.pelanggan_notelp}</p>
+                            <p class="col font-17">Nomor Telp: ${d.pelanggan_notelp}</p>
                             <div class="grid grid-cols-2 grid-gap">
                                 <button class="button button-small button-tonal color-blue" onclick="editPelanggan(${d.pelanggan_id}, '${d.pelanggan_nama}', '${d.pelanggan_alamat}', '${d.pelanggan_notelp}',)">Edit</button>
                                 <button class="button button-small button-tonal color-red" onclick="hapusPelanggan(${d.pelanggan_id})">Hapus</button>
@@ -156,7 +156,7 @@ function fetchSearchDataPelanggan(data) {
                 <div class="card-content card-content-padding">
                     <h2 class="col font-17" style="font-weight: bold;">Nama Pelanggan: ${d.pelanggan_nama}</h2>
                     <p class="col font-17">Alamat Pelanggan: ${d.pelanggan_alamat}</p>
-                    <p class="col font-17">Alamat Pelanggan: ${d.pelanggan_notelp}</p>
+                    <p class="col font-17">Nomor Telp: ${d.pelanggan_notelp}</p>
                     <div class="grid grid-cols-2 grid-gap">
                         <button class="button button-small button-tonal color-blue" onclick="editPelanggan(${d.pelanggan_id}, '${d.pelanggan_nama}', '${d.pelanggan_alamat}', '${d.pelanggan_notelp}',)">Edit</button>
                         <button class="button button-small button-tonal color-red" onclick="hapusPelanggan(${d.pelanggan_id})">Hapus</button>

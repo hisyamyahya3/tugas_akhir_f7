@@ -226,46 +226,46 @@ function cetakLaporanPembelian() {
     })
 }
 
-function tampilRiwayatPembelian () {
-    let userID = localStorage.getItem("userID")
+// function tampilRiwayatPembelian () {
+//     let userID = localStorage.getItem("userID")
 
-    $.ajax({
-        url: "http://localhost/api_toko/Pembelian/laporan",
-        method: "POST",
-        data: {
-            userID: userID,
-        },
-        success: function (res) {
-            let data = JSON.parse(res)
-            let pic = '';
-            let temp = '';
+//     $.ajax({
+//         url: "http://localhost/api_toko/Pembelian/laporan",
+//         method: "POST",
+//         data: {
+//             userID: userID,
+//         },
+//         success: function (res) {
+//             let data = JSON.parse(res)
+//             let pic = '';
+//             let temp = '';
 
-            if (data.data.length === 0) {
-                pic = `<div class="teks-tengah">
-                            <img src="img/nodata.jpg" class="besar" />
-                        </div>`;
-            } 
+//             if (data.data.length === 0) {
+//                 pic = `<div class="teks-tengah">
+//                             <img src="img/nodata.jpg" class="besar" />
+//                         </div>`;
+//             } 
 
-            data.data.forEach((d) => {
-                temp += `
-                <div class="card">
-                    <div class="card-content card-content-padding">
-                        <p class="col">No. Transaksi: ${d.beli_nofak}</p>
-                        <p class="col">Nama Pelanggan: ${d.suplier_nama}</p>
-                        <p class="col">Tgl Transaksi: ${d.beli_tanggal}</p>
-                        <p class="col">Total: ${rupiahFormatter(d.beli_total)}</p>
-                    </div>
-                </div>
-                `
-            })
+//             data.data.forEach((d) => {
+//                 temp += `
+//                 <div class="card">
+//                     <div class="card-content card-content-padding">
+//                         <p class="col">No. Transaksi: ${d.beli_nofak}</p>
+//                         <p class="col">Nama Pelanggan: ${d.suplier_nama}</p>
+//                         <p class="col">Tgl Transaksi: ${d.beli_tanggal}</p>
+//                         <p class="col">Total: ${rupiahFormatter(d.beli_total)}</p>
+//                     </div>
+//                 </div>
+//                 `
+//             })
 
-            $('#nodata1').html(pic)
-            $('#rwytPembelian').html(temp)
+//             $('#nodata1').html(pic)
+//             $('#rwytPembelian').html(temp)
 
 
-        },
-        error: function () {
-            app.dialog.alert("Tidak Terhubung dengan Server!", "Error");
-        }
-    })
-}
+//         },
+//         error: function () {
+//             app.dialog.alert("Tidak Terhubung dengan Server!", "Error");
+//         }
+//     })
+// }
