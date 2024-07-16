@@ -40,7 +40,7 @@ function tampilPelanggan() {
 
 function tambahPelanggan() {
     let pelanggan_nama = $("input[name=pelanggan_nama]").val();
-    let pelanggan_alamat = $("input[name=pelanggan_alamat]").val();
+    let pelanggan_alamat = $("textarea[name=pelanggan_alamat]").val();
     let pelanggan_notelp = $("input[name=pelanggan_notelp]").val();
     let userID = localStorage.getItem("userID")
     if(pelanggan_nama == "" || pelanggan_alamat == "" || pelanggan_notelp == ""){

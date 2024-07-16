@@ -41,7 +41,7 @@ function tampilSupplier() {
 
 function tambahSupplier() {
     let suplier_nama = $("input[name=suplier_nama]").val();
-    let suplier_alamat = $("input[name=suplier_alamat]").val();
+    let suplier_alamat = $("textarea[name=suplier_alamat]").val();
     let suplier_notelp = $("input[name=suplier_notelp]").val();
     let userID = localStorage.getItem("userID")
 

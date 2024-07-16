@@ -37,6 +37,7 @@ function tampilBarangPenjualan(keyword) {
 }
 
 function pilihBarangPelanggan(barang_id, harjul) {
+    let userID = localStorage.getItem("userID")
     let pelangganId = localStorage.getItem("cartPelangganID")
 
     if (!pelangganId) {
@@ -51,7 +52,8 @@ function pilihBarangPelanggan(barang_id, harjul) {
             pelangganId: pelangganId,
             pelangganBarangId: barang_id,
             pelangganBarangHarjul: harjul,
-            pelangganBarangQty: 1
+            pelangganBarangQty: 1,
+            userID: userID
         },
         success: function (res) {
             let parsedResult = JSON.parse(res)

@@ -36,6 +36,7 @@ function tampilBarangPembelian(keyword) {
 }
 
 function pilihBarangSupplier(id, harjul, stok) {
+    let userID = localStorage.getItem("userID");
     let supplierId = localStorage.getItem("cartSupplierID");
 
     $.ajax({
@@ -46,7 +47,8 @@ function pilihBarangSupplier(id, harjul, stok) {
             supplierBarangId: id,
             supplierBarangHarjul: harjul,
             supplierBarangStok: stok,
-            supplierBarangQty: 1
+            supplierBarangQty: 1,
+            userID
         },
         success: function (res) {
             app.dialog.alert("Data Berhasil Di Masukkan Ke Keranjang", "Success");
