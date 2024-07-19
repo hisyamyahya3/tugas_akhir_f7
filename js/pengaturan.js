@@ -12,8 +12,17 @@ function lockscreenorientation() {
     app.dialog.alert("Rotasi Berhasil Dikunci","Success");
 }
 
-// $(window).resize(function() {
-//     //resize just happened, pixels changed
-//     console.log("screen is been resize")
-// });
- 
+function checkScreenSize () {
+    window.plugins.screensize.get(successCallback, errorCallback);
+  }
+  
+  function successCallback(result) {
+    console.log(result);
+    // let res = JSON.parse(result);
+  
+    app.dialog.alert(result.width, "Info");
+  }
+  
+  function errorCallback() {
+    app.dialog.alert("Tidak Terhubung","error");
+  }

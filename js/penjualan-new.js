@@ -154,6 +154,7 @@ function resetLaporanPenjualan() {
 }
 
 function cetakLaporanPenjualan() {
+    let userID = localStorage.getItem("userID")
     let dariTgl = $("input[name=from-date-penjualan]").val();
     let sampaiTgl = $("input[name=to-date-penjualan]").val();
     if (dariTgl == "" || sampaiTgl == "") {
@@ -189,7 +190,27 @@ function cetakLaporanPenjualan() {
                 `
             })
 
-            let datacetak = `<html><h1>LAPORAN PENJUALAN DARI TANGGAL ${dariTgl} SAMPAI ${sampaiTgl}</h1><table border="1">${temp}</table></html>`;
+            let datacetak = `<html>
+                                <h3 class="teks-tengah">LAPORAN PENJUALAN DARI TANGGAL ${dariTgl} SAMPAI ${sampaiTgl}</h3>
+                                <table border="1" style="width: 100%;">
+                                    <thead>
+                                        <tr>
+                                            <td>Nama Pelanggan</td>
+                                            <td>No. Transaksi</td>
+                                            <td>Tgl Transaksi</td>
+                                            <td>Nama Barang</td>
+                                            <td>Harga</td>
+                                            <td>Qty</td>
+                                            <td>Total Harga</td>
+                                            <td>Nominal Pembayaran</td>
+                                            <td>Status Pembayaran</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        ${temp}
+                                    </tbody>
+                                </table>
+                            </html>`;
             var opsi = {
                 documentSize: 'A4',
                 type: 'share',

@@ -19,12 +19,17 @@
             <div class="toolbar-inner">
                 <a href="#penjualan" class="tab-link tab-link-active">
                     <i class="icon f7-icons if-not-md">shopping_cart</i>
-                    <i class="icon material-icons md-only">shopping_cart<span class="badge color-red" id="hitungPenjualan"></span></i>
+                    <i class="icon material-icons md-only">shopping_cart
+                        <span id="hitungPenjualan"></span>
+                        <!-- <span class="badge color-red" id="hitungPenjualan"></span> -->
+                    </i>
                     <span class="tabbar-label">Penjualan</span>
                 </a>
                 <a href="#pembelian" class="tab-link">
                     <i class="icon f7-icons if-not-md">shopping_cart</i>
-                    <i class="icon material-icons md-only">shopping_cart<span class="badge color-red" id="hitungPembelian"></span></i>
+                    <i class="icon material-icons md-only">shopping_cart
+                        <span id="hitungPembelian"></span>
+                    </i>
                     <span class="tabbar-label">Pembelian</span>
                 </a>
             </div>
@@ -66,12 +71,27 @@
                 success: function (result) {
                     let res = JSON.parse(result)
 
-                    if (res.data.count === 0) {
-                        $("#hitungPenjualan").addClass("badge-disabled").text("");
-                    }
+                    // 0 == '0' true
+                    // 0 === '0' false
+                    // 0 === 0 true 
+                    // console.log(typeof res.data.count)
+                    // if (res.data.count == 0) {
+                    //     // $("#hitungPenjualan").addClass("badge-disabled").text("");
+                    //     // $("#hitungPenjualan").addClass("display-none")
 
-                    let itemCount = res.data.count
-                    $("#hitungPenjualan").removeClass("badge-disabled").text(itemCount);
+                    //     // console.log('matiin')
+                        
+                    //     $("#hitungPenjualan").removeClass("badge color-red")
+                    //     $("#hitungPenjualan").html("")
+                    // }
+
+                    if (res.data.count != 0) {
+                        let itemCount = res.data.count
+                        // $("#hitungPenjualan").removeClass("display-none")
+    
+                        // $("#hitungPenjualan").removeClass("badge-disabled").text(itemCount);
+                        $("#hitungPenjualan").html(`<span class="badge color-red" id="hitungPenjualan">${itemCount}</span>`)
+                    }
                 },
                 error: function () {
                     app.dialog.alert("Tidak Terhubung dengan Server!", "Error");
@@ -87,12 +107,23 @@
                 success: function (result) {
                     let res = JSON.parse(result)
 
-                    if (res.data.count === 0) {
-                        $("#hitungPembelian").addClass("badge-disabled").text("");
-                    }
+                    // if (res.data.count == 0) {
+                    //     // $("#hitungPembelian").addClass("badge-disabled").text("");
+                    //     $("#hitungPenjualan").addClass("display-none")
+                    // }
 
-                    let itemCount = res.data.count
-                    $("#hitungPembelian").removeClass("badge-disabled").text(itemCount);
+                    // let itemCount = res.data.count
+                    // $("#hitungPenjualan").removeClass("display-none")
+
+                    // $("#hitungPembelian").removeClass("badge-disabled").text(itemCount);
+
+                    if (res.data.count != 0) {
+                        let itemCount = res.data.count
+                        // $("#hitungPenjualan").removeClass("display-none")
+    
+                        // $("#hitungPenjualan").removeClass("badge-disabled").text(itemCount);
+                        $("#hitungPembelian").html(`<span class="badge color-red" id="hitungPembelian">${itemCount}</span>`)
+                    }
                 },
                 error: function () {
                     app.dialog.alert("Tidak Terhubung dengan Server!", "Error");

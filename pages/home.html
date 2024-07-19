@@ -36,16 +36,19 @@
                 </div>
             </div>
             <div class="card">
+                <div class="card-header teks-tengah">Selamat Datang!</div>
                 <div class="card-content card-content-padding">
-                    <h4 class="teks-tengah">Selamat Datang!</h4>
-                    <h1 class="nama">
+                    <p class="nama" style="font-weight: 300; font-size: xx-large;"></p>
+                    <!-- <h4 class="teks-tengah"></h4>
+                    <h2 class="nama">
                         
-                    </h1>
+                    </h2>
                     <div class="grid grid-cols-2 grid-gap">
                         <button class="button button-tonal" @click="${()=>openSettings()}">Pengaturan</button>
                         <button class="button button-tonal" @click="${()=>logout()}">Keluar</button>
-                    </div>
+                    </div> -->
                 </div>
+                <div class="card-footer"><a class="link" @click="${()=>openSettings()}">Pengaturan</a><a class="link" @click="${()=>logout()}">Keluar</a></div>
             </div>
             <div class="grid grid-cols-2">
                 <div class="card">

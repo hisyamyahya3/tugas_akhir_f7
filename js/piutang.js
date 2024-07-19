@@ -19,7 +19,7 @@ function tampilPiutang() {
                     temp += `
                         <div class="card">
                             <div class="card-content card-content-padding">
-                                <h2 class="col font-17" style="font-weight: bold;">Nama Supplier: ${d.pelanggan_nama}</h2>
+                                <h2 class="col font-17" style="font-weight: bold;">Nama Pelanggan: ${d.pelanggan_nama}</h2>
                                 <p class="col font-17">Tgl Transaksi: ${d.tgl_transaksi}</p>
                                 <p class="col font-17">Jumlah Transaksi: ${rupiahFormatter(d.jml_transaksi)}</p>
                                 <p class="col font-17">Jumlah Dibayar: ${rupiahFormatter(d.jml_dibayar)}</p>
@@ -81,7 +81,7 @@ function fetchSearchDataPiutang (res) {
         temp += `
             <div class="card">
                 <div class="card-content card-content-padding">
-                    <h2 class="col font-17" style="font-weight: bold;">Nama Supplier: ${d.pelanggan_nama}</h2>
+                    <h2 class="col font-17" style="font-weight: bold;">Nama Pelanggan: ${d.pelanggan_nama}</h2>
                     <p class="col font-17">Tgl Transaksi: ${d.tgl_transaksi}</p>
                     <p class="col font-17">Jumlah Transaksi: ${rupiahFormatter(d.jml_transaksi)}</p>
                     <p class="col font-17">Jumlah Dibayar: ${rupiahFormatter(d.jml_dibayar)}</p>
