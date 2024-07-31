@@ -169,7 +169,7 @@
     export default function (props, ctx) {
         let $on = ctx.$on;
         $on('pageBeforeIn', () => {
-            let username = sessionStorage.getItem("username");
+            let username = localStorage.getItem("username");
             $('.nama').html(username)
         })
         return $render;

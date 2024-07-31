@@ -27,7 +27,7 @@ $(document).on('click', '.btn-bayar-penjualan', function () {
                 app.views.main.router.navigate(`/sts-pembayaran/${result.data.jual_nofak}`);
             }
 
-            app.dialog.alert(result.message, "Information");
+            // app.dialog.alert(result.message, "Information");
         },
         error: function (error) {
             console.log(error)

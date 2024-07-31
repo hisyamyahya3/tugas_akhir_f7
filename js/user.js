@@ -59,8 +59,8 @@ async function login() {
                 const userID = res.data.id_users
 
                 localStorage.setItem("userID", userID);
-                sessionStorage.setItem("isLogin", true)
-                sessionStorage.setItem("username", res.data.full_name)
+                localStorage.setItem("isLogin", true)
+                localStorage.setItem("username", res.data.full_name)
                 app.views.main.router.navigate("/")
             } else {
                 attempts++
@@ -76,11 +76,11 @@ async function login() {
 
 async function logout() {
     app.dialog.confirm('Apakah Anda Yakin Ingin Keluar?','Info', function () {
-        const isLogin = sessionStorage.getItem('isLogin')
+        const isLogin = localStorage.getItem('isLogin')
     
         if (isLogin) {
-            sessionStorage.removeItem('username')
-            sessionStorage.removeItem('isLogin')
+            localStorage.removeItem('username')
+            localStorage.removeItem('isLogin')
             app.views.main.router.navigate('/login/')
         }   
     })

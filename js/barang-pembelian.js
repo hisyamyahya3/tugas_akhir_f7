@@ -21,7 +21,7 @@ function tampilBarangPembelian(keyword) {
                             <p class="col font-17">Stok: ${d.barang_stok}</p>
                         </div>
                         <div class="card-footer">
-                            <button class="button button-small button-tonal color-blue" onclick="pilihBarangSupplier('${d.barang_id}', '${d.barang_harjul}', '${d.barang_stok}')">Keranjang</button>
+                            <button class="button button-small button-tonal color-blue" onclick="pilihBarangSupplier('${d.barang_id}', '${d.barang_harjul}')">Keranjang</button>
                         </div>
                     </div>
                 `
@@ -35,7 +35,7 @@ function tampilBarangPembelian(keyword) {
     })
 }
 
-function pilihBarangSupplier(id, harjul, stok) {
+function pilihBarangSupplier(id, harjul) {
     let userID = localStorage.getItem("userID");
     let supplierId = localStorage.getItem("cartSupplierID");
 
@@ -46,12 +46,14 @@ function pilihBarangSupplier(id, harjul, stok) {
             supplierId: supplierId,
             supplierBarangId: id,
             supplierBarangHarjul: harjul,
-            supplierBarangStok: stok,
             supplierBarangQty: 1,
             userID
         },
         success: function (res) {
-            app.dialog.alert("Data Berhasil Di Masukkan Ke Keranjang", "Success");
+            let parsedResult = JSON.parse(res)
+            let status = (parsedResult.status == 'ok') ? 'Success' : 'Error'
+
+            app.dialog.alert(parsedResult.keterangan, status)
         },
         error: function () {
             app.dialog.alert("Tidak Terhubung dengan Server!", "Error");

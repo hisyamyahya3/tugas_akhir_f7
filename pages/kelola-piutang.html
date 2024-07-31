@@ -6,25 +6,18 @@
                 <div class="left">
                     <a class="link back">
                         <i class="icon icon-back"></i>
-                        <span class="if-not-md">Halaman Utama</span>
+                        <span class="if-not-md">Piutang</span>
                     </a>
                 </div>
-                <div class="title">Data Piutang</div>
+                <div class="title">Kelola Piutang</div>
                 <div class="title-large">
-                    <div class="title-large-text">Data Piutang</div>
+                    <div class="title-large-text">Kelola Piutang</div>
                 </div>
             </div>
         </div>
         <div class="page-content">
-            <form data-search-container=".search-list" class="searchbar searchbar-init">
-                <div class="searchbar-inner">
-                    <div class="searchbar-input-wrap">
-                        <input type="text" id="searchTabelPiutang" placeholder="Cari Nama Pelanggan......" />
-                        <i class="searchbar-icon"></i>
-                    </div>
-                </div>
-            </form>
-            <div class="grid grid-cols" id="daftar-piutang">
+            <div class="block-title">Data Piutang</div>
+            <div class="grid grid-cols" id="kategori-piutang">
 
             </div>
             <div class="teks-tengah" id="nodata">
@@ -36,7 +29,7 @@
 <script>
     export default function (props, ctx) {
         ctx.$on('pageAfterIn', () => {
-            tampilKategoriPiutang();
+            tampilPiutang();
         })
 
         return $render;
