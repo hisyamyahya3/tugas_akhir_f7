@@ -69,6 +69,7 @@ function tampilBayarPenjualan(id) {
         data: { pelangganId: id },
         success: function (result) {
             let res = JSON.parse(result);
+            //console.log(res.data.totalPiutang.total);
 
             let temp = "";
             let total = 0;
@@ -77,7 +78,7 @@ function tampilBayarPenjualan(id) {
                 app.views.main.router.back();
             } 
 
-            res.data.forEach((d) => {
+            res.data.detailKeranjang.forEach((d) => {
                 let subtotal = parseInt(d.barang_harjul) * parseInt(d.qty);
                 total += subtotal;
 
@@ -106,6 +107,16 @@ function tampilBayarPenjualan(id) {
                 </div>
                 `
             });
+  
+            if (res.data.totalPiutang) {
+                let totalPiutang = res.data.totalPiutang.total;   
+
+                let temp4 =  `
+                    Anda Memiliki Piutang Sebesar: ${rupiahFormatter(totalPiutang)}
+                `
+                $("#totalPiutang").html(temp4);
+                $("#piutang").removeClass('display-none');
+            } 
 
             let temp2 = `
                 <p class="col font-17">Total: ${rupiahFormatter(total)}</p>
@@ -132,6 +143,11 @@ function btnqtyPenjualan(id, barang_id, qty, pelanggan_id, action) {
             action: action
         },
         success: function (res) {
+            console.log(res);
+            data = JSON.parse(res);
+            if ( data.status == 'gagal') {
+                app.dialog.alert(data.keterangan, "Info");
+            }
             tampilBayarPenjualan(pelanggan_id)
         },
         error: function () {
@@ -251,7 +267,7 @@ function tampilBayarPembelian(id) {
                 app.views.main.router.back();
             } 
 
-            res.data.forEach((d) => {
+            res.data.detailKeranjang.forEach((d) => {
                 let subtotal = parseInt(d.barang_harjul) * parseInt(d.qty);
                 total += subtotal;
 
@@ -287,8 +303,17 @@ function tampilBayarPembelian(id) {
 
             let temp3 = `
                 <button class="button button-large button-tonal" onclick="lanjutBayarPembelian(${id}, ${total})">Lanjut Ke Pembayaran</button>
-            
             `
+
+            if (res.data.totalUtang) {
+                let totalUtang = res.data.totalUtang.total;
+
+                let temp4 = `
+                    Anda Memiliki Utang Sebesar: ${rupiahFormatter(totalUtang)}
+                `
+                $("#totalUtang").html(temp4);
+                $("#utang").removeClass('display-none');
+            }
 
             $("#tampilBayarPembelian").html(temp);
             $("#tampilTotalBayarPembelian").html(temp2);

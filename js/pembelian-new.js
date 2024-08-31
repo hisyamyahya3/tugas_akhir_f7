@@ -16,7 +16,7 @@ function tampilSupplierPembelian(keyword) {
                 temp += `
                     <div class="card">
                         <div class="card-content card-content-padding">
-                            <h2 class="col font-17" style="font-weight: bold;">Nama Supplier: ${d.suplier_nama}</h2>
+                            <h2 class="col font-17" style="font-weight: bold;">${d.suplier_nama}</h2>
                             <p class="col font-17">Alamat Supplier: ${d.suplier_alamat}</p>
                             <p class="col font-17">Nomor Telpon: ${d.suplier_notelp}</p>
                         </div>
@@ -80,24 +80,9 @@ function tampilLaporanPembelian(keyword) {
                             <img src="img/nodata.jpg" class="besar" />
                         </div>`;
             } else {
-                data.data.forEach((d) => {
-                    temp += `
-                    <tr>
-                        <td class="label-cell">${d.suplier_nama}</td>
-                        <td class="numeric-cell">${d.beli_nofak}</td>
-                        <td class="numeric-cell">${d.beli_tanggal}</td>
-                        <td class="label-cell">${d.barang_nama}</td>
-                        <td class="numeric-cell">${rupiahFormatter(d.d_beli_harga)}</td>
-                        <td class="numeric-cell">${d.d_beli_jumlah}</td>
-                        <td class="numeric-cell">${rupiahFormatter(d.beli_total)}</td>
-                        <td class="numeric-cell">${rupiahFormatter(d.beli_jml_uang)}</td>
-                        <td class="numeric-cell">${d.beli_keterangan}</td>
-                    </tr>
-                    `
-                });
+                $('#laporan-pembelian').html(fetchFilterPembelian(data))           
             }
 
-            $('#laporan-pembelian').html(temp)
             $('#nodata').html(pic)
         },
         error: function () {
@@ -144,8 +129,12 @@ function cariTanggalPembelian() {
 
 function fetchFilterPembelian(data) {
     let temp = '';
+    let total = 0;
 
     data.data.forEach((d) => {
+        let subtotal = parseFloat(d.beli_total);
+        total += subtotal;
+
         temp += `
         <tr>
             <td class="label-cell">${d.suplier_nama}</td>
@@ -161,6 +150,7 @@ function fetchFilterPembelian(data) {
         `
     })
 
+    $('#totalPembelian').html(`Total : ${rupiahFormatter(total)}`)
     return temp
 }
 

@@ -1,0 +1,60 @@
+<template>
+    <div class="page no-toolbar no-navbar no-swipeback login-screen-page">
+        <div class="page-content login-screen-content">
+            <div class="login-screen-title">
+                <i class="icon f7-icons">bag</i> TOKO
+            </div>
+            <!-- <img src="img/cover.png" alt="login_image" class="login_img" /> -->
+            <div class="block-title block-title-medium">Aplikasi Pencatatan Transaksi</div>
+            <div class="grid grid-cols">
+                <div class="card">
+                    <div class="card-content card-content-padding">
+                        <a class="item-content">
+                            <div class="item-media teks-tengah"><img src="img/shop.png" class="besar-icon" /></div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <!-- <div class="block block-strong block-outline-ios">
+                <div class="grid grid-cols grid-gap">
+                    <button class="button button-small button-tonal" @click="${()=>masuk()}">Login</button>
+                    <button class="button button-small button-tonal" @click="${()=>daftar()}">Regis</button>
+                </div>
+            </div>   -->
+            <div class="grid grid-cols-2">
+                <div class="card">
+                    <div class="card-content card-content-padding">
+                        <a class="item-content item-link" href="/login/">
+                            <div class="item-media"></div>
+                            <div class="item-inner">
+                                <div class="item-title teks-tengah"><h4>Login</h4></div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-content card-content-padding">
+                        <a class="item-content item-link" href="/regis/">
+                            <div class="item-media"></div>
+                            <div class="item-inner">
+                                <div class="item-title teks-tengah"><h4>Daftar</h4></div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>
+<script>
+     export default function(props,ctx){
+        ctx.$on('pageBeforeIn', () => {
+            const isLogin = localStorage.getItem("isLogin");
+
+            if (isLogin == "true") {
+                app.views.main.router.navigate("/");
+            }
+        })
+        return $render;
+    }
+</script>

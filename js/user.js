@@ -81,7 +81,15 @@ async function logout() {
         if (isLogin) {
             localStorage.removeItem('username')
             localStorage.removeItem('isLogin')
-            app.views.main.router.navigate('/login/')
+            app.views.main.router.navigate('/frontpage/')
         }   
     })
 }
+
+// function masuk () {
+//     app.views.main.router.navigate("/login/")
+// }
+
+// function daftar () {
+//     app.views.main.router.navigate("/regis/")
+// }

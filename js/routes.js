@@ -1,5 +1,6 @@
 var routes = [
   {path: '/login/', componentUrl: 'pages/login.html'},
+  {path: '/frontpage/', componentUrl: 'pages/frontpage.html'},
   {path: '/regis/', componentUrl: 'pages/regis.html'},
   {path: '/', componentUrl: 'pages/home.html'},
   {path: '/plgn/', componentUrl: 'pages/plgn.html'},

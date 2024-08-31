@@ -16,7 +16,7 @@ function tampilPelangganPenjualan(keyword) {
             data.data.forEach((d) => {
                 temp += `<div class="card">
                     <div class="card-content card-content-padding">
-                        <h2 class="col font-17" style="font-weight: bold;">Nama Pelanggan: ${d.pelanggan_nama}</h2>
+                        <h2 class="col font-17" style="font-weight: bold;">${d.pelanggan_nama}</h2>
                         <p class="col font-17">Alamat Pelanggan: ${d.pelanggan_alamat}</p>
                         <p class="col font-17">Nomor Telpon: ${d.pelanggan_notelp}</p>
                     </div>
@@ -127,8 +127,12 @@ function cariTanggalPenjualan() {
 
 function fetchFilterPenjualan(data) {
     let temp = '';
+    let total = 0;
 
     data.data.forEach((d) => {
+        let subtotal = parseFloat(d.d_jual_total);
+        total += subtotal;
+
         temp += `
         <tr>
             <td class="label-cell">${d.pelanggan_nama}</td>
@@ -143,6 +147,9 @@ function fetchFilterPenjualan(data) {
         </tr>
         `
     })
+
+    $('#totalPenjualan').html(`Total : ${rupiahFormatter(total)}`)
+    console.log(total)
 
     return temp
 }
@@ -229,46 +236,25 @@ function cetakLaporanPenjualan() {
     })
 }
 
-// function tampilRiwayatPenjualan () {
-//     let userID = localStorage.getItem("userID")
+function totalLaporanPenjualan () {
+    let userID = localStorage.getItem("userID")
+    $.ajax({
+        url: "http://localhost/api_toko/Penjualan/totalLaporan",
+        method: "POST",
+        data: {
+            userID: userID
+        },
+        success: function (result) {
+            let data = JSON.parse(result)
 
-//     $.ajax({
-//         url: "http://localhost/api_toko/Penjualan/laporan",
-//         method: "POST",
-//         data: {
-//             userID: userID,
-//         },
-//         success: function (res) {
-//             let data = JSON.parse(res)
-//             let pic = '';
-//             let temp = '';
-
-//             if (data.data.length === 0) {
-//                 pic = `<div class="teks-tengah">
-//                             <img src="img/nodata.jpg" class="besar" />
-//                         </div>`;
-//             } 
-
-//             data.data.forEach((d) => {
-//                 temp += `
-//                 <div class="card">
-//                     <div class="card-content card-content-padding">
-//                         <p class="col">No. Transaksi: ${d.jual_nofak}</p>
-//                         <p class="col">Nama Pelanggan: ${d.pelanggan_nama}</p>
-//                         <p class="col">Tgl Transaksi: ${d.jual_tanggal}</p>
-//                         <p class="col">Total: ${rupiahFormatter(d.d_jual_total)}</p>
-//                     </div>
-//                 </div>
-//                 `
-//             })
-
-//             $('#nodata').html(pic)
-//             $('#rwytPenjualan').html(temp)
-
-
-//         },
-//         error: function () {
-//             app.dialog.alert("Tidak Terhubung dengan Server!", "Error");
-//         }
-//     })
-// }
+            if (data.status === 'ok') {
+                let totalSum = data.data[0].total_sum;
+                $('#totalPenjualan').html('Total: ' + rupiahFormatter(totalSum));
+            } 
+            console.log(data)
+        },
+        error: function () {
+            app.dialog.alert("Tidak Terhubung dengan Server!", "Error");
+        }
+    })
+}

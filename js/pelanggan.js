@@ -19,7 +19,7 @@ function tampilPelanggan() {
                 temp += `
                     <div class="card">
                         <div class="card-content card-content-padding">
-                            <h2 class="col font-17" style="font-weight: bold;">Nama Pelanggan: ${d.pelanggan_nama}</h2>
+                            <h2 class="col font-17" style="font-weight: bold;">${d.pelanggan_nama}</h2>
                             <p class="col font-17">Alamat Pelanggan: ${d.pelanggan_alamat}</p>
                             <p class="col font-17">Nomor Telp: ${d.pelanggan_notelp}</p>
                             <div class="grid grid-cols-2 grid-gap">
@@ -154,7 +154,7 @@ function fetchSearchDataPelanggan(data) {
         temp += `
             <div class="card">
                 <div class="card-content card-content-padding">
-                    <h2 class="col font-17" style="font-weight: bold;">Nama Pelanggan: ${d.pelanggan_nama}</h2>
+                    <h2 class="col font-17" style="font-weight: bold;">${d.pelanggan_nama}</h2>
                     <p class="col font-17">Alamat Pelanggan: ${d.pelanggan_alamat}</p>
                     <p class="col font-17">Nomor Telp: ${d.pelanggan_notelp}</p>
                     <div class="grid grid-cols-2 grid-gap">

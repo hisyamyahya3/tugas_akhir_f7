@@ -19,7 +19,7 @@ function tampilSupplier() {
                     temp += `
                     <div class="card">
                         <div class="card-content card-content-padding">
-                            <h2 class="col font-17" style="font-weight: bold;">Nama Supplier: ${d.suplier_nama}</h2>
+                            <h2 class="col font-17" style="font-weight: bold;">${d.suplier_nama}</h2>
                             <p class="col font-17">Alamat Supplier: ${d.suplier_alamat}</p>
                             <p class="col font-17">Alamat Supplier: ${d.suplier_notelp}</p>
                             <div class="grid grid-cols-2 grid-gap">
@@ -157,7 +157,7 @@ function fetchSearchDataSupplier(data) {
         temp += `
             <div class="card">
                 <div class="card-content card-content-padding">
-                    <h2 class="col font-17" style="font-weight: bold;">Nama Supplier: ${d.suplier_nama}</h2>
+                    <h2 class="col font-17" style="font-weight: bold;">${d.suplier_nama}</h2>
                     <p class="col font-17">Alamat Supplier: ${d.suplier_alamat}</p>
                     <p class="col font-17">Alamat Supplier: ${d.suplier_notelp}</p>
                     <div class="grid grid-cols-2 grid-gap">
